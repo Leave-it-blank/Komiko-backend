@@ -50,7 +50,7 @@ export default [
       icon: mdiPalette
     },
     {
-      route: 'dashboard',
+      route: 'profile.show',
       label: 'Profile',
       icon: mdiAccountCircle
     },

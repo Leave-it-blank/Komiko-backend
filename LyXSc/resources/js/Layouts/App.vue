@@ -9,6 +9,9 @@ import FooterBar from '@/components/FooterBar.vue'
 import OverlayLayer from '@/components/OverlayLayer.vue'
 
 const mainStore = useMainStore()
+defineProps({
+    title: String,
+});
 mainStore.fullScreenToggle(false)
 mainStore.setUser({
   name: 'John Doe',
