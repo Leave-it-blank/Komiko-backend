@@ -33,3 +33,6 @@ Route::middleware([
         return Inertia::render('HomeView');
     })->name('dashboard');
 });
+
+
+require __DIR__.'/backend.php';

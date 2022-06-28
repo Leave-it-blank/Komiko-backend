@@ -30,8 +30,8 @@ export default [
       icon: mdiTable
     },
     {
-      route: 'dashboard',
-      label: 'Forms',
+      route: 'authentication.users',
+      label: 'Users',
       icon: mdiSquareEditOutline
     },
     {
