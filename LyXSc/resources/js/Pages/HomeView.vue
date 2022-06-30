@@ -105,7 +105,7 @@ const darkMode = computed(() => mainStore.darkMode)
       />
     </div>
 
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
+  <!--   <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
       <div class="flex flex-col justify-between">
         <CardBoxTransaction
           v-for="(transaction,index) in transactionBarItems"
@@ -128,7 +128,7 @@ const darkMode = computed(() => mainStore.darkMode)
           :progress="client.progress"
         />
       </div>
-    </div>
+    </div> -->
 
     <SectionTitleBarSub
       :icon="mdiChartPie"
@@ -162,13 +162,7 @@ const darkMode = computed(() => mainStore.darkMode)
       <b>Responsive table.</b> Collapses on mobile
     </NotificationBar>
 
-    <CardBox
-      :icon="mdiMonitorCellphone"
-      title="Responsive table"
-      has-table
-    >
-      <TableSampleClients />
-    </CardBox>
+
   </SectionMain>
   </app>
 </template>

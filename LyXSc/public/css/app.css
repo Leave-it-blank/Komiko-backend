@@ -1070,6 +1070,12 @@ select {
 .col-span-6 {
     grid-column: span 6 / span 6
 }
+.col-span-1 {
+    grid-column: span 1 / span 1
+}
+.col-span-2 {
+    grid-column: span 2 / span 2
+}
 .-m-px {
     margin: -1px
 }
@@ -1096,6 +1102,10 @@ select {
 .my-24 {
     margin-top: 6rem;
     margin-bottom: 6rem
+}
+.my-2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem
 }
 .ml-3 {
     margin-left: 0.75rem
@@ -1334,6 +1344,9 @@ select {
 .w-11\/12 {
     width: 91.666667%
 }
+.w-2 {
+    width: 0.5rem
+}
 .min-w-0 {
     min-width: 0px
 }
@@ -1540,6 +1553,9 @@ select {
 }
 .rounded-sm {
     border-radius: 0.125rem
+}
+.rounded-xl {
+    border-radius: 0.75rem
 }
 .rounded-l-md {
     border-top-left-radius: 0.375rem;
@@ -2005,6 +2021,9 @@ select {
 }
 .tracking-wider {
     letter-spacing: 0.05em
+}
+.tracking-wide {
+    letter-spacing: 0.025em
 }
 .text-gray-500 {
     --tw-text-opacity: 1;
@@ -2561,6 +2580,10 @@ select {
     --tw-text-opacity: 1;
     color: rgb(209 213 219 / var(--tw-text-opacity))
 }
+.dark .dark\:text-red-400 {
+    --tw-text-opacity: 1;
+    color: rgb(248 113 113 / var(--tw-text-opacity))
+}
 .dark .dark\:placeholder-gray-400::-moz-placeholder {
     --tw-placeholder-opacity: 1;
     color: rgb(156 163 175 / var(--tw-placeholder-opacity))
@@ -2844,6 +2867,9 @@ select {
     .lg\:col-span-4 {
         grid-column: span 4 / span 4
     }
+    .lg\:col-span-2 {
+        grid-column: span 2 / span 2
+    }
     .lg\:my-0\.5 {
         margin-top: 0.125rem;
         margin-bottom: 0.125rem
@@ -2901,6 +2927,9 @@ select {
     }
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+    .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
     }
     .lg\:items-stretch {
         align-items: stretch

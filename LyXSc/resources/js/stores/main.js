@@ -31,6 +31,10 @@ export const useMainStore = defineStore('main', {
     userEmail: null,
     userAvatar: null,
 
+    /* User update*/
+    userDataName: null,
+    userDataEmail: null,
+
     /* fullScreen - fullscreen form layout (e.g. login page) */
     isFullScreen: true,
 

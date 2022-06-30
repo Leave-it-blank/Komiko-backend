@@ -180,7 +180,8 @@ const checked = (isChecked, client) => {
               color="warning"
               :icon="mdiAccountEdit"
               small
-             :href="client.editUrl"
+             :routeName="client.editUrl"
+             :routeTo = "client.id"
             />
 
           </BaseButtons>

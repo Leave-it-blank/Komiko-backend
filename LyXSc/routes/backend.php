@@ -15,7 +15,8 @@ use App\Http\Controllers\Backend\Management\AdvertisementController;
 use App\Http\Controllers\Backend\Management\CarouselController;
 use App\Http\Controllers\Backend\Management\SettingsController; */
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Fortify\Features;
+use App\Actions\Fortify\UpdateUserPassword;
 /*
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -77,6 +78,9 @@ Route::group(['middleware' => ['permission:handle settings management|view setti
     function () {
         Route::get('admin/auth/users', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'getUsers' ] )->name('authentication.users');
         Route::get('admin/auth/users/id/{user}', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'editUser' ] )->name('authentication.users.edit');
+        Route::post('admin/auth/id/{user}/passcode', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'storeCodes' ] )->name('authentication.users.passcode.store'); //password update route
+        Route::post('admin/auth/users/id/{user}/infoupdate', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'storeDetails' ] )->name('authentication.users.detail.store');
+        Route::post('admin/auth/users/id/{user}/userRolesUpdate', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'userRolesUpdate' ] )->name('authentication.users.roles.store');
 
     });
 

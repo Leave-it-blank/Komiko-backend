@@ -18,7 +18,7 @@
       :icon="mdiAccountMultiple"
       has-table
     >
-       <TableSampleClients checkable :users="props.users" />
+       <UsersListTable checkable :users="props.users" />
     </CardBox>
 
     </SectionMain>
@@ -34,7 +34,7 @@ import { ref } from 'vue'
 import { mdiMonitorCellphone, mdiAccountMultiple, mdiTableBorder, mdiTableOff } from '@mdi/js'
 import SectionMain from '@/components/SectionMain.vue'
 import NotificationBar from '@/components/NotificationBar.vue'
-import TableSampleClients from '@/components/TableSampleClients.vue'
+import UsersListTable from '@/components/UsersListTable.vue'
 import CardBox from '@/components/CardBox.vue'
 import SectionTitleBar from '@/components/SectionTitleBar.vue'
 import SectionHeroBar from '@/components/SectionHeroBar.vue'
