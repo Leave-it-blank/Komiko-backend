@@ -18,9 +18,11 @@ class UsersController extends Controller
                     'id' => $user->id,
                     'name' => $user->name,
                     'email' => $user->email,
-                    'edit_url' => URL::route('authentication.users.edit', $user),
+                    'profileUrl' => $user->profile_photo_path,
+                    'editUrl' => URL::route('authentication.users.edit', $user),
+                    'createdAt' => $user->created_at
                 ];
-            }),
+            })->toArray(),
 
         ]);
     }

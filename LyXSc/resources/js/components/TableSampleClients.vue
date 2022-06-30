@@ -1,17 +1,25 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref  } from 'vue'
 import { useMainStore } from '@/stores/main'
-import { mdiEye, mdiTrashCan } from '@mdi/js'
+import { mdiEye, mdiTrashCan , mdiAccountEdit} from '@mdi/js'
 import CardBoxModal from '@/components/CardBoxModal.vue'
 import TableCheckboxCell from '@/components/TableCheckboxCell.vue'
 import BaseLevel from '@/components/BaseLevel.vue'
 import BaseButtons from '@/components/BaseButtons.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
+import moment from 'moment'
 
-defineProps({
-  checkable: Boolean
-})
+const prop = defineProps({
+  checkable: Boolean,
+  users: {
+    type: Array,
+    default: null
+  }
+});
+function dateshow(value) {
+    return moment(value).fromNow() // here u modify data
+}
 
 const mainStore = useMainStore()
 
@@ -24,6 +32,8 @@ const tableTrStyle = computed(() => mainStore.tableTrStyle)
 const tableTrOddStyle = computed(() => mainStore.tableTrOddStyle)
 
 const darkMode = computed(() => mainStore.darkMode)
+
+mainStore.clients = prop.users;
 
 const items = computed(() => mainStore.clients)
 
@@ -85,16 +95,6 @@ const checked = (isChecked, client) => {
     <p>This is sample modal</p>
   </CardBoxModal>
 
-  <CardBoxModal
-    v-model="isModalDangerActive"
-    large-title="Please confirm"
-    button="danger"
-    has-cancel
-  >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
-
   <div
     v-if="checkedRows.length"
     class="bg-opacity-50 p-3 dark:bg-gray-800"
@@ -113,11 +113,11 @@ const checked = (isChecked, client) => {
   <table>
     <thead>
       <tr>
-        <th v-if="checkable" />
+        <th v-if="prop.checkable" />
         <th />
         <th>Name</th>
-        <th>Company</th>
-        <th>City</th>
+        <th>email</th>
+        <th>profileUrl</th>
         <th>Progress</th>
         <th>Created</th>
         <th />
@@ -130,7 +130,7 @@ const checked = (isChecked, client) => {
         :class="[tableTrStyle, index % 2 === 0 ? tableTrOddStyle : '']"
       >
         <TableCheckboxCell
-          v-if="checkable"
+          v-if="prop.checkable"
           @checked="checked($event, client)"
         />
         <td class="image-cell">
@@ -142,11 +142,11 @@ const checked = (isChecked, client) => {
         <td data-label="Name">
           {{ client.name }}
         </td>
-        <td data-label="Company">
-          {{ client.company }}
+        <td data-label="email">
+          {{ client.email }}
         </td>
-        <td data-label="City">
-          {{ client.city }}
+        <td data-label="profileUrl">
+          {{ client.profileUrl }}
         </td>
         <td
           data-label="Progress"
@@ -162,8 +162,8 @@ const checked = (isChecked, client) => {
         <td data-label="Created">
           <small
             class="text-gray-500 dark:text-gray-400"
-            :title="client.created"
-          >{{ client.created }}</small>
+            :title="client.createdAt"
+          >{{ dateshow(client.createdAt)  }}</small>
         </td>
         <td class="actions-cell">
           <BaseButtons
@@ -176,14 +176,16 @@ const checked = (isChecked, client) => {
               small
               @click="isModalActive = true"
             />
-            <BaseButton
-              color="danger"
-              :icon="mdiTrashCan"
+             <BaseButton
+              color="warning"
+              :icon="mdiAccountEdit"
               small
-              @click="isModalDangerActive = true"
+             :href="client.editUrl"
             />
+
           </BaseButtons>
         </td>
+
       </tr>
     </tbody>
   </table>
