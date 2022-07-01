@@ -9,6 +9,7 @@ import BaseButtons from '@/components/BaseButtons.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import moment from 'moment'
+import SearchTable from './SearchTable.vue'
 
 const prop = defineProps({
   checkable: Boolean,
@@ -84,9 +85,15 @@ const checked = (isChecked, client) => {
     checkedRows.value = remove(checkedRows.value, row => row.id === client.id)
   }
 }
+
 </script>
 
 <template>
+
+  <div class="mb-3 xl:w-96">
+   <SearchTable :searchArray="prop.users" Search searchIndexName='name'/>
+  </div>
+
   <CardBoxModal
     v-model="isModalActive"
     title="Sample modal"
@@ -109,7 +116,6 @@ const checked = (isChecked, client) => {
       {{ checkedRow.name }}
     </span>
   </div>
-
   <table>
     <thead>
       <tr>
@@ -209,5 +215,6 @@ const checked = (isChecked, client) => {
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
+
   </div>
 </template>
