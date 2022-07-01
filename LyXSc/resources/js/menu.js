@@ -25,8 +25,8 @@ export default [
   'Examples',
   [
     {
-      route: 'dashboard',
-      label: 'Tables',
+      route: 'comics_management.comics',
+      label: 'Comics',
       icon: mdiTable
     },
     {

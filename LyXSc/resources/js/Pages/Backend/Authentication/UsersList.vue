@@ -1,10 +1,8 @@
 <template>
   <AppLayout>
 
-    <Head title="Welcome" />
+    <Head title="Users List" />
     <SectionTitleBar :title-stack="titleStack" />
-    <SectionHeroBar>Users</SectionHeroBar>
-
     <SectionMain>
       <!--     <NotificationBar
       color="info"
@@ -20,7 +18,7 @@
     >
        <UsersListTable checkable :users="props.users" />
     </CardBox>
-
+  <SectionHeroBar>Users</SectionHeroBar>
     </SectionMain>
 
   </AppLayout>

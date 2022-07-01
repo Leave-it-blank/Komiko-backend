@@ -678,6 +678,34 @@ select {
   --tw-backdrop-sepia:  ;
 }
 
+.container {
+    width: 100%;
+}
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1536px;
+    }
+}
 .prose {
     color: var(--tw-prose-body);
     max-width: 65ch;
@@ -1073,11 +1101,20 @@ select {
 .col-span-1 {
     grid-column: span 1 / span 1
 }
+.col-span-8 {
+    grid-column: span 8 / span 8
+}
+.col-span-2 {
+    grid-column: span 2 / span 2
+}
 .-m-px {
     margin: -1px
 }
 .m-0 {
     margin: 0px
+}
+.m-2 {
+    margin: 0.5rem
 }
 .mx-auto {
     margin-left: auto;
@@ -1102,6 +1139,34 @@ select {
 .my-24 {
     margin-top: 6rem;
     margin-bottom: 6rem
+}
+.mx-1 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem
+}
+.my-2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem
+}
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem
+}
+.my-3 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem
+}
+.mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem
+}
+.mx-3 {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem
+}
+.my-5 {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem
 }
 .ml-3 {
     margin-left: 0.75rem
@@ -1447,6 +1512,12 @@ select {
 .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr))
 }
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+.grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr))
+}
 .flex-row {
     flex-direction: row
 }
@@ -1544,11 +1615,11 @@ select {
 .rounded-full {
     border-radius: 9999px
 }
-.rounded-2xl {
-    border-radius: 1rem
-}
 .rounded-sm {
     border-radius: 0.125rem
+}
+.rounded-2xl {
+    border-radius: 1rem
 }
 .rounded-xl {
     border-radius: 0.75rem
@@ -1902,13 +1973,17 @@ select {
     padding-top: 0px;
     padding-bottom: 0px
 }
+.py-1\.5 {
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem
+}
 .px-0 {
     padding-left: 0px;
     padding-right: 0px
 }
-.py-1\.5 {
-    padding-top: 0.375rem;
-    padding-bottom: 0.375rem
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem
 }
 .pt-6 {
     padding-top: 1.5rem
@@ -1948,6 +2023,9 @@ select {
 }
 .pr-3 {
     padding-right: 0.75rem
+}
+.pl-4 {
+    padding-left: 1rem
 }
 .text-left {
     text-align: left
@@ -2125,6 +2203,10 @@ select {
 .text-blue-500 {
     --tw-text-opacity: 1;
     color: rgb(59 130 246 / var(--tw-text-opacity))
+}
+.text-red-300 {
+    --tw-text-opacity: 1;
+    color: rgb(252 165 165 / var(--tw-text-opacity))
 }
 .underline {
     -webkit-text-decoration-line: underline;
@@ -2774,6 +2856,10 @@ select {
     .sm\:text-right {
         text-align: right
     }
+    .sm\:text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem
+    }
 }
 @media (min-width: 768px) {
     .md\:col-span-2 {
@@ -2846,6 +2932,15 @@ select {
     .md\:border-l {
         border-left-width: 1px
     }
+    .md\:p-10 {
+        padding: 2.5rem
+    }
+    .md\:p-5 {
+        padding: 1.25rem
+    }
+    .md\:p-4 {
+        padding: 1rem
+    }
     .md\:py-2 {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem
@@ -2857,6 +2952,10 @@ select {
     .md\:px-6 {
         padding-left: 1.5rem;
         padding-right: 1.5rem
+    }
+    .md\:py-4 {
+        padding-top: 1rem;
+        padding-bottom: 1rem
     }
     .md\:text-left {
         text-align: left
@@ -2992,6 +3091,10 @@ select {
         padding-left: 2rem;
         padding-right: 2rem
     }
+    .lg\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
+    }
     .lg\:py-2 {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem
@@ -3003,10 +3106,6 @@ select {
     .lg\:px-0 {
         padding-left: 0px;
         padding-right: 0px
-    }
-    .lg\:px-6 {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem
     }
     .lg\:shadow-none {
         --tw-shadow: 0 0 #0000;
@@ -3039,17 +3138,20 @@ select {
     }
 }
 @media (min-width: 1280px) {
+    .xl\:col-span-2 {
+        grid-column: span 2 / span 2
+    }
     .xl\:block {
         display: block
     }
     .xl\:hidden {
         display: none
     }
-    .xl\:w-4\/12 {
-        width: 33.333333%
-    }
     .xl\:w-96 {
         width: 24rem
+    }
+    .xl\:w-4\/12 {
+        width: 33.333333%
     }
     .xl\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr))

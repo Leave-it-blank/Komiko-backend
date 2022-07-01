@@ -76,16 +76,19 @@ Route::group(['middleware' => ['permission:handle settings management|view setti
 
     Route::group(['middleware' => ['permission:handle comic management|view comic management']],
     function () {
-        Route::get('admin/auth/users', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'getUsers' ] )->name('authentication.users');
-        Route::get('admin/auth/users/id/{user}', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'editUser' ] )->name('authentication.users.edit');
-        Route::post('admin/auth/id/{user}/passcode', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'storeCodes' ] )->name('authentication.users.passcode.store'); //password update route
-        Route::post('admin/auth/users/id/{user}/infoupdate', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'storeDetails' ] )->name('authentication.users.detail.store');
-        Route::post('admin/auth/users/id/{user}/userRolesUpdate', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'userRolesUpdate' ] )->name('authentication.users.roles.store');
+        Route::get('admin/management/comics', [\App\Http\Controllers\Backend\ComicsManagement\ComicsController::class, 'getComics' ] )->name('comics_management.comics');
+        Route::get('admin/management/comics/create', [\App\Http\Controllers\Backend\ComicsManagement\ComicsController::class, 'createComics' ] )->name('comics_management.comics.create');
+        Route::post('admin/management/comics/create', [\App\Http\Controllers\Backend\ComicsManagement\ComicsController::class, 'storeComic' ] )->name('comics_management.comics.store');
 
     });
 
     Route::group(['middleware' => ['permission:handle authentication|view authentication']],
     function () {
 
+        Route::get('admin/auth/users', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'getUsers' ] )->name('authentication.users');
+        Route::get('admin/auth/users/id/{user}', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'editUser' ] )->name('authentication.users.edit');
+        Route::post('admin/auth/id/{user}/passcode', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'storeCodes' ] )->name('authentication.users.passcode.store'); //password update route
+        Route::post('admin/auth/users/id/{user}/infoupdate', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'storeDetails' ] )->name('authentication.users.detail.store');
+        Route::post('admin/auth/users/id/{user}/userRolesUpdate', [\App\Http\Controllers\Backend\Authentication\UsersController::class, 'userRolesUpdate' ] )->name('authentication.users.roles.store');
 
     });
