@@ -9,7 +9,7 @@ import BaseButtons from '@/components/BaseButtons.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import moment from 'moment'
-import SearchTable from './SearchTable.vue'
+import SearchTable from '@/components/SearchTable.vue'
 
 const prop = defineProps({
   checkable: Boolean,
@@ -91,7 +91,7 @@ const checked = (isChecked, client) => {
 <template>
 
   <div class="mb-3 xl:w-96">
-   <SearchTable :searchArray="prop.comics" Search searchIndexName='title'/>
+   <SearchTable :searchArray="prop.comics" Search searchIndexName='title'  :searchComic="true" />
   </div>
 
   <CardBoxModal
@@ -113,17 +113,17 @@ const checked = (isChecked, client) => {
       class="inline-block px-2 py-1 rounded-sm mr-2 text-sm dark:bg-gray-700"
       :class="lightBgStyle"
     >
-      {{ checkedRow.name }}
+      {{ checkedRow.title }}
     </span>
   </div>
   <table>
     <thead>
       <tr>
         <th v-if="prop.checkable" />
-        <th />
-        <th>Name</th>
-        <th>email</th>
-        <th >Roles</th>
+
+        <th>Title</th>
+        <th>isLocked</th>
+        <th>isHidden</th>
         <th>Last Updated</th>
         <th>Created</th>
         <th />
@@ -139,26 +139,15 @@ const checked = (isChecked, client) => {
           v-if="prop.checkable"
           @checked="checked($event, client)"
         />
-        <td class="image-cell">
-          <UserAvatar
-            :username="client.name"
-            class="image"
-          />
-        </td>
+
         <td data-label="Name">
-          {{ client.name }}
+          {{ client.title }}
         </td>
-        <td data-label="email">
-          {{ client.email }}
+        <td data-label="isLocked">
+          {{ client.isLocked? 'Locked':'open' }}
         </td>
-        <td data-label="currentRoles">
-          <div>
-          <span v-for="roles in client.currentRoles"  class="mx-auto">
-             {{ roles }},
-          </span>
-          </div>
-
-
+          <td data-label="isHidden">
+          {{ client.isHidden? 'Hidden': 'Visible' }}
         </td>
         <td data-label="Updated">
           <small
@@ -178,17 +167,18 @@ const checked = (isChecked, client) => {
             no-wrap
           >
             <BaseButton
-              color="info"
-              :icon="mdiEye"
-              small
-              @click="isModalActive = true"
+                 color="info"
+                 :icon="mdiEye"
+                 small
+                 :routeName="client.viewUrl"
+                 :routeTo = "client"
             />
              <BaseButton
               color="warning"
               :icon="mdiAccountEdit"
               small
              :routeName="client.editUrl"
-             :routeTo = "client.id"
+             :routeTo = "client"
             />
 
           </BaseButtons>

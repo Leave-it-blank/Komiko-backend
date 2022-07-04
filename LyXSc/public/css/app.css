@@ -1152,14 +1152,6 @@ select {
     margin-top: 1rem;
     margin-bottom: 1rem
 }
-.my-3 {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem
-}
-.mx-2 {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem
-}
 .mx-3 {
     margin-left: 0.75rem;
     margin-right: 0.75rem
@@ -1167,6 +1159,14 @@ select {
 .my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem
+}
+.my-3 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem
+}
+.mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem
 }
 .ml-3 {
     margin-left: 0.75rem
@@ -1512,11 +1512,11 @@ select {
 .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr))
 }
-.grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr))
-}
 .grid-cols-8 {
     grid-template-columns: repeat(8, minmax(0, 1fr))
+}
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
 }
 .flex-row {
     flex-direction: row
@@ -1980,10 +1980,6 @@ select {
 .px-0 {
     padding-left: 0px;
     padding-right: 0px
-}
-.px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem
 }
 .pt-6 {
     padding-top: 1.5rem
@@ -2952,10 +2948,6 @@ select {
     .md\:px-6 {
         padding-left: 1.5rem;
         padding-right: 1.5rem
-    }
-    .md\:py-4 {
-        padding-top: 1rem;
-        padding-bottom: 1rem
     }
     .md\:text-left {
         text-align: left

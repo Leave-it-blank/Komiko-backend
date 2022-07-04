@@ -3,6 +3,10 @@ import { computed, reactive , watch } from 'vue'
 import { useMainStore } from '@/stores/main'
 const prop = defineProps({
   Search: Boolean,
+  searchComic: {
+    type: Boolean,
+    default: false
+  },
   searchArray: {
     type: Array,
     default: null
@@ -11,6 +15,8 @@ const prop = defineProps({
     type: String,
     default: 'name'
   },
+
+
 
 });
 
@@ -28,11 +34,12 @@ function getTextSearch() {
        let filteredResources =  prop.searchArray.filter(item => {
             return item[prop.searchIndexName].toLowerCase().includes(SearchData.textSearch.toLowerCase());
         });
-        //console.log(filteredResources.length);
+        console.log(filteredResources.length);
         if(filteredResources.length == 0 ){
 
         } else {
-            mainStore.clients = filteredResources;
+          //mainStore.comics = filteredResources;
+          mainStore.clients = filteredResources;
         }
         if(SearchData.textSearch.length ==0){
          //  console.log('type to search')

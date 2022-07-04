@@ -33,7 +33,7 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "moment": "^2.29.3"
-
+        "moment": "^2.29.3",
+        "search-dropdown-vue": "^1.0.2"
     }
 }

@@ -50,7 +50,8 @@ export const useMainStore = defineStore('main', {
 
     /* Sample data (commonly used) */
     clients: [],
-    history: []
+    history: [],
+    comics: []
   }),
   actions: {
     setUser (payload) {

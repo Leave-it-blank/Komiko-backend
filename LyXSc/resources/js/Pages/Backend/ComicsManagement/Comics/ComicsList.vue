@@ -37,8 +37,8 @@ const titleStack = ref(['Dashboard', 'Comics'])
       title="Comics"
       :icon="mdiAccountMultiple"
       has-table
-    >
-       <ComicsTable checkable :comics="props.comics" />
+    ><div  v-if="props.comics">
+       <ComicsTable checkable :comics="props.comics" /></div>
     </CardBox>
 <SectionHeroBar>Comics</SectionHeroBar>
         </SectionMain>

@@ -15,8 +15,8 @@
       title="Users"
       :icon="mdiAccountMultiple"
       has-table
-    >
-       <UsersListTable checkable :users="props.users" />
+    ><div  v-if="props.users">
+       <UsersListTable checkable :users="props.users" /></div>
     </CardBox>
   <SectionHeroBar>Users</SectionHeroBar>
     </SectionMain>

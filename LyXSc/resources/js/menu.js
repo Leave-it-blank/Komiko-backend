@@ -22,13 +22,29 @@ export default [
       label: 'Dashboard'
     }
   ],
-  'Examples',
-  [
+  'Management',
+  [{
+    route: 'comics_management.comics',
+    label: 'Comics',
+    icon: mdiTable
+  },
     {
-      route: 'comics_management.comics',
-      label: 'Comics',
-      icon: mdiTable
+      label: 'Chapters',
+      icon: mdiTelevisionGuide,
+      menu: [
+        {
+          label: 'Upload',
+          route: 'comics_management.chapter.upload',
+          icon: mdiResponsive
+        },
+        {
+          label: 'View',
+          route: 'comics_management.comics',
+          icon: mdiPalette
+        }
+      ]
     },
+
     {
       route: 'authentication.users',
       label: 'Users',

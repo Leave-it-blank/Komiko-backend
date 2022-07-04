@@ -221,8 +221,8 @@ const titleStack = ref(['Dashboard', 'Comics', 'Create Comic'])
 
 
                     <div class="col-span-1" v-for="tag in props.tags">
-                      <input class="rounded-xl" type="checkbox" v-model="comicForm.tags"
-                        name="comicForm.tags[]" :value="tag.id">
+                      <input class="rounded-xl" type="checkbox" v-model="comicForm.tags" name="comicForm.tags[]"
+                        :value="tag.id">
                       <label class="capitalize">{{ tag.name }} </label>
                     </div>
 
@@ -277,13 +277,13 @@ const titleStack = ref(['Dashboard', 'Comics', 'Create Comic'])
                     </div>
                   </div>
                 </div>
- </div>
-
-
-                <div class="flex justify-end mx-3 my-5">
-                  <BaseButton type="submit" color="info" label="Create" :disabled="comicForm.processing" />
-                </div>
               </div>
+
+
+              <div class="flex justify-end mx-3 my-5">
+                <BaseButton type="submit" color="info" label="Create" :disabled="comicForm.processing" />
+              </div>
+            </div>
 
           </form>
         </div>
