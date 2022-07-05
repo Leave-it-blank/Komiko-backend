@@ -91,7 +91,7 @@ const checked = (isChecked, client) => {
 <template>
 
   <div class="mb-3 xl:w-96">
-   <SearchTable :searchArray="prop.comics" Search searchIndexName='title'  :searchComic="true" />
+   <SearchTable :searchArray="prop.volumes" Search  searchIndexName='number'  :searchComic="true" />
   </div>
 
   <CardBoxModal
@@ -121,9 +121,8 @@ const checked = (isChecked, client) => {
       <tr>
         <th v-if="prop.checkable" />
 
-        <th>Title</th>
-        <th>isLocked</th>
-        <th>isHidden</th>
+        <th>Name</th>
+        <th>Number</th>
         <th>Last Updated</th>
         <th>Created</th>
         <th />
@@ -141,13 +140,10 @@ const checked = (isChecked, client) => {
         />
 
         <td data-label="Name">
-          {{ client.title }}
+          {{ client.name }}
         </td>
-        <td data-label="isLocked">
-          {{ client.isLocked? 'Locked':'open' }}
-        </td>
-          <td data-label="isHidden">
-          {{ client.isHidden? 'Hidden': 'Visible' }}
+        <td data-label="number">
+          {{ client.number }}
         </td>
         <td data-label="Updated">
           <small
@@ -171,7 +167,7 @@ const checked = (isChecked, client) => {
                  :icon="mdiEye"
                  small
                  :routeName="client.viewUrl"
-                 :routeTo = "client"
+                 :routeTo = "client.id"
             />
              <BaseButton
               color="warning"

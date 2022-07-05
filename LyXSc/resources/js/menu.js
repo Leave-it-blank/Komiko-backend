@@ -34,7 +34,7 @@ export default [
       menu: [
         {
           label: 'Upload',
-          route: 'comics_management.chapter.upload',
+          route: 'dashboard',
           icon: mdiResponsive
         },
         {

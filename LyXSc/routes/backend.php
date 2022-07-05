@@ -82,8 +82,8 @@ Route::group(['middleware' => ['permission:handle settings management|view setti
         Route::get('admin/management/comics/{comic}/edit', [\App\Http\Controllers\Backend\ComicsManagement\ComicsController::class, 'editComics' ] )->name('comics_management.comics.edit');
         Route::post('admin/management/comics/{comic}/edit', [\App\Http\Controllers\Backend\ComicsManagement\ComicsController::class, 'editStoreComic' ] )->name('comics_management.comics.edit.store');
         Route::get('admin/management/comics/{comic}/view', [\App\Http\Controllers\Backend\ComicsManagement\ComicsController::class, 'viewComics' ] )->name('comics_management.comics.view');
-        Route::post('admin/management/comic/{comic}/createvolume', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'createVolume' ] )->name('comics_management.volume.create.store');
-        Route::get('admin/management/chapter/upload', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'uploadChapter' ] )->name('comics_management.chapter.upload');
+        Route::post('admin/management/comic/{comic}/createvolume', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'createVolumeStore' ] )->name('comics_management.volume.create.store');
+        Route::get('admin/management/volume/{volume}', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'viewVolume' ] )->name('comics_management.volume.view');
         Route::post('admin/management/{comic}/chapter/upload', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'storeChapter' ] )->name('comics_management.chapter.store');
     });
 

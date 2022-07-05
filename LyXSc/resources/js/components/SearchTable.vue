@@ -32,7 +32,7 @@ const SearchData = reactive({
 function getTextSearch() {
         //this.filteredResources= this.resources
        let filteredResources =  prop.searchArray.filter(item => {
-            return item[prop.searchIndexName].toLowerCase().includes(SearchData.textSearch.toLowerCase());
+            return String(item[prop.searchIndexName]).toLowerCase().includes(SearchData.textSearch.toLowerCase());
         });
         console.log(filteredResources.length);
         if(filteredResources.length == 0 ){

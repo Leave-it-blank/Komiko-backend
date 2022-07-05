@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/App.vue';
+import { Inertia } from '@inertiajs/inertia'
 import { Head } from '@inertiajs/inertia-vue3'
 import { ref, reactive } from 'vue'
 import { mdiAccount, mdiAccountMultiple, mdiAccountCircle, mdiMail } from '@mdi/js'
@@ -23,10 +24,14 @@ const props = defineProps({
     default: null
   },
   errors: {
-    default: null
-  }
-})
+    type: Object,
 
+  }
+
+})
+Inertia.on('refreshtable', (event) => {
+  console.log(`Starting a visit to  `)
+})
 console.log(props.comic)
 const isModalActive = ref(false)
 const titleStack = ref(['Dashboard', 'Comic', props.comic.title])
@@ -40,8 +45,8 @@ const titleStack = ref(['Dashboard', 'Comic', props.comic.title])
     <SectionTitleBar :title-stack="titleStack" />
     <SectionMain>
 
-      <CreateVolumeModal hasCancel v-model="isModalActive"   buttonLabel="Create" :comicId="props.comic.id"
-        title="Create Volume" :icon="mdiAccountCircle" />
+      <CreateVolumeModal hasCancel v-model="isModalActive"   buttonLabel="Create" :comicId="props.comic.id" :errors="props.errors"
+        title="Create Volume" :icon="mdiAccountCircle" :volumeCount="props.volumes.length" />
 
 
       <BaseButton label="Create Volume" @click="isModalActive = true" color="info" />

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Chapter;
 use App\Models\Volume;
+
 class ComicsController extends Controller
 {
     use AuthorizesRequests;
@@ -28,8 +29,8 @@ class ComicsController extends Controller
                 return [
                     'id' => $comic->id,
                     'title' => $comic->title,
-                    'editUrl'=> 'comics_management.comics.edit',
-                    'viewUrl'=> 'comics_management.comics.view',
+                    'editUrl' => 'comics_management.comics.edit',
+                    'viewUrl' => 'comics_management.comics.view',
                     'isHidden' => $comic->isHidden,
                     'isMature' => $comic->isMature,
                     'isLocked' => $comic->isLocked,
@@ -83,7 +84,7 @@ class ComicsController extends Controller
     public function storeComic(Request $request)
     {
 
-         $comic =  $this->validate($request, [
+        $comic =  $this->validate($request, [
             'title' => 'required|min:2|max:255|string',
             //  'upload_date' => 'string',
             'desc' => 'required|min:20|max:4000|string',
@@ -97,11 +98,11 @@ class ComicsController extends Controller
             'country' => 'int|required',
             'tags' => 'array|nullable'
         ]);
-      //dd($comic);
+        //dd($comic);
 
 
         $uid = Str::uuid();
-        try{
+        try {
 
             $Tcomic = Comic::create([
                 'title' => $comic["title"],
@@ -121,35 +122,30 @@ class ComicsController extends Controller
             $Tcomic->save();
             $Tcomic->tags()->attach($comic["tags"]);
             Cache::flush();
-
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             //$this->emit('Danger_alert',   'Something went wrong~ Try again~');
             //$this->error = 'Error Creating comic, validation issue most likely. Contact @leaveitblank';
 
             throw $e;
             // return dd($e);
         }
-        try{
+        try {
             $extension = $comic["thumb"]->extension();
             //storeAs('public/images/', $this->thumbnail->getClientOriginalName());
-            $comic["thumb"]->storeAs('/public/temp/cover/', $uid.'.'.$extension);
-            $thumbnail_url = '/public/temp/cover/'.$uid.'.'.$extension;
+            $comic["thumb"]->storeAs('/public/temp/cover/', $uid . '.' . $extension);
+            $thumbnail_url = '/public/temp/cover/' . $uid . '.' . $extension;
             $Tcomic->addMediaFromDisk($thumbnail_url)
                 ->toMediaCollection('thumbnail');
             $Tcomic->save();
 
-             return redirect(route('comics_management.comics'));
-
-        }
-        catch(\Exception $e){
+            return redirect(route('comics_management.comics'));
+        } catch (\Exception $e) {
             //return dd($e);
-           // $this->emit('Danger_alert',   'Image upload failed~');
-           // $this->error = 'Image upload failed~';
+            // $this->emit('Danger_alert',   'Image upload failed~');
+            // $this->error = 'Image upload failed~';
             $Tcomic->delete();
             throw $e;
         }
-
     }
 
 
@@ -195,11 +191,11 @@ class ComicsController extends Controller
         ]);
     }
 
-    public function editStoreComic(Comic $comic,Request $request )
+    public function editStoreComic(Comic $comic, Request $request)
     {
 
-         // dd($comic);
-         $valcomic =  $this->validate($request, [
+        // dd($comic);
+        $valcomic =  $this->validate($request, [
             'title' => 'required|min:2|max:255|string',
             //  'upload_date' => 'string',
             'desc' => 'required|min:20|max:4000|string',
@@ -214,7 +210,7 @@ class ComicsController extends Controller
             'tags' => 'array|nullable'
         ]);
 
-        try{
+        try {
 
             $comic->update([
                 'title' => $valcomic["title"],
@@ -233,68 +229,70 @@ class ComicsController extends Controller
 
             $comic->tags()->sync($valcomic["tags"]);
             Cache::flush();
-
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             //$this->emit('Danger_alert',   'Something went wrong~ Try again~');
             //$this->error = 'Error Creating comic, validation issue most likely. Contact @leaveitblank';
 
             throw $e;
             // return dd($e);
         }
-        if($request->hasFile('thumb')){
-            try{
+        if ($request->hasFile('thumb')) {
+            try {
                 $imagecomic = $comic->getFirstMedia('thumbnail');
-                if(!$imagecomic == null){
+                if (!$imagecomic == null) {
                     $imagecomic->delete();
                 }
 
                 $extension = $valcomic["thumb"]->extension();
                 //storeAs('public/images/', $this->thumbnail->getClientOriginalName());
-                $valcomic["thumb"]->storeAs('/public/temp/cover/', $comic->uid.'.'.$extension);
-                $thumbnail_url = '/public/temp/cover/'.$comic->uid.'.'.$extension;
+                $valcomic["thumb"]->storeAs('/public/temp/cover/', $comic->uid . '.' . $extension);
+                $thumbnail_url = '/public/temp/cover/' . $comic->uid . '.' . $extension;
                 $comic->addMediaFromDisk($thumbnail_url)
                     ->toMediaCollection('thumbnail');
                 //$comic->save();
 
-                 return redirect(route('comics_management.comics'));
-
-            }
-            catch(\Exception $e){
+                return redirect(route('comics_management.comics'));
+            } catch (\Exception $e) {
                 //return dd($e);
-               // $this->emit('Danger_alert',   'Image upload failed~');
-               // $this->error = 'Image upload failed~';
+                // $this->emit('Danger_alert',   'Image upload failed~');
+                // $this->error = 'Image upload failed~';
                 //$Tcomic->delete();
-               // $Tcomic->getFirstMedia('thumbnail')->delete();
+                // $Tcomic->getFirstMedia('thumbnail')->delete();
                 throw $e;
             }
-
-        }else {
+        } else {
             return redirect(route('comics_management.comics'));
         }
-
-
     }
 
     public function viewComics(Comic $comic)
     {
 
-        $volume = Volume::Where('comic_id', $comic->id)->get();
-        //dd( $volume->chapters());
+      //  $volume = Volume::Where('comic_id', $comic->id)->get();
+        //dd( $volume );
         return Inertia::render('Backend/ComicsManagement/Comics/Actions/viewComic', [
             'comic' => [
-                    'id' => $comic->id,
-                    'title' => $comic->title,
-                    'editUrl'=> 'comics_management.comics.edit',
-                    'viewUrl'=> 'comics_management.comics.view',
-                    'isHidden' => $comic->isHidden,
-                    'isMature' => $comic->isMature,
-                    'isLocked' => $comic->isLocked,
-                    'createdAt' => $comic->created_at,
-                    'updatedAt' => $comic->updated_at, ],
+                'id' => $comic->id,
+                'title' => $comic->title,
+                'isHidden' => $comic->isHidden,
+                'isMature' => $comic->isMature,
+                'isLocked' => $comic->isLocked,
+                'createdAt' => $comic->created_at,
+                'updatedAt' => $comic->updated_at,
+            ],
 
-                'Volumes' => $volume->toArray() ]);
+            'volumes' =>   Volume::Where('comic_id', $comic->id)->get()->map(function ($volume) {
+                return [
+                    'id' => $volume->id,
+                'name' => $volume->name,
+                'number' => $volume->number,
+                'editUrl' => 'comics_management.volume.view',
+                'viewUrl' => 'comics_management.volume.view',
+                'createdAt' => $volume->created_at,
+                'updatedAt' => $volume->updated_at,
+                ];
+            })->toArray(),
+
+        ]);
     }
-
-
 }

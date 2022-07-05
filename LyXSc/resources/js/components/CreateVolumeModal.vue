@@ -37,14 +37,19 @@ const props = defineProps({
     type: Number,
     default: null
   },
-   errors: Object,
+  volumeCount: {
+    type: Number,
+    default: 0
+  },
+  errors: Object,
 })
+let count = parseInt( props.volumeCount) +1;
 console.log(props.errors);
 const volumeForm = useForm({
-  name: '',
-  number: 0,
+  name: 'Volume ' + String(count),
+  number: parseInt(count),
 })
-const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
+const emit = defineEmits(['update:modelValue', 'cancel', 'confirm', 'refreshtable'])
 
 const value = computed({
   get: () => props.modelValue,
@@ -58,11 +63,17 @@ const confirmCancel = mode => {
 
 function submit() {
   //mainStore.setUser(profileForm)
-    volumeForm.clearErrors()
+  volumeForm.clearErrors()
   let url = route('comics_management.volume.create.store', props.comicId,
   )
-  Inertia.post(url, volumeForm)
-   ///volumeForm.reset()
+  Inertia.post(url, volumeForm, {
+    onSuccess: (page) => {  emit('refreshtable') },
+  })
+ //this.$parent.$emit('refreshtable');
+  confirmCancel('confirm');
+
+  //console.log(props.errors);
+  ///volumeForm.reset()
 }
 
 const confirm = () => confirmCancel('confirm')
@@ -79,11 +90,11 @@ const cancel = () => confirmCancel('cancel')
         <h1 v-if="largeTitle" class="text-2xl">
           {{ largeTitle }}
         </h1>
-        <FormField label="Name"  :help="errors">
-          <FormControl v-model="volumeForm.name" :icon="mdiAccount" name="Name" required autocomplete="Name" />
+        <FormField label="Name" :help="props.errors.name">
+          <FormControl v-model="volumeForm.name" :icon="mdiAccount" name="name" required autocomplete="Name" />
         </FormField>
-        <FormField label="Vol-Number"  :help="errors">
-          <FormControl v-model="volumeForm.number" :icon="mdiMail" type="Number" name="Number" required
+        <FormField label="Vol-Number" :help="props.errors.number">
+          <FormControl v-model="volumeForm.number" :icon="mdiMail" type="Number" name="number" required
             autocomplete="Number" />
         </FormField>
 
@@ -92,7 +103,7 @@ const cancel = () => confirmCancel('cancel')
       <DividerHorizontal />
 
       <BaseButtons>
-        <BaseButton :label="buttonLabel" :color="button" type="submit" @click="confirm" />
+        <BaseButton :label="buttonLabel" :color="button" type="submit" />
         <BaseButton v-if="hasCancel" label="Cancel" :color="button" outline @click="cancel" />
       </BaseButtons>
     </CardBox>
