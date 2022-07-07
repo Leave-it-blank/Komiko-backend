@@ -2,7 +2,7 @@
   <AppLayout>
 
     <Head title="Edit User" />
-    <SectionTitleBar :title-stack="titleStack" />
+    <SectionTitleBar :title-stack="titleStack" routeName="authentication.users" />
 
     <UserCard :userName="mainStore.userDataName" />
 

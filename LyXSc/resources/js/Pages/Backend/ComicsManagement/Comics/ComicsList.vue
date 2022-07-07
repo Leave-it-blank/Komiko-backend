@@ -27,7 +27,7 @@ const titleStack = ref(['Dashboard', 'Comics'])
   <AppLayout>
 
     <Head title="Comics" />
-    <SectionTitleBar :title-stack="titleStack" />
+    <SectionTitleBar :title-stack="titleStack" routeName="comics_management.comics"  />
         <SectionMain>
 
      <BaseButton label=" Create Comic" routeName="comics_management.comics.create" color="info" />

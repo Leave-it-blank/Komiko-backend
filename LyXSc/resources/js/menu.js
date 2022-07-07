@@ -28,7 +28,7 @@ export default [
     label: 'Comics',
     icon: mdiTable
   },
-    {
+   /*  {
       label: 'Chapters',
       icon: mdiTelevisionGuide,
       menu: [
@@ -43,7 +43,7 @@ export default [
           icon: mdiPalette
         }
       ]
-    },
+    }, */
 
     {
       route: 'authentication.users',
@@ -51,8 +51,8 @@ export default [
       icon: mdiSquareEditOutline
     },
     {
-      route: 'dashboard',
-      label: 'UI',
+      route: 'admin.management.carousel',
+      label: 'Carousels',
       icon: mdiTelevisionGuide
     },
     {
@@ -97,16 +97,16 @@ export default [
   'About',
   [
     {
-      href: 'https://justboil.me/tailwind-admin-templates/vue-dashboard/',
-      label: 'Premium version',
+
+      label: 'Subcriptions',
       icon: mdiMonitorShimmer,
-      target: '_blank'
+
     },
     {
-      href: 'https://github.com/justboil/admin-one-vue-tailwind',
-      label: 'GitHub',
+      route: 'site.management.settings',
+      label: 'Settings',
       icon: mdiGithub,
-      target: '_blank'
+
     }
   ]
 ]

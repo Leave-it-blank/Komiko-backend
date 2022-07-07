@@ -3,12 +3,22 @@ import { mdiGithub } from '@mdi/js'
 import BaseLevel from '@/components/BaseLevel.vue'
 import BaseButton from '@/components/BaseButton.vue'
 
-defineProps({
+
+const props = defineProps({
   titleStack: {
     type: Array,
     default: () => []
+  },
+  routeName: {
+  type: String,
+    default: 'dashboard'
+  },
+  routeId: {
+     type: Number,
+    default: null
   }
 })
+console.log(props.routeId, props.routeName)
 </script>
 
 <template>
@@ -16,7 +26,7 @@ defineProps({
     <BaseLevel>
       <ul>
         <li
-          v-for="(title, index) in titleStack"
+          v-for="(title, index) in props.titleStack"
           :key="index"
           class="stack-item inline-block pr-3 text-2xl text-gray-500 dark:text-gray-400 last:pr-0 last:font-black last:text-black"
         >
@@ -24,9 +34,10 @@ defineProps({
         </li>
       </ul>
       <BaseButton
-        href="https://github.com/justboil/admin-one-vue-tailwind"
+        :routeName="props.routeName"
+        :routeTo = "props.routeId"
         color="info"
-        label="Star on GitHub"
+        label="Go Back"
         target="_blank"
         :icon="mdiGithub"
       />

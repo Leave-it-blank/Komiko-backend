@@ -2,7 +2,7 @@
   <AppLayout>
 
     <Head title="Users List" />
-    <SectionTitleBar :title-stack="titleStack" />
+    <SectionTitleBar :title-stack="titleStack"  />
     <SectionMain>
       <!--     <NotificationBar
       color="info"

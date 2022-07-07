@@ -39,7 +39,7 @@ const titleStack = ref([props.volume.comic_title, 'Volume '+ String(props.volume
   <AppLayout>
 
     <Head :title="props.volume.name" />
-    <SectionTitleBar :title-stack="titleStack" />
+    <SectionTitleBar :title-stack="titleStack"   routeName="comics_management.comics.view" :routeId="props.volume.comic_id"  />
     <SectionMain>
      <CreateChapterModal hasCancel v-model="isModalActive"   buttonLabel="Create" :volumeId="props.volume.id" :errors="props.errors"
         title="Create Chapter" :icon="mdiAccountCircle" :chapterCount="props.chapters.length" />

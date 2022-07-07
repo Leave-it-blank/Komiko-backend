@@ -2,7 +2,6 @@
 import { computed, ref  } from 'vue'
 import { useMainStore } from '@/stores/main'
 import { mdiEye, mdiTrashCan , mdiAccountEdit} from '@mdi/js'
-import CardBoxModal from '@/components/CardBoxModal.vue'
 import TableCheckboxCell from '@/components/TableCheckboxCell.vue'
 import BaseLevel from '@/components/BaseLevel.vue'
 import BaseButtons from '@/components/BaseButtons.vue'
@@ -10,7 +9,7 @@ import BaseButton from '@/components/BaseButton.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import moment from 'moment'
 import SearchTable from './SearchTable.vue'
-
+/* import CardBoxModal from '@/components/CardBoxModal.vue' */
 const prop = defineProps({
   checkable: Boolean,
   users: {
@@ -94,14 +93,14 @@ const checked = (isChecked, client) => {
    <SearchTable :searchArray="prop.users" Search searchIndexName='name'/>
   </div>
 
-  <CardBoxModal
+<!--   <CardBoxModal
     v-model="isModalActive"
     title="Sample modal"
   >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
   </CardBoxModal>
-
+ -->
   <div
     v-if="checkedRows.length"
     class="bg-opacity-50 p-3 dark:bg-gray-800"
@@ -177,12 +176,12 @@ const checked = (isChecked, client) => {
             type="justify-start lg:justify-end"
             no-wrap
           >
-            <BaseButton
+    <!--         <BaseButton
               color="info"
               :icon="mdiEye"
               small
               @click="isModalActive = true"
-            />
+            /> -->
              <BaseButton
               color="warning"
               :icon="mdiAccountEdit"

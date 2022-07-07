@@ -43,7 +43,7 @@ const titleStack = ref([props.chapter.comic_title, 'Volume '+ String(props.chapt
   <AppLayout>
 
     <Head :title="props.chapter.name" />
-    <SectionTitleBar :title-stack="titleStack" />
+    <SectionTitleBar :title-stack="titleStack"  routeName="comics_management.volume.view"  :routeId="props.chapter.volume_id"/>
     <SectionMain>
 
       <UploadChapterModal hasCancel v-model="isModalActive"   :chapterId="props.chapter.id" :errors="props.errors"
