@@ -1812,26 +1812,6 @@ select {
 .bg-transparent {
     background-color: transparent
 }
-.bg-gray-400 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(156 163 175 / var(--tw-bg-opacity))
-}
-.bg-gray-300 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(209 213 219 / var(--tw-bg-opacity))
-}
-.bg-blue-400 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(96 165 250 / var(--tw-bg-opacity))
-}
-.bg-blue-500 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(59 130 246 / var(--tw-bg-opacity))
-}
-.bg-blue-700 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(29 78 216 / var(--tw-bg-opacity))
-}
 .bg-purple-700 {
     --tw-bg-opacity: 1;
     background-color: rgb(126 34 206 / var(--tw-bg-opacity))
@@ -2246,17 +2226,13 @@ select {
     --tw-text-opacity: 1;
     color: rgb(59 130 246 / var(--tw-text-opacity))
 }
-.text-red-300 {
-    --tw-text-opacity: 1;
-    color: rgb(252 165 165 / var(--tw-text-opacity))
-}
-.text-purple-200 {
-    --tw-text-opacity: 1;
-    color: rgb(233 213 255 / var(--tw-text-opacity))
-}
 .text-purple-500 {
     --tw-text-opacity: 1;
     color: rgb(168 85 247 / var(--tw-text-opacity))
+}
+.text-red-300 {
+    --tw-text-opacity: 1;
+    color: rgb(252 165 165 / var(--tw-text-opacity))
 }
 .underline {
     -webkit-text-decoration-line: underline;
@@ -2695,10 +2671,6 @@ select {
 .dark .dark\:bg-gray-700 {
     --tw-bg-opacity: 1;
     background-color: rgb(55 65 81 / var(--tw-bg-opacity))
-}
-.dark .dark\:bg-gray-300 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(209 213 219 / var(--tw-bg-opacity))
 }
 .dark .dark\:from-gray-700 {
     --tw-gradient-from: #374151;

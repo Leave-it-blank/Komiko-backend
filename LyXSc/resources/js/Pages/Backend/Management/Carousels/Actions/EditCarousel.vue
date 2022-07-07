@@ -58,11 +58,11 @@ const titleStack = ref(['Dashboard', 'Comics', 'Create Carousel'])
           <div class="flex justify-between">
             <div class=" mx-1 my-2 ">
 
-              <BaseButton label=" Create Comic" active color="info" />
+              <BaseButton label="Edit Carousel" active color="info" />
             </div>
             <div class="mx-1 my-2 ">
 
-              <BaseButton label="Go Back" routeName="comics_management.comics" color="info" />
+              <BaseButton label="Go Back" routeName="admin.management.carousel" color="info" />
             </div>
           </div>
           <form @submit.prevent="submit" enctype="multipart/form-data">
