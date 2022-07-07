@@ -12,7 +12,7 @@ class Page extends Model  implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
     protected $fillable = [
-        'file_name', 'file_size', 'id', 'chapter_id', 'file_url'
+        'fileName', 'fileSize', 'id', 'chapter_id', 'fileUrl'
     ];
     public function registerMediaConversions(Media $media = null): void
     {

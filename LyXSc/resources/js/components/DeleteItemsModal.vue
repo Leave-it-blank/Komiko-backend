@@ -59,7 +59,7 @@ function submit() {
   let url = route(routedata, props.itemId )
   //console.log(url)
   Inertia.get(url, {
-    onSuccess: (page) => {
+    onSuccess: () => {
       Inertia.reload({ only: [props.itemName + 's'] })
 
     },

@@ -176,13 +176,13 @@ const checked = (isChecked, client) => {
                  :routeName="client.viewUrl"
                  :routeTo = "client.id"
             />
-             <BaseButton
+<!--              <BaseButton
               color="warning"
               :icon="mdiAccountEdit"
               small
              :routeName="client.editUrl"
              :routeTo = "client"
-            />
+            /> -->
            <BaseButton
               color="danger"
               :icon="mdiAccountEdit"

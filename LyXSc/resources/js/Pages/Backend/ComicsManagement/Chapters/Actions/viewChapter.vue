@@ -24,6 +24,9 @@ const props = defineProps({
     type: Array,
     default: null
   },
+    crftoken: {
+    type: String,
+  },
   errors: {
     type: Object,
 
@@ -43,8 +46,8 @@ const titleStack = ref([props.chapter.comic_title, 'Volume '+ String(props.chapt
     <SectionTitleBar :title-stack="titleStack" />
     <SectionMain>
 
-      <UploadChapterModal hasCancel v-model="isModalActive"   buttonLabel="Create" :chapterId="props.chapter.id" :errors="props.errors"
-        title="Upload Chapter" :icon="mdiAccountCircle"   />
+      <UploadChapterModal hasCancel v-model="isModalActive"   :chapterId="props.chapter.id" :errors="props.errors"
+       :icon="mdiAccountCircle" :crftoken="props.crftoken"  />
 
 
       <BaseButton label="Upload" @click="isModalActive = true" color="warning" />

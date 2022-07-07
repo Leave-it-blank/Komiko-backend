@@ -12,6 +12,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 class ChaptersController extends Controller
 {
@@ -19,7 +20,49 @@ class ChaptersController extends Controller
     use AuthorizesRequests;
     public function uploadChapter(Chapter $chapter, Request $request)
     {
-         dd($chapter, $request);
+        $valcomic =  $this->validate($request, [
+            'file' => 'mimes:jpg,png,jpeg,gif',
+        ]);
+/*         $page = Page::create([
+            'fileName' => $valcomic["file"]->getClientOriginalName(),
+            'fileSize' => 0,
+            'fileUrl' => '$thumbnail_url',
+            'chapter_id' => $chapter->id
+        ]); */
+
+
+        if ($request->hasFile('file')) {
+            try {
+
+                $extension = $valcomic["file"]->getClientOriginalName();
+                //storeAs('public/images/', $this->thumbnail->getClientOriginalName());
+                $valcomic["file"]->storeAs('/public/temp/comic/' ,$extension);
+                $thumbnail_url = '/public/temp/comic/' . $extension;
+                $page = Page::create([
+                    'fileName' => $extension,
+                    'fileSize' => $valcomic["file"]->getSize(),
+                    'fileUrl' => $thumbnail_url,
+                    'chapter_id' => $chapter->id
+                ]);
+                $page->addMediaFromDisk($thumbnail_url)
+                    ->toMediaCollection('page');
+                //$comic->save();
+
+                return response(  201);
+            } catch (\Exception $e) {
+                //return dd($e);
+                // $this->emit('Danger_alert',   'Image upload failed~');
+                // $this->error = 'Image upload failed~';
+                //$Tcomic->delete();
+                // $Tcomic->getFirstMedia('thumbnail')->delete();
+
+                throw $e;
+                return response( 403);
+            }
+            return response(  200);
+        }
+
+        return response( 400);
     }
 
     public function storeChapter(Volume $volume, Request $request)
@@ -132,6 +175,8 @@ class ChaptersController extends Controller
     }
     public function deletePage(Page $page)
     {
+
+      //  dd($page);
        try{
         $page->delete();
         return redirect()->back();
@@ -142,6 +187,7 @@ class ChaptersController extends Controller
 
     public function viewChapter(Chapter $chapter)
     {
+
         return Inertia::render('Backend/ComicsManagement/Chapters/Actions/viewChapter', [
             'chapter' => [
                 'id' => $chapter->id,
@@ -162,6 +208,7 @@ class ChaptersController extends Controller
                 'updatedAt' => $page->updated_at,
                 ];
             })->toArray(),
+            'crftoken' => csrf_token()
 
         ]);
     }
