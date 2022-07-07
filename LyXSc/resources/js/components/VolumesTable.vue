@@ -2,7 +2,7 @@
 import { computed, ref  } from 'vue'
 import { useMainStore } from '@/stores/main'
 import { mdiEye, mdiTrashCan , mdiAccountEdit} from '@mdi/js'
-import CardBoxModal from '@/components/CardBoxModal.vue'
+import DeleteItemsModal from '@/components/DeleteItemsModal.vue'
 import TableCheckboxCell from '@/components/TableCheckboxCell.vue'
 import BaseLevel from '@/components/BaseLevel.vue'
 import BaseButtons from '@/components/BaseButtons.vue'
@@ -36,6 +36,7 @@ const darkMode = computed(() => mainStore.darkMode)
 
 mainStore.clients = prop.volumes;
 
+let dataChapter = computed(() => mainStore.itemId)
 const items = computed(() => mainStore.clients)
 
 const isModalActive = ref(false)
@@ -94,13 +95,19 @@ const checked = (isChecked, client) => {
    <SearchTable :searchArray="prop.volumes" Search  searchIndexName='number'  :searchComic="true" />
   </div>
 
-  <CardBoxModal
+
+  <DeleteItemsModal
     v-model="isModalActive"
-    title="Sample modal"
+    title="Do you really wanna delete the volume?"
+    button ="danger"
+    buttonLabel ="Delete"
+    hasCancel
+    itemName ="chapter"
+    :itemId="dataChapter"
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
+     You are About to delete volume number {{dataChapter}} permanently.
+      Warning:  [Action can't be rolled back]
+  </DeleteItemsModal>
 
   <div
     v-if="checkedRows.length"
@@ -113,7 +120,7 @@ const checked = (isChecked, client) => {
       class="inline-block px-2 py-1 rounded-sm mr-2 text-sm dark:bg-gray-700"
       :class="lightBgStyle"
     >
-      {{ checkedRow.title }}
+      {{ checkedRow.name }}
     </span>
   </div>
   <table>
@@ -155,7 +162,7 @@ const checked = (isChecked, client) => {
           <small
             class="text-gray-500 dark:text-gray-400"
             :title="client.createdAt"
-          >{{ dateshow(client.createdAt)  }}</small>
+          >{{  client.createdAt  }}</small>
         </td>
         <td class="actions-cell">
           <BaseButtons
@@ -176,7 +183,13 @@ const checked = (isChecked, client) => {
              :routeName="client.editUrl"
              :routeTo = "client"
             />
+           <BaseButton
+              color="danger"
+              :icon="mdiAccountEdit"
+              small
+              v-on:click="mainStore.itemId=client.id,isModalActive = true"
 
+            />
           </BaseButtons>
         </td>
 

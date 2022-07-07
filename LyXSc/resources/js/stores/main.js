@@ -44,6 +44,7 @@ export const useMainStore = defineStore('main', {
 
     /* Dark mode */
     darkMode: false,
+    comicId: 0,
 
     /* Field focus with ctrl+k (to register only once) */
     isFieldFocusRegistered: false,

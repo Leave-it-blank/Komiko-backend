@@ -1168,6 +1168,10 @@ select {
     margin-left: 0.5rem;
     margin-right: 0.5rem
 }
+.my-1 {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem
+}
 .ml-3 {
     margin-left: 0.75rem
 }
@@ -1792,6 +1796,10 @@ select {
 }
 .bg-transparent {
     background-color: transparent
+}
+.bg-red-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(239 68 68 / var(--tw-bg-opacity))
 }
 .bg-opacity-25 {
     --tw-bg-opacity: 0.25

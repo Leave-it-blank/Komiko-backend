@@ -43,7 +43,7 @@ const props = defineProps({
   },
   errors: Object,
 })
-let count = parseInt( props.volumeCount) +1;
+let count = parseInt(props.volumeCount) + 1;
 console.log(props.errors);
 const volumeForm = useForm({
   name: 'Volume ' + String(count),
@@ -67,9 +67,12 @@ function submit() {
   let url = route('comics_management.volume.create.store', props.comicId,
   )
   Inertia.post(url, volumeForm, {
-    onSuccess: (page) => {  emit('refreshtable') },
+    onSuccess: (page) => {
+      let urltwo = route('comics_management.comics.view', props.comicId);
+      Inertia.visit(urltwo, { only: ['volumes'], })
+    },
   })
- //this.$parent.$emit('refreshtable');
+  // this.$forceUpdate()
   confirmCancel('confirm');
 
   //console.log(props.errors);

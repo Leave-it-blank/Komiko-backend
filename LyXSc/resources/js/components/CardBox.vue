@@ -54,6 +54,7 @@ const computedHeaderIcon = computed(() => props.headerIcon ?? mdiCog)
 
 const headerIconClick = () => {
   emit('header-icon-click')
+
 }
 
 const submit = e => {
