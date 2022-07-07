@@ -87,6 +87,13 @@ Route::group(['middleware' => ['permission:handle settings management|view setti
         Route::post('admin/management/{volume}/chapter/create', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'storeChapter' ] )->name('comics_management.chapter.store');
         Route::get('admin/management/{volume}/delete', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'deleteVolume' ] )->name('comics_management.volume.delete');
         Route::get('admin/management/{chapter}/delete', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'deleteChapter' ] )->name('comics_management.chapter.delete');
+        Route::get('admin/management/{page}/delete', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'deletePage' ] )->name('comics_management.page.delete');
+        Route::post('admin/management/{chapter}/upload', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'uploadChapter' ] )->name('comics_management.chapter.upload');
+
+
+        Route::get('admin/management/{chapter}/view', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'viewChapter' ] )->name('comics_management.chapter.view');
+
+
     });
 
     Route::group(['middleware' => ['permission:handle authentication|view authentication']],

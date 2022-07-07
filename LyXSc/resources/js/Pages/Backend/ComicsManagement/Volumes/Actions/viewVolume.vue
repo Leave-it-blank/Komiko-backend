@@ -42,9 +42,6 @@ const titleStack = ref([props.volume.comic_title, 'Volume '+ String(props.volume
     <SectionTitleBar :title-stack="titleStack" />
     <SectionMain>
 
-      <CreateChapterModal hasCancel v-model="isModalActive"   buttonLabel="Create" :volumeId="props.volume.id" :errors="props.errors"
-        title="Create Chapter" :icon="mdiAccountCircle" :chapterCount="props.chapters.length" />
-
 
       <BaseButton label="Create Chapter" @click="isModalActive = true" color="info" />
       <DividerHorizontal />

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\ComicsManagement;
 use App\Http\Controllers\Controller;
 use App\Models\Chapter;
 use App\Models\Comic;
+use App\Models\Page;
 use App\Models\Volume;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,16 +17,9 @@ class ChaptersController extends Controller
 {
 
     use AuthorizesRequests;
-    public function uploadChapter()
+    public function uploadChapter(Chapter $chapter, Request $request)
     {
-        return Inertia::render('Backend/ComicsManagement/Chapters/Actions/UploadChapter', [
-            'comics' => Comic::all()->map(function ($e) {
-                return [
-                    'id' => $e->id,
-                    'name' => $e->title,
-                ];
-            })->toArray(),
-        ]);
+         dd($chapter, $request);
     }
 
     public function storeChapter(Volume $volume, Request $request)
@@ -108,8 +102,8 @@ class ChaptersController extends Controller
                 'name' => $chapter->name,
                 'number' => $chapter->number,
                 'isLocked' => $chapter->isLocked,
-                'editUrl' => 'comics_management.volume.view',
-                'viewUrl' => 'comics_management.volume.view',
+                'editUrl' => 'comics_management.chapter.view',
+                'viewUrl' => 'comics_management.chapter.view',
                 'createdAt' => $chapter->created_at,
                 'updatedAt' => $chapter->updated_at,
                 ];
@@ -135,6 +129,41 @@ class ChaptersController extends Controller
        }catch( \Exception $e){
             throw $e;
        }
+    }
+    public function deletePage(Page $page)
+    {
+       try{
+        $page->delete();
+        return redirect()->back();
+       }catch( \Exception $e){
+            throw $e;
+       }
+    }
+
+    public function viewChapter(Chapter $chapter)
+    {
+        return Inertia::render('Backend/ComicsManagement/Chapters/Actions/viewChapter', [
+            'chapter' => [
+                'id' => $chapter->id,
+                'name' => $chapter->title,
+                'number' => $chapter->number,
+                'createdAt' => $chapter->created_at,
+                'updatedAt' => $chapter->updated_at,
+                'comic_title' => $chapter->volume->comic->title,
+                'volume_id' => $chapter->volume_id,
+                'volume_number' => $chapter->volume->number
+            ],
+
+            'pages' =>   Page::Where('chapter_id', $chapter->id)->get()->map(function ($page) {
+                return [
+                'id' => $page->id,
+                'viewUrl' => 'comics_management.chapter.view',
+                'createdAt' => $page->created_at,
+                'updatedAt' => $page->updated_at,
+                ];
+            })->toArray(),
+
+        ]);
     }
 
 }
