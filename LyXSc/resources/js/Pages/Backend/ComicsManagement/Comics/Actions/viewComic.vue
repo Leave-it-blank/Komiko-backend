@@ -29,10 +29,7 @@ const props = defineProps({
   }
 
 })
-Inertia.on('refreshtable', (event) => {
-  console.log(`Starting a visit to  `)
-})
-console.log(props.comic)
+
 const isModalActive = ref(false)
 const titleStack = ref(['Dashboard', 'Comic', props.comic.title])
 </script>

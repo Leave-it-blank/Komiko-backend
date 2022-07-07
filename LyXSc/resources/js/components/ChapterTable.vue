@@ -2,7 +2,7 @@
 import { computed, ref  } from 'vue'
 import { useMainStore } from '@/stores/main'
 import { mdiEye, mdiTrashCan , mdiAccountEdit} from '@mdi/js'
-import CardBoxModal from '@/components/CardBoxModal.vue'
+import DeleteItemsModal from '@/components/DeleteItemsModal.vue'
 import TableCheckboxCell from '@/components/TableCheckboxCell.vue'
 import BaseLevel from '@/components/BaseLevel.vue'
 import BaseButtons from '@/components/BaseButtons.vue'
@@ -13,7 +13,7 @@ import SearchTable from '@/components/SearchTable.vue'
 
 const prop = defineProps({
   checkable: Boolean,
-  volumes: {
+  chapters: {
     type: Array,
     default: null
   }
@@ -34,12 +34,12 @@ const tableTrOddStyle = computed(() => mainStore.tableTrOddStyle)
 
 const darkMode = computed(() => mainStore.darkMode)
 
-mainStore.clients = prop.volumes;
+mainStore.clients = prop.chapters;
 
 const items = computed(() => mainStore.clients)
 
+let dataChapter = computed(() => mainStore.itemId)
 const isModalActive = ref(false)
-
 const isModalDangerActive = ref(false)
 
 const perPage = ref(10)
@@ -86,6 +86,7 @@ const checked = (isChecked, client) => {
   }
 }
 
+
 </script>
 
 <template>
@@ -94,13 +95,18 @@ const checked = (isChecked, client) => {
    <SearchTable :searchArray="prop.volumes" Search  searchIndexName='number'  :searchComic="true" />
   </div>
 
-  <CardBoxModal
+  <DeleteItemsModal
     v-model="isModalActive"
-    title="Sample modal"
+    title="Do you really wanna delete the chapter?"
+    button ="danger"
+    buttonLabel ="Delete"
+    hasCancel
+    itemName ="chapter"
+    :itemId="dataChapter"
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
+     You are About to delete chapter number {{dataChapter}} permanently.
+      Warning:  [Action can't be rolled back]
+  </DeleteItemsModal>
 
   <div
     v-if="checkedRows.length"
@@ -123,6 +129,7 @@ const checked = (isChecked, client) => {
 
         <th>Name</th>
         <th>Number</th>
+        <th>Locked?</th>
         <th>Last Updated</th>
         <th>Created</th>
         <th />
@@ -145,6 +152,9 @@ const checked = (isChecked, client) => {
         <td data-label="number">
           {{ client.number }}
         </td>
+        <td data-label="isLocked?">
+          {{ client.isLocked? "Locked": "Open" }}
+        </td>
         <td data-label="Updated">
           <small
             class="text-gray-500 dark:text-gray-400"
@@ -155,7 +165,7 @@ const checked = (isChecked, client) => {
           <small
             class="text-gray-500 dark:text-gray-400"
             :title="client.createdAt"
-          >{{ dateshow(client.createdAt)  }}</small>
+          >{{ client.createdAt  }}</small>
         </td>
         <td class="actions-cell">
           <BaseButtons
@@ -177,6 +187,13 @@ const checked = (isChecked, client) => {
              :routeTo = "client"
             />
 
+             <BaseButton
+              color="danger"
+              :icon="mdiAccountEdit"
+              small
+              v-on:click="mainStore.itemId=client.id,isModalActive = true"
+
+            />
           </BaseButtons>
         </td>
 

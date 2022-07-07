@@ -33,18 +33,24 @@ const props = defineProps({
     type: [String, Number, Boolean],
     default: null
   },
-  comicId: {
+  volumeId: {
     type: Number,
     default: null
   },
+  chapterCount: {
+    type: Number,
+    default: 0
+  },
   errors: Object,
 })
+let count = parseInt(props.chapterCount) + 1;
 console.log(props.errors);
-const volumeForm = useForm({
-  name: '',
-  number: 0,
+const chapterForm = useForm({
+  name: 'Chapter ' + String(count),
+  number: parseInt(count),
+  isLocked: false,
 })
-const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
+const emit = defineEmits(['update:modelValue', 'cancel', 'confirm', 'refreshtable'])
 
 const value = computed({
   get: () => props.modelValue,
@@ -58,11 +64,16 @@ const confirmCancel = mode => {
 
 function submit() {
   //mainStore.setUser(profileForm)
-  volumeForm.clearErrors()
-  let url = route('comics_management.volume.create.store', props.comicId,
+  chapterForm.clearErrors()
+  let url = route('comics_management.chapter.store', props.volumeId,
   )
-  Inertia.post(url, volumeForm)
-
+  Inertia.post(url, chapterForm, {
+    onSuccess: (page) => {
+      let urltwo = route('comics_management.volume.view', props.volumeId);
+      Inertia.visit(urltwo, { only: ['chapters'], })
+    },
+  })
+  // this.$forceUpdate()
   confirmCancel('confirm');
 
   //console.log(props.errors);
@@ -84,11 +95,21 @@ const cancel = () => confirmCancel('cancel')
           {{ largeTitle }}
         </h1>
         <FormField label="Name" :help="props.errors.name">
-          <FormControl v-model="volumeForm.name" :icon="mdiAccount" name="name" required autocomplete="Name" />
+          <FormControl v-model="chapterForm.name" :icon="mdiAccount" name="name" required autocomplete="Name" />
         </FormField>
-        <FormField label="Vol-Number" :help="props.errors.number">
-          <FormControl v-model="volumeForm.number" :icon="mdiMail" type="Number" name="number" required
+        <FormField label="Number" :help="props.errors.number">
+          <FormControl v-model="chapterForm.number" :icon="mdiMail" type="Number" name="number" required
             autocomplete="Number" />
+        </FormField>
+        <FormField label="Lock the chapter?" :help="props.errors.isLocked">
+
+          <div class="flex inline">
+                 <input type="radio" id="one" :value="true" v-model="chapterForm.isLocked" class="my-1"/>
+          <label for="one"  class="mx-2">Yes</label>
+
+          <input type="radio" id="two" :value="false" v-model="chapterForm.isLocked" class="my-1" />
+          <label for="two" class="mx-2">No</label>
+          </div>
         </FormField>
 
       </div>
