@@ -13,15 +13,17 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use function route as routeAlias;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
     use AuthorizesRequests;
     public function getUsers()
-    {
-
+    {   $this->authorize('view authentication',  Auth::user());
+       // $this->authorize('view authentication',  User::class);
+        //$this->authorize('handle authentication',  User::class);
         //return 'hi';
         return Inertia::render('Backend/Authentication/UsersList', [
-            'users' => User::all()->map(function ($user) {
+            'users' => User::orderBy('name', 'asc')->get()->map(function ($user) {
                 return [
                     'id' => $user->id,
                     'name' => $user->name,
@@ -39,6 +41,7 @@ class UsersController extends Controller
     public function editUser(User $user)
     {
         //dd($user);
+        $this->authorize('handle authentication',    Auth::user());
         $roles = Role::all();
         $currentRolesId = $user->roles->pluck('id');
         return Inertia::render('Backend/Authentication/UserActions/Edit', [
@@ -49,6 +52,7 @@ class UsersController extends Controller
     }
     public function storeDetails(User $user, Request $request)
     {
+        $this->authorize('handle authentication',  Auth::user());
        $userdata =  $this->validate($request, [ 'name' => 'required|string|max:5', 'email' => 'required|max:50|email' ]);
 
        $user->update([
@@ -56,12 +60,13 @@ class UsersController extends Controller
         'email'=> $userdata['email']
        ]);
        $user->save();
-        return Redirect::route('authentication.users');
+        return Redirect::route('authentication.users')->with('message', 'Updated Successfully.');
 
 
     }
     public function storeCodes(User $user, Request $request)
     {
+        $this->authorize('handle authentication',    Auth::user());
         //dd($request);
         $userdata =  $this->validate($request, [ 'password' =>'required|min:8|max:15' ]);
         //dd($userdata);
@@ -70,24 +75,23 @@ class UsersController extends Controller
         ]);
         //$this->UpdateUserPassword::adminUpdate($user, $userdata);
         $user->save();
-        return Redirect::route('authentication.users');
+        return Redirect::route('authentication.users')->with('message', 'Updated Successfully.');
     }
 
 
     public function userRolesUpdate(Request $request ,  User $user){
-       $this->authorize('auth_management_update',  User::class);
+        $this->authorize('handle authentication',    Auth::user());
         try{
            // dd($request->userRoles);
         $user->roles()->sync($request->userRoles);
         if ($user->save()) {
-            return  redirect(routeAlias('authentication.users'));
+            return  redirect(routeAlias('authentication.users'))->with('message', 'Updated Successfully.');
         }
         }
         catch(\Exception $e){
 
-            session()->flash('warning', 'something went wrong! try again');
-            //dd($e);
+            throw $e;
         }
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Updated Successfully.');
     }
 }

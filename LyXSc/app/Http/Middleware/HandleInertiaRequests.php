@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
-
+use App\Settings\GeneralSettings;
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -38,6 +38,13 @@ class HandleInertiaRequests extends Middleware
             'ziggy' => function () {
                 return (new Ziggy)->toArray();
             },
+            'flash' => [
+                'message' => fn () => $request->session()->get('message'),
+                'error' => fn () => $request->session()->get('error')
+            ],
+            'sitedata' => function (){
+                return app(GeneralSettings::class);
+            }
         ]);
     }
 }

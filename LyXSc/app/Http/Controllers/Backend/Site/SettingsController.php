@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
-
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 class SettingsController extends Controller
-{
+{  use AuthorizesRequests;
     public function viewSettings()
     {
+        $this->authorize('view settings',    Auth::user());
         //return 'hi';
         return Inertia::render('Backend/SiteManagement/ListSettings', [
             'settings' => app(GeneralSettings::class)->toArray(),
@@ -22,6 +22,7 @@ class SettingsController extends Controller
 
     public function updateSettings(Request $request)
     {
+        $this->authorize('handle settings management', Auth::user());
         $data =  $this->validate($request, [
             'site_name' => 'required|string',
             'site_url' => 'string',
@@ -62,11 +63,10 @@ class SettingsController extends Controller
              $settings->save();
              $settings->refresh();
              Cache::flush();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Updated Successfully.');
          }
          catch(\Exception $e){
-             session()->flash('warning', 'something went wrong! try again');
-             $this->error = 'Something went wrong! try again~';
+             throw $e;
          }
     }
 }

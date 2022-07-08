@@ -56,8 +56,8 @@ export default [
       icon: mdiTelevisionGuide
     },
     {
-      route: 'dashboard',
-      label: 'Responsive',
+      route: 'site.management.advertisements.view',
+      label: 'Advertisement',
       icon: mdiResponsive
     },
     {
@@ -69,30 +69,8 @@ export default [
       route: 'profile.show',
       label: 'Profile',
       icon: mdiAccountCircle
-    },
-    {
-      route: 'dashboard',
-      label: 'Login',
-      icon: mdiLock
-    },
-    {
-      route: 'dashboard',
-      label: 'Error',
-      icon: mdiAlertCircle
-    },
-    {
-      label: 'dashboard',
-      subLabel: 'Submenus Example',
-      icon: mdiViewList,
-      menu: [
-        {
-          label: 'Sub-item One'
-        },
-        {
-          label: 'Sub-item Two'
-        }
-      ]
     }
+
   ],
   'About',
   [

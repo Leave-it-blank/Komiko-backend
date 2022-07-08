@@ -101,7 +101,7 @@ function getResponseData(responseText, response) {
 uppy.on('complete', (result) => {
   let urltwo = route('comics_management.chapter.view', props.chapterId);
   Inertia.visit(urltwo, { only: ['pages'], })
-  //console.log(urltwo)
+    console.log(result)
 })
 
 </script>

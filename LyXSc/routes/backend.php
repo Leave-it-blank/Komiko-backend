@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\Management\SettingsController; */
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Actions\Fortify\UpdateUserPassword;
+use App\Http\Controllers\Backend\Management\AdvertismentController;
 use App\Http\Controllers\Backend\Management\CarouselController;
 
 /*
@@ -94,6 +95,8 @@ Route::group(
         Route::get('admin/management/page/{page}/delete', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'deletePage'])->name('comics_management.page.delete');
         Route::post('admin/management/chapter/{chapter}/upload/data', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'uploadChapter'])->name('comics_management.chapter.upload.store');
         Route::get('admin/management/chapter/{chapter}/view', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'viewChapter'])->name('comics_management.chapter.view');
+
+        Route::get('admin/management/page/{page}/view', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'viewPage'])->name('comics_management.page.view');
     }
 );
 
@@ -120,10 +123,13 @@ Route::group(
         Route::get('admin/management/carousel/create', [CarouselController::class, 'createCarousel'])->name('comic.management.carousel.create');
         Route::post('admin/management/carousel/store', [CarouselController::class, 'storeCarousel'])->name('comic.management.carousel.store');
         Route::get('admin/management/carousel/{carousel}/edit', [CarouselController::class, 'editCarousel'])->name('comic.management.carousel.edit');
-
+        Route::get('admin/management/carousel/{carousel}/delete', [CarouselController::class,  'deleteCarousel'])->name('comics_management.carousel.delete');  //intentional to avoid extra work making new component.
         Route::post('admin/management/carousel/{carousel}/update', [CarouselController::class, 'updateStoreCarousel'])->name('comic.management.carousel.store.update');
 
-        Route::get('admin/management/carousel/{carousel}/delete', [CarouselController::class,  'deleteCarousel'])->name('comics_management.carousel.delete');  //intentional to avoid extra work making new component.
-        //Route::get('admin/comic-management/carousel/{carousel}/edit', \App\Http\Livewire\Backend\ComicManagement\Carousels\Actions\Edit::class)->name('comic.management.carousel.edit');
+        Route::get('admin/management/advertisements/view',  [AdvertismentController::class, 'viewAdvertisement']  )->name('site.management.advertisements.view');
+        Route::get('admin/management/advertisements/{advertisement}/edit',  [AdvertismentController::class, 'editAdvertisement']  )->name('site.management.advertisements.edit');
+        Route::get('admin/management/advertisements/{advertisement}/status',  [AdvertismentController::class, 'statusUpdateAdvertisement']  )->name('site.management.advertisements.status.update');
+        Route::post('admin/management/advertisements/{advertisement}/store',  [AdvertismentController::class, 'editStoreAdvertisement']  )->name('site.management.advertisements.edit.store');
+
     }
 );

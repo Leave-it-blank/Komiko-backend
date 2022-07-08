@@ -108,7 +108,7 @@ const logout = () => {
       <div
         class="max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto"
       >
-        <NavBarMenu has-divider>
+   <!--      <NavBarMenu has-divider>
           <NavBarItemLabel
             :icon="mdiMenu"
             label="Sample menu"
@@ -135,38 +135,27 @@ const logout = () => {
               />
             </NavBarItem>
           </template>
-        </NavBarMenu>
+        </NavBarMenu> -->
         <NavBarMenu has-divider>
           <NavBarItemLabel :label="userName">
             <UserAvatar class="w-6 h-6 mr-3 inline-flex" />
           </NavBarItemLabel>
 
           <template #dropdown>
-            <NavBarItem to="/profile">
+            <NavBarItem routeName="profile.show">
               <NavBarItemLabel
                 :icon="mdiAccount"
                 label="My Profile"
               />
             </NavBarItem>
-            <NavBarItem>
+            <NavBarItem   routeName="site.management.settings">
               <NavBarItemLabel
                 :icon="mdiCogOutline"
                 label="Settings"
               />
             </NavBarItem>
-            <NavBarItem>
-              <NavBarItemLabel
-                :icon="mdiEmail"
-                label="Messages"
-              />
-            </NavBarItem>
-            <DividerHorizontal nav-bar />
-            <NavBarItem>
-              <NavBarItemLabel
-                :icon="mdiLogout"
-                label="Log Out"
-              />
-            </NavBarItem>
+
+
           </template>
         </NavBarMenu>
         <NavBarItem
@@ -181,7 +170,7 @@ const logout = () => {
           />
         </NavBarItem>
         <NavBarItem
-          href="https://github.com/justboil/admin-one-vue-tailwind"
+          href="https://github.com/"
           has-divider
           is-desktop-icon-only
         >

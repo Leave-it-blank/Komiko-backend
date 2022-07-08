@@ -7,21 +7,27 @@ use App\Models\Carousel;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 class CarouselController extends Controller
 {
+    use AuthorizesRequests;
     public function viewCarousel()
     {
+        $this->authorize('view management',    Auth::user());
         return Inertia::render('Backend/Management/Carousels/ViewCarousels', [
-            'carousels' => Carousel::all(),
+            'carousels' => Carousel::orderBy('position', 'asc')->get(),
         ]);
     }
 
     public function createCarousel()
     {
+        $this->authorize('handle management',    Auth::user());
         return Inertia::render('Backend/Management/Carousels/Actions/CreateCarousel');
     }
     public function storeCarousel(Request $request)
     {
+        $this->authorize('handle management',    Auth::user());
         $carousel =  $this->validate($request, [
             'name' => 'required|min:2|max:255|string',
             //  'upload_date' => 'string',
@@ -60,7 +66,7 @@ class CarouselController extends Controller
                 ->toMediaCollection('carousels');
             $Tcarousel->save();
 
-            return redirect(route('admin.management.carousel'));
+            return redirect(route('admin.management.carousel'))->with('message', 'Created Successfully.');
         } catch (\Exception $e) {
             //return dd($e);
             // $this->emit('Danger_alert',   'Image upload failed~');
@@ -73,6 +79,7 @@ class CarouselController extends Controller
 
     public function deleteCarousel(Carousel $carousel)
     {
+        $this->authorize('handle management',    Auth::user());
        try{
         $carousel->delete();
         return redirect()->back();
@@ -82,6 +89,7 @@ class CarouselController extends Controller
     }
     public function updateStoreCarousel(Carousel $carousel, Request $request)
     {
+        $this->authorize('handle management',    Auth::user());
         $Tcarousel =  $this->validate($request, [
             'name' => 'required|min:2|max:255|string',
             //  'upload_date' => 'string',
@@ -125,7 +133,7 @@ class CarouselController extends Controller
                     ->toMediaCollection('carousels');
                 //$comic->save();
 
-                return redirect(route('admin.management.carousel'));
+                return redirect(route('admin.management.carousel'))->with('message', 'Updated Successfully.');
             } catch (\Exception $e) {
                 //return dd($e);
                 // $this->emit('Danger_alert',   'Image upload failed~');
@@ -135,12 +143,13 @@ class CarouselController extends Controller
                 throw $e;
             }
         } else {
-            return redirect(route('admin.management.carousel'));
+            return redirect(route('admin.management.carousel'))->with('message', 'Updated Successfully.');
         }
     }
 
     public function editCarousel(Carousel $carousel)
     {
+        $this->authorize('handle management',    Auth::user());
         return Inertia::render('Backend/Management/Carousels/Actions/EditCarousel', [
             'carousel' => $carousel
         ]);

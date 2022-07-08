@@ -1,0 +1,145 @@
+<template>
+  <AppLayout>
+
+
+    <Head title="Advertisements" />
+    <SectionTitleBar :title-stack="titleStack" routeName="dashboard" />
+    <SectionMain>
+
+
+      <DividerHorizontal />
+
+      <div v-if="props.advertisements">
+        <div>
+          <div class="container p-2 md:mx-auto md:m-3">
+
+            <div class="w-full md:px-10">
+              <div class="flex flex-col w-full min-w-0 mb-6 break-words border-2 rounded bg-zinc-100 dark:bg-gray-900">
+                <div class="px-4 py-3 mb-0 border-0 rounded-t">
+                  <div class="flex flex-wrap items-center">
+                    <div class="flex-1 flex-grow w-full max-w-full px-4 ">
+                      <h3 class="text-base font-semibold text-blue-400 dark:text-purple-500">Advertisement List</h3>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="block w-full overflow-x-auto md:px-4">
+                  <table class="items-center w-full   border-collapse mb-4 dark:bg-gray-900">
+                    <thead class="bg-zinc-200 dark:bg-zinc-900">
+                      <tr>
+                        <th
+                          class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-gray-100 border-solid whitespace-nowrap">
+                          Status
+                        </th>
+                        <th
+                          class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-gray-100 border-solid whitespace-nowrap">
+                          Advertisement
+                        </th>
+                        <th
+                          class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-gray-100 border-solid whitespace-nowrap">
+                          Active until~
+                        </th>
+                        <th
+                          class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-gray-100 border-solid whitespace-nowrap">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody v-for="ads in props.advertisements">
+                      <tr class="hover:bg-gray-200">
+                        <th
+                          class="p-4 px-6 text-xs text-left   align-middle border-t-0 border-l-0 border-r-0   whitespace-nowrap ">
+
+
+                          <button @click="enable_advt(ads.id)"
+                            class="px-4 py-2 font-bold bg-blue-500 dark:bg-purple-400 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-purple-700">
+                            {{ ads.is_enabled? 'Enabled': 'Disabled' }}
+                          </button>
+
+                        </th>
+                        <th
+                          class="p-4 px-6 text-xs text-left text-gray-700 align-middle border-t-0 border-l-0 border-r-0 dark:text-gray-200 whitespace-nowrap ">
+                          {{ ads.name }}
+                        </th>
+
+                        <td class="p-4 px-6 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                          <i class="mr-4 fas fa-arrow-up text-emerald-500"></i>
+                          {{ dateshow(ads.expires_at) }}
+                        </td>
+                        <td class="px-6 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap ">
+                          <BaseButton color="info"   small routeName="site.management.advertisements.edit"
+                            :routeTo="ads.id" class=" px-5 py-2 bg-blue-500 dark:bg-purple-400 text-white rounded-md " label="Edit">
+
+                          </BaseButton>
+
+                        </td>
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </SectionMain>
+  </AppLayout>
+</template>
+
+<script setup>
+import moment from 'moment'
+import AppLayout from '@/Layouts/App.vue';
+import { Inertia } from '@inertiajs/inertia'
+import { Head } from '@inertiajs/inertia-vue3'
+import { ref, reactive, computed } from 'vue'
+import { useForm } from '@inertiajs/inertia-vue3'
+import { useSiteStore } from '@/stores/site'
+import { useMainStore } from '@/stores/main'
+import CarouselsTable from '@/components/CarouselsTable.vue'
+import { mdiMonitorCellphone, mdiAccountMultiple, mdiTableBorder, mdiTableOff } from '@mdi/js'
+import SectionMain from '@/components/SectionMain.vue'
+import NotificationBar from '@/components/NotificationBar.vue'
+import CardBox from '@/components/CardBox.vue'
+import SectionTitleBar from '@/components/SectionTitleBar.vue'
+import SectionHeroBar from '@/components/SectionHeroBar.vue'
+
+import BaseButtons from '@/components/BaseButtons.vue';
+import DividerHorizontal from '@/components/DividerHorizontal.vue'
+import BaseButton from '@/components/BaseButton.vue';
+const props = defineProps({
+  advertisements: {
+    type: Object,
+    default: null
+  },
+  errors: {
+    type: Object
+  }
+})
+
+function dateshow(value) {
+    return moment(value).format('YYYY-MM-DD'); // here u modify data
+}
+function enable_advt($advert) {
+
+  let url = route('site.management.advertisements.status.update', $advert)
+  Inertia.get(url)
+  /*
+    {
+      onSuccess: () => {
+        let urltwo = route('site.management.advertisements.view');
+        Inertia.visit(urltwo, { only: ['advertisements'], })
+      },
+    } */
+}
+
+const titleStack = ref(['Dashboard', 'Advertisements'])
+</script>

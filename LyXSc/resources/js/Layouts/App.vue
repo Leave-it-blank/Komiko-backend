@@ -10,7 +10,7 @@ import OverlayLayer from '@/components/OverlayLayer.vue'
 
 const mainStore = useMainStore()
 defineProps({
-    title: String,
+  title: String,
 });
 mainStore.fullScreenToggle(false)
 /* mainStore.setUser({
@@ -29,11 +29,16 @@ const overlayClick = () => {
 <template>
   <NavBar />
   <AsideMenu :menu="menu" />
+        <div v-if="false" class="text-white bg-blue-500 m-2 p-6 rounded-md">
+         {{ $page.props.sitedata }}
+        </div>
+       <div v-if="$page.props.flash.message" class="text-white bg-blue-500 m-2 p-6 rounded-md">
+         {{ $page.props.flash.message }}
+        </div>
+    <div v-if="$page.props.flash.error" class="text-white bg-red-500 m-2 p-6 rounded-md">
+         {{ $page.props.flash.error }}
+     </div>
   <slot />
   <FooterBar />
-  <OverlayLayer
-    v-show="isAsideLgActive"
-    z-index="z-30"
-    @overlay-click="overlayClick"
-  />
+  <OverlayLayer v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>

@@ -17,15 +17,17 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Chapter;
 use App\Models\Volume;
-
+use Illuminate\Support\Facades\Auth;
 class ComicsController extends Controller
 {
     use AuthorizesRequests;
     public function getComics()
     {
+
+        $this->authorize('view comic management',    Auth::user());
         //return 'hi';
         return Inertia::render('Backend/ComicsManagement/Comics/ComicsList', [
-            'comics' => Comic::all()->map(function ($comic) {
+            'comics' => Comic::orderBy('title', 'asc')->get()->map(function ($comic) {
                 return [
                     'id' => $comic->id,
                     'title' => $comic->title,
@@ -45,34 +47,35 @@ class ComicsController extends Controller
     public function createComics()
     {
         //return 'hi';
+        $this->authorize('handle comic management',    Auth::user());
         return Inertia::render('Backend/ComicsManagement/Comics/Actions/CreateComic', [
-            'tags' => Tag::all()->map(function ($e) {
+            'tags' => Tag::orderBy('name', 'asc')->get()->map(function ($e) {
                 return [
                     'id' => $e->id,
                     'name' => $e->name,
                 ];
             })->toArray(),
 
-            'countries' => Country::all()->map(function ($d) {
+            'countries' => Country::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
                 ];
             })->toArray(),
 
-            'publishers' => Publisher::all()->map(function ($d) {
+            'publishers' => Publisher::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
                 ];
             })->toArray(),
-            'authors' => Author::all()->map(function ($d) {
+            'authors' => Author::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
                 ];
             })->toArray(),
-            'artists' => Artist::all()->map(function ($d) {
+            'artists' => Artist::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
@@ -83,7 +86,7 @@ class ComicsController extends Controller
 
     public function storeComic(Request $request)
     {
-
+        $this->authorize('handle comic management', Auth::user());
         $comic =  $this->validate($request, [
             'title' => 'required|min:2|max:255|string',
             //  'upload_date' => 'string',
@@ -138,13 +141,14 @@ class ComicsController extends Controller
                 ->toMediaCollection('thumbnail');
             $Tcomic->save();
 
-            return redirect(route('comics_management.comics'));
+            return redirect(route('comics_management.comics'))->with('message', 'Created Successfully.');
         } catch (\Exception $e) {
             //return dd($e);
             // $this->emit('Danger_alert',   'Image upload failed~');
             // $this->error = 'Image upload failed~';
             $Tcomic->delete();
             throw $e;
+            return redirect(route('comics_management.comics'))->with('error', 'Unable to Create.');
         }
     }
 
@@ -152,35 +156,36 @@ class ComicsController extends Controller
 
     public function editComics(Comic $comic)
     {
+        $this->authorize('handle comic management',    Auth::user());
         //return 'hi';
         return Inertia::render('Backend/ComicsManagement/Comics/Actions/EditComic', [
-            'tags' => Tag::all()->map(function ($e) {
+            'tags' => Tag::orderBy('name', 'asc')->get()->map(function ($e) {
                 return [
                     'id' => $e->id,
                     'name' => $e->name,
                 ];
             })->toArray(),
 
-            'countries' => Country::all()->map(function ($d) {
+            'countries' => Country::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
                 ];
             })->toArray(),
 
-            'publishers' => Publisher::all()->map(function ($d) {
+            'publishers' => Publisher::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
                 ];
             })->toArray(),
-            'authors' => Author::all()->map(function ($d) {
+            'authors' => Author::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
                 ];
             })->toArray(),
-            'artists' => Artist::all()->map(function ($d) {
+            'artists' => Artist::orderBy('name', 'asc')->get()->map(function ($d) {
                 return [
                     'id' => $d->id,
                     'name' => $d->name,
@@ -194,6 +199,7 @@ class ComicsController extends Controller
     public function editStoreComic(Comic $comic, Request $request)
     {
 
+        $this->authorize('handle comic management',    Auth::user());
         // dd($comic);
         $valcomic =  $this->validate($request, [
             'title' => 'required|min:2|max:255|string',
@@ -251,7 +257,7 @@ class ComicsController extends Controller
                     ->toMediaCollection('thumbnail');
                 //$comic->save();
 
-                return redirect(route('comics_management.comics'));
+                return redirect(route('comics_management.comics.view', $comic->id))->with('message', 'Updated Successfully.');
             } catch (\Exception $e) {
                 //return dd($e);
                 // $this->emit('Danger_alert',   'Image upload failed~');
@@ -259,15 +265,17 @@ class ComicsController extends Controller
                 //$Tcomic->delete();
                 // $Tcomic->getFirstMedia('thumbnail')->delete();
                 throw $e;
+
             }
         } else {
-            return redirect(route('comics_management.comics'));
+            return redirect(route('comics_management.comics.view', $comic->id))->with('message', 'Updated Successfully.');
         }
     }
 
     public function viewComics(Comic $comic)
     {
 
+        $this->authorize('view comic management',    Auth::user());
       //  $volume = Volume::Where('comic_id', $comic->id)->get();
         //dd( $volume );
         return Inertia::render('Backend/ComicsManagement/Comics/Actions/viewComic', [
@@ -281,7 +289,7 @@ class ComicsController extends Controller
                 'updatedAt' => $comic->updated_at,
             ],
 
-            'volumes' =>   Volume::Where('comic_id', $comic->id)->get()->map(function ($volume) {
+            'volumes' =>   Volume::Where('comic_id', $comic->id)->orderBy('number', 'desc')->get()->map(function ($volume) {
                 return [
                     'id' => $volume->id,
                 'name' => $volume->name,

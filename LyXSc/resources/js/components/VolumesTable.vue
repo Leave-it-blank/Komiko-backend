@@ -102,7 +102,7 @@ const checked = (isChecked, client) => {
     button ="danger"
     buttonLabel ="Delete"
     hasCancel
-    itemName ="chapter"
+    itemName ="volume"
     :itemId="dataChapter"
   >
      You are About to delete volume number {{dataChapter}} permanently.

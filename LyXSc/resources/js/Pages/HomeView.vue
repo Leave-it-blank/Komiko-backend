@@ -53,7 +53,7 @@ const darkMode = computed(() => mainStore.darkMode)
 <app>
 
   <SectionTitleBar :title-stack="titleStack" />
-  <SectionHeroBar>Dashboard</SectionHeroBar>
+  <SectionHeroBar>Dashboard </SectionHeroBar>
   <SectionMain>
     <NotificationBar
       color="info"

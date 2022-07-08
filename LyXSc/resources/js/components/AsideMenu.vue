@@ -62,8 +62,8 @@ const menuClick = () => {
           size="24"
         />
       </NavBarItem>
-      <div class="flex-1 px-3">
-        <span>Admin</span> <b class="font-black">One</b>
+      <div class="flex-1 px-3 ">
+        <span>{{ $page.props.sitedata.site_name }}</span>
       </div>
     </div>
     <div>

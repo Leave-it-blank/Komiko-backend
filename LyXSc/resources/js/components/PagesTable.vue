@@ -130,7 +130,6 @@ const checked = (isChecked, client) => {
 
         <th>Name</th>
         <th>FileSize</th>
-        <th>Last Updated</th>
         <th>Created</th>
         <th />
       </tr>
@@ -147,34 +146,28 @@ const checked = (isChecked, client) => {
         />
 
         <td data-label="Name">
-          {{ client.id }}
+          {{ client.fileName }}
         </td>
         <td data-label="number">
-          {{ client.id }}
+          {{ client.fileSize }}
         </td>
-        <td data-label="Updated">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.updatedAt"
-          >{{ dateshow(client.updatedAt)  }}</small>
-        </td>
+
         <td data-label="Created">
           <small
             class="text-gray-500 dark:text-gray-400"
             :title="client.createdAt"
-          >{{  client.createdAt  }}</small>
+          >{{  dateshow(client.createdAt)  }}</small>
         </td>
         <td class="actions-cell">
           <BaseButtons
             type="justify-start lg:justify-end"
             no-wrap
           >
-            <BaseButton
+          <BaseButton
                  color="info"
                  :icon="mdiEye"
                  small
-                 :routeName="client.viewUrl"
-                 :routeTo = "client.id"
+                 :href="client.viewUrl"
             />
            <BaseButton
               color="danger"
