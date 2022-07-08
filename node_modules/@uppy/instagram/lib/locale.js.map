@@ -1,1 +1,0 @@
-{"version":3,"sources":["locale.js"],"names":["strings","pluginNameInstagram"],"mappings":";;iBAAe;AACbA,EAAAA,OAAO,EAAE;AACPC,IAAAA,mBAAmB,EAAE;AADd;AADI,C","sourcesContent":["export default {\n  strings: {\n    pluginNameInstagram: 'Instagram',\n  },\n}\n"]}

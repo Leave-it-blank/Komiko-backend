@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@upload-io/vue-uploader": "^1.5.5",
-    "uppy": "^2.12.2"
-  }
-}

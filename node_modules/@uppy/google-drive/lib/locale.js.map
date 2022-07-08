@@ -1,1 +1,0 @@
-{"version":3,"sources":["locale.js"],"names":["strings","pluginNameGoogleDrive"],"mappings":";;iBAAe;AACbA,EAAAA,OAAO,EAAE;AACPC,IAAAA,qBAAqB,EAAE;AADhB;AADI,C","sourcesContent":["export default {\n  strings: {\n    pluginNameGoogleDrive: 'Google Drive',\n  },\n}\n"]}
