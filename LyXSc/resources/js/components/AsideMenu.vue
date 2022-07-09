@@ -5,6 +5,7 @@ import { mdiMenu } from '@mdi/js'
 import AsideMenuList from '@/components/AsideMenuList.vue'
 import NavBarItem from '@/components/NavBarItem.vue'
 import BaseIcon from '@/components/BaseIcon.vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 defineProps({
   menu: {
@@ -62,8 +63,12 @@ const menuClick = () => {
           size="24"
         />
       </NavBarItem>
+
       <div class="flex-1 px-3 ">
-        <span>{{ $page.props.sitedata.site_name }}</span>
+        <a  :href="route('reader.homepage.view')">
+         <span> {{$page.props.sitedata.site_name}}</span>
+        </a>
+
       </div>
     </div>
     <div>

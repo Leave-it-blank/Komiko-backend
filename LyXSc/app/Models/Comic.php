@@ -44,6 +44,7 @@ class Comic extends Model implements HasMedia, Viewable
         $this->addMediaConversion('thumbsm')
             ->width(450)
             ->height(650)
+            ->quality(.7)
             ->nonQueued();
     }
     public function tags()
@@ -107,6 +108,10 @@ class Comic extends Model implements HasMedia, Viewable
     public function getThumbnailUrl()
     {
         return $this->getFirstMediaUrl('thumbnail','thumbsm');
+    }
+    public function getFullThumbnailOptimizedUrl()
+    {
+        return $this->getFirstMediaUrl('thumbsm' );
     }
     public function getFullThumbnailUrl()
     {

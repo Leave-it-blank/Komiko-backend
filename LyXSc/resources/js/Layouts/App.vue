@@ -8,6 +8,7 @@ import AsideMenu from '@/components/AsideMenu.vue'
 import FooterBar from '@/components/FooterBar.vue'
 import OverlayLayer from '@/components/OverlayLayer.vue'
 import NotificationBar from '@/components/NotificationBar.vue'
+import { Head } from '@inertiajs/inertia-vue3'
 const mainStore = useMainStore()
 defineProps({
   title: String,
@@ -27,6 +28,7 @@ const overlayClick = () => {
 </script>
 
 <template>
+
   <NavBar />
   <AsideMenu :menu="menu" />
   <div v-if="false" class="text-white bg-blue-500 m-2 p-6 rounded-md">

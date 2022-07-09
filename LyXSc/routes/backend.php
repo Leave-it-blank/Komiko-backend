@@ -135,6 +135,6 @@ Route::group(
     }
 );
 Route::middleware(['auth:sanctum',   config('jetstream.auth_session'), 'verified', 'permission:view dashboard'])->group(function () {
-    Route::get('/dashboard',  [DashboardController::class, 'viewDashboard'])->name('dashboard');
+    Route::get('/admin/dashboard',  [DashboardController::class, 'viewDashboard'])->name('dashboard');
 });
 

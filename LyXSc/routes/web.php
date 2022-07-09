@@ -17,14 +17,14 @@ use App\Models\Comic;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+}); */
 
 /* Route::middleware([
     'auth:sanctum',
@@ -38,7 +38,7 @@ Route::get('/', function () {
  */
 
 require __DIR__.'/backend.php';
-
+require __DIR__.'/frontend.php';
 Route::get('/countdata', function () {
     $post = Chapter::first() ;
     views($post)->record();

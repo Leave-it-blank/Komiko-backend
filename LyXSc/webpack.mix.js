@@ -16,6 +16,10 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('tailwindcss'),
         require('autoprefixer'),
     ])
+    .postCss('resources/css/reader.css', 'public/css', [
+      require('tailwindcss'),
+      require('autoprefixer'),
+  ])
     .alias({
         '@': 'resources/js',
         ziggy: "vendor/tightenco/ziggy/dist/vue",
