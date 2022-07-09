@@ -18,8 +18,10 @@ use App\Http\Controllers\Backend\Management\SettingsController; */
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Actions\Fortify\UpdateUserPassword;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Management\AdvertismentController;
 use App\Http\Controllers\Backend\Management\CarouselController;
+
 
 /*
 
@@ -126,10 +128,13 @@ Route::group(
         Route::get('admin/management/carousel/{carousel}/delete', [CarouselController::class,  'deleteCarousel'])->name('comics_management.carousel.delete');  //intentional to avoid extra work making new component.
         Route::post('admin/management/carousel/{carousel}/update', [CarouselController::class, 'updateStoreCarousel'])->name('comic.management.carousel.store.update');
 
-        Route::get('admin/management/advertisements/view',  [AdvertismentController::class, 'viewAdvertisement']  )->name('site.management.advertisements.view');
-        Route::get('admin/management/advertisements/{advertisement}/edit',  [AdvertismentController::class, 'editAdvertisement']  )->name('site.management.advertisements.edit');
-        Route::get('admin/management/advertisements/{advertisement}/status',  [AdvertismentController::class, 'statusUpdateAdvertisement']  )->name('site.management.advertisements.status.update');
-        Route::post('admin/management/advertisements/{advertisement}/store',  [AdvertismentController::class, 'editStoreAdvertisement']  )->name('site.management.advertisements.edit.store');
-
+        Route::get('admin/management/advertisements/view',  [AdvertismentController::class, 'viewAdvertisement'])->name('site.management.advertisements.view');
+        Route::get('admin/management/advertisements/{advertisement}/edit',  [AdvertismentController::class, 'editAdvertisement'])->name('site.management.advertisements.edit');
+        Route::get('admin/management/advertisements/{advertisement}/status',  [AdvertismentController::class, 'statusUpdateAdvertisement'])->name('site.management.advertisements.status.update');
+        Route::post('admin/management/advertisements/{advertisement}/store',  [AdvertismentController::class, 'editStoreAdvertisement'])->name('site.management.advertisements.edit.store');
     }
 );
+Route::middleware(['auth:sanctum',   config('jetstream.auth_session'), 'verified', 'permission:view dashboard'])->group(function () {
+    Route::get('/dashboard',  [DashboardController::class, 'viewDashboard'])->name('dashboard');
+});
+

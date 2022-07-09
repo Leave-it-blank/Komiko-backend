@@ -12,10 +12,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 class Comic extends Model implements HasMedia, Viewable
 {
+
     use InteractsWithViews;
     use InteractsWithMedia;
     use HasFactory;
@@ -29,7 +31,7 @@ class Comic extends Model implements HasMedia, Viewable
         'titleSlug', 'isNovel', 'isMature', 'isLocked', 'isHidden','country_id','upload_date'
     ];
     protected $dates = [ 'deleted_at' ];
-
+    protected $removeViewsOnDelete = true;
 
     public function getSlugOptions() : SlugOptions
     {

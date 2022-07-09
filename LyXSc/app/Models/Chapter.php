@@ -8,8 +8,10 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 class Chapter extends Model implements Viewable
 {
+
     use InteractsWithViews;
     use HasFactory;
+
     protected $fillable = [
         'name', 'number', 'id', 'volume_id', 'isLocked'
     ];

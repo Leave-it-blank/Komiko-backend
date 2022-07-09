@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Chapter;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Comic;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware([
+/* Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
@@ -33,6 +35,14 @@ Route::middleware([
         return Inertia::render('HomeView');
     })->name('dashboard');
 });
-
+ */
 
 require __DIR__.'/backend.php';
+
+Route::get('/countdata', function () {
+    $post = Chapter::first() ;
+    views($post)->record();
+    $post = Comic::first() ;
+    views($post)->record();
+    return 'ok';
+});

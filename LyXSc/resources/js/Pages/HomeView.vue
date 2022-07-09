@@ -33,17 +33,19 @@ const chartData = ref(null)
 
 const fillChartData = () => {
   chartData.value = chartConfig.sampleChartData()
+
 }
 
 onMounted(() => {
   fillChartData()
 })
-
+const props = defineProps({
+  stats: {
+    type: Object,
+    default: null
+  }
+})
 const mainStore = useMainStore()
-
-const clientBarItems = computed(() => mainStore.clients.slice(0, 3))
-
-const transactionBarItems = computed(() => mainStore.history.slice(0, 3))
 
 const darkMode = computed(() => mainStore.darkMode)
 </script>
@@ -53,82 +55,38 @@ const darkMode = computed(() => mainStore.darkMode)
 <app>
 
   <SectionTitleBar :title-stack="titleStack" />
-  <SectionHeroBar>Dashboard </SectionHeroBar>
+  <SectionHeroBar>Performance Stats </SectionHeroBar>
   <SectionMain>
-    <NotificationBar
-      color="info"
-      :icon="mdiGithub"
-    >
-      Please star this project on
-      <a
-        href="https://github.com/justboil/admin-one-vue-tailwind"
-        class="underline"
-        target="_blank"
-      >GitHub</a>
-      <template #right>
-        <BaseButton
-          href="https://github.com/justboil/admin-one-vue-tailwind"
-          :icon="mdiGithub"
-          :outline="darkMode"
-          label="GitHub"
-          target="_blank"
-          small
-        />
-      </template>
-    </NotificationBar>
+
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
       <CardBoxWidget
         trend="12%"
         trend-type="up"
         color="text-emerald-500"
         :icon="mdiAccountMultiple"
-        :number="512"
-        label="Clients"
+        :number="props.stats.usercount"
+        label="Users"
       />
       <CardBoxWidget
         trend="12%"
-        trend-type="down"
+        trend-type="up"
         color="text-blue-500"
-        :icon="mdiCartOutline"
-        :number="7770"
-        prefix="$"
-        label="Sales"
+       :icon="mdiChartTimelineVariant"
+        :number="props.stats.comicviewcount"
+
+        label="Comics Views"
       />
       <CardBoxWidget
         trend="Overflow"
-        trend-type="alert"
-        color="text-red-500"
+        trend-type="up"
+        color="text-green-500"
         :icon="mdiChartTimelineVariant"
-        :number="256"
-        suffix="%"
-        label="Performance"
+        :number="props.stats.chapterviewcount"
+
+        label="Chapters Views"
       />
     </div>
 
-  <!--   <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
-      <div class="flex flex-col justify-between">
-        <CardBoxTransaction
-          v-for="(transaction,index) in transactionBarItems"
-          :key="index"
-          :amount="transaction.amount"
-          :date="transaction.date"
-          :business="transaction.business"
-          :type="transaction.type"
-          :name="transaction.name"
-          :account="transaction.account"
-        />
-      </div>
-      <div class="flex flex-col justify-between">
-        <CardBoxClient
-          v-for="client in clientBarItems"
-          :key="client.id"
-          :name="client.name"
-          :login="client.login"
-          :date="client.created"
-          :progress="client.progress"
-        />
-      </div>
-    </div> -->
 
     <SectionTitleBarSub
       :icon="mdiChartPie"
@@ -149,18 +107,6 @@ const darkMode = computed(() => mainStore.darkMode)
         />
       </div>
     </CardBox>
-
-    <SectionTitleBarSub
-      :icon="mdiAccountMultiple"
-      title="Clients"
-    />
-
-    <NotificationBar
-      color="info"
-      :icon="mdiMonitorCellphone"
-    >
-      <b>Responsive table.</b> Collapses on mobile
-    </NotificationBar>
 
 
   </SectionMain>
