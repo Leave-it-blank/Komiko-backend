@@ -12,8 +12,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-class Comic extends Model implements HasMedia
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+class Comic extends Model implements HasMedia, Viewable
 {
+    use InteractsWithViews;
     use InteractsWithMedia;
     use HasFactory;
     use SoftDeletes;
