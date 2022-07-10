@@ -24,7 +24,7 @@ class HomapageController extends Controller
                     'isLocked' => $comic->isLocked,
                     'createdAt' => $comic->created_at,
                     'updatedAt' => $comic->updated_at,
-                    'thumb' => $comic->getFullThumbnailOptimizedUrl()
+                    'thumb' => $comic->getFullThumbnailUrl()
                 ];
             })->toArray(),
 

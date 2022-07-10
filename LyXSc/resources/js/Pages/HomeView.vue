@@ -52,10 +52,13 @@ const darkMode = computed(() => mainStore.darkMode)
 
 <template>
 <Head title="Dashboard" />
+
 <app>
 
   <SectionTitleBar :title-stack="titleStack" />
   <SectionHeroBar>Performance Stats </SectionHeroBar>
+
+ <!--  {{$page.props.auth.user.permissions }} -->
   <SectionMain>
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">

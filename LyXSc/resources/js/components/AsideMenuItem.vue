@@ -54,7 +54,8 @@ const menuClick = event => {
 </script>
 
 <template>
-  <li>
+   <!-- {{$props.item.permission.filter(x => $page.props.auth.user.permissions.includes(x)) }} -->
+  <li  v-if="$props.item.permission.filter(x => $page.props.auth.user.permissions.includes(x)).length  !== 0">
     <component
       :is="componentIs"
 

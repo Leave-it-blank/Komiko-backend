@@ -7,6 +7,7 @@ export const useComicStore = defineStore('main', {
   state: () => ({
   comics: [],
   chapters: [],
+  navbar: true,
   })
 
   });

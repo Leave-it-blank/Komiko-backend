@@ -79,7 +79,7 @@ const menuClick = () => {
           class="p-3 text-xs uppercase"
           :class="[ asideMenuLabelStyle ]"
         >
-          {{ menuGroup }}
+          {{ menuGroup    }}
         </p>
         <AsideMenuList
           v-else

@@ -33,9 +33,13 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
+        "@headlessui/vue": "^1.6.6",
+        "@heroicons/vue": "^1.0.6",
         "@uppy/vue": "^0.4.8",
+        "@vue-hero-icons/outline": "^1.7.2",
         "moment": "^2.29.3",
         "search-dropdown-vue": "^1.0.2",
-        "uppy": "^2.12.2"
+        "uppy": "^2.12.2",
+        "vue3-carousel": "^0.1.40"
     }
 }

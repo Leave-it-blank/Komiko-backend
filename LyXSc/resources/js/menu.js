@@ -19,14 +19,16 @@ export default [
     {
       route: 'dashboard',
       icon: mdiDesktopMac,
-      label: 'Dashboard'
+      label: 'Dashboard',
+      permission: ['handle dashboard' , 'view dashboard']
     }
   ],
   'Management',
   [{
     route: 'comics_management.comics',
     label: 'Comics',
-    icon: mdiTable
+    icon: mdiTable,
+    permission: ['view comic management' , 'handle comic management']
   },
    /*  {
       label: 'Chapters',
@@ -48,27 +50,33 @@ export default [
     {
       route: 'authentication.users',
       label: 'Users',
-      icon: mdiSquareEditOutline
+      icon: mdiSquareEditOutline,
+      permission: ['handle authentication' , 'view authentication']
+
     },
     {
       route: 'admin.management.carousel',
       label: 'Carousels',
-      icon: mdiTelevisionGuide
+      icon: mdiTelevisionGuide,
+      permission: ['handle management' , 'view management']
     },
     {
       route: 'site.management.advertisements.view',
       label: 'Advertisement',
-      icon: mdiResponsive
+      icon: mdiResponsive,
+      permission: ['handle management' , 'view management']
     },
     {
       route: 'dashboard',
       label: 'Styles',
-      icon: mdiPalette
+      icon: mdiPalette,
+      permission: ['admin']
     },
     {
       route: 'profile.show',
       label: 'Profile',
-      icon: mdiAccountCircle
+      icon: mdiAccountCircle,
+      permission: ['reader' , 'view dashboard' ]
     }
 
   ],
@@ -78,12 +86,14 @@ export default [
 
       label: 'Subcriptions',
       icon: mdiMonitorShimmer,
+      permission: ['admin' , 'view dashboard']
 
     },
     {
       route: 'site.management.settings',
       label: 'Settings',
       icon: mdiGithub,
+      permission: ['handle settings management' , 'view settings']
 
     }
   ]
