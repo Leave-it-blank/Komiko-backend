@@ -1,21 +1,31 @@
 <template>
-  <Carousel :autoplay="2000" :wrap-around="true">
-    <Slide v-for="slide in 10" :key="slide">
-     <div class="carousel__item"><img class=" h-72 select-none selector" src="https://i.ibb.co/BNmpmgc/Untitled-1.jpg" /></div>
+  <Carousel   :wrap-around="true"    :autoplay="4200" :touchDrag="false" :mouseDrag="false">
+    <Slide v-for="(xCarousel, slide) in props.carousels " :key="slide">
+     <div class="carousel__item"><img class=" select-none selector h-full w-full" :src="xCarousel.img" /></div>
 
     </Slide>
 
     <template #addons>
+            <Navigation />
       <Pagination />
+
     </template>
   </Carousel>
 </template>
+<script setup>
+const props = defineProps({
+  carousels: {
+    type: Object,
+    default: null
+  }
+})
 
-<script>
+</script>
+<script >
 import { defineComponent } from 'vue'
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
-
+import { Carousel,Navigation, Pagination, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
+
 
 export default defineComponent({
   name: 'Autoplay',
@@ -23,6 +33,7 @@ export default defineComponent({
     Carousel,
     Slide,
     Pagination,
+    Navigation
   },
 });
 </script>

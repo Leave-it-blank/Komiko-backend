@@ -1,13 +1,13 @@
 <template>
-  <Carousel :breakpoints="breakpoints" :wrapAround="true" :autoplay="3200" :touchDrag="true" :mouseDrag="false">
+  <Carousel :breakpoints="breakpoints" :wrapAround="true" :autoplay="3200" :touchDrag="false" :mouseDrag="false">
     <Slide v-for="slide in 10" :key="slide">
-      <div class="carousel__item"><img class=" h-72 select-none selector" src="http://127.0.0.1:8000/storage/1/95e1796b-6df9-49da-a138-3c719fac9284.png" /></div>
+      <div class="carousel__item"><img class=" h-72 select-none " src="http://127.0.0.1:8000/storage/1/95e1796b-6df9-49da-a138-3c719fac9284.png" /></div>
 
     </Slide>
 
     <template #addons>
       <Navigation />
-      <pagination/>
+
     </template>
   </Carousel>
 </template>
@@ -24,7 +24,7 @@ export default defineComponent({
     Carousel,
     Slide,
     Navigation,
-    Pagination,
+
   },
    data: () => ({
     // carousel settings https://i.ibb.co/BNmpmgc/Untitled-1.jpg
@@ -39,15 +39,23 @@ export default defineComponent({
       },
       // 1024 and up
       1024: {
-        itemsToShow: 3.5,
+        itemsToShow: 3.2,
         snapAlign: 'center',
       },
       1300: {
-        itemsToShow: 4.5,
+        itemsToShow: 3.9,
+        snapAlign: 'center',
+      },
+      1600: {
+        itemsToShow: 4.9,
         snapAlign: 'center',
       },
       1800: {
-        itemsToShow: 5.5,
+        itemsToShow: 5.9,
+        snapAlign: 'center',
+      },
+       2400: {
+        itemsToShow: 6.9,
         snapAlign: 'center',
       },
      },

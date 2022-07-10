@@ -12,7 +12,7 @@
             <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
         </div>
-        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start text-purple-500 hover:text-purple-400 cursor-pointer">
           <div class="flex-shrink-0 flex items-center font-bold">
                {{$page.props.sitedata.site_name}}
           </div>
@@ -104,7 +104,7 @@ import { usePage } from '@inertiajs/inertia-vue3'
 import { Inertia } from '@inertiajs/inertia'
 
 const mainStore = useMainStore()
-const enabled = ref(false)
+const enabled = ref(!mainStore.darkMode)
 
 const toggleLightDark = (enabled) => {
   mainStore.setDarkMode(enabled)
