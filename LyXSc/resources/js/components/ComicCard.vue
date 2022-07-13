@@ -1,9 +1,9 @@
 <template>
 
   <div>
-    <div class="h-full flex  px-2 py-1">
-      <div class="bg-zinc-900 flex-none rounded-md ">
-        <div class="flex flex-row  rounded-md">
+    <div class="h-full flex  px-2 py-1  ">
+      <div class="bg-zinc-900 flex-none rounded-md  ">
+        <div class="flex flex-row  rounded-md ">
 
           <div class="justify-start  flex-none">
             <img class="w-28 pr-2 mx-auto rounded-md " :src="props.comic.thumb" />
@@ -18,7 +18,7 @@
             </Link>
 
 
-              <div class="flex  flex-0 items-center md:mt-2 flex-none bg-zinc-900 ">
+              <div class="flex  flex-0 items-center md:mt-2 flex-none bg-zinc-900 " >
                 <div
                   class="  chapters flex-none text-gray-500  text-xs   p-2 capitalize   cursor-pointer select-none  ">
 

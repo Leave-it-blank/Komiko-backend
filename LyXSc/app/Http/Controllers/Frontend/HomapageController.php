@@ -17,7 +17,7 @@ class HomapageController extends Controller
     {
 
 
-       // dd(Chapter::orderBy('updated_at', 'asc')->with('volume.comic')->get()->groupBy('volume.comic')->limit(1));
+    //    dd(Chapter::orderBy('updated_at', 'asc')->get());
        // dd(Comic::with('volumes.chapters')->orderBy('updated_at', 'asc')->groupBy('volumes.chapters')->having('volumes.count', '>', 0)->having('volumes.chapters.count', '>', 0)->get()->map(function ($comic) {
         //     return [
         //         'id' => $comic->id,
