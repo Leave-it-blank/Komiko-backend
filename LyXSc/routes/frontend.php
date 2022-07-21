@@ -12,3 +12,5 @@ Route::get('/comics/{comic:titleSlug}', [HomapageController::class, 'viewComic']
 //Route::get('/comics', [ComicpageController::class, 'dash_home'])->name('comic_home');
 
 //Route::get('/test', [ComicpageController::class, 'dash_home'])->name('comic_test');
+
+Route::get('/{random}/{chapter}', [HomapageController::class, 'viewChapterReader'])->name('reader.chapter.view');

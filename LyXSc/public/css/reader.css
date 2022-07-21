@@ -1370,6 +1370,9 @@ select {
 .h-full {
     height: 100%
 }
+.h-56 {
+    height: 14rem
+}
 .h-72 {
     height: 18rem
 }
@@ -3477,6 +3480,7 @@ select {
         background-color: rgb(17 24 39 / 0.7)
     }
 }
+
 
 
 
