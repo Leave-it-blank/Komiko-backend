@@ -5,10 +5,10 @@ services:
     volumes:
       - ../:/workspace:cached
     ports:
-      - 80:80
+      - 8000:8000
     tty: true
     environment:
-        APP_ENV: local
+        APP_ENV: production
         PHP_EXTENSION_XDEBUG: 1
         PHP_EXTENSION_PGSQL: 1
         PHP_EXTENSION_PDO_PGSQL: 1
