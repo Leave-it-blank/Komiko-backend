@@ -21,12 +21,12 @@
         "#terminal.integrated.shell.linux": "/bin/bash"
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [8000],
+    "forwardPorts": [80],
 
     // Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && yarn install && php artisan migrate --seed && yarn run watch",
+    "postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && yarn install && php artisan migrate --seed &&yarn run development ",
 	"portsAttributes": {
-		"8000": {
+		"80": {
 			"label": "HTTP"
 		}
 	},
