@@ -2,15 +2,15 @@
 import { useMainStore } from '@/stores/main'
 import { useForm, Head, Link } from '@inertiajs/inertia-vue3'
 import { mdiEmail } from '@mdi/js'
-import SectionFullScreen from '@/components/SectionFullScreen.vue'
-import CardBox from '@/components/CardBox.vue'
-import FormField from '@/components/FormField.vue'
-import FormControl from '@/components/FormControl.vue'
-import DividerHorizontal from '@/components/DividerHorizontal.vue'
-import BaseButton from '@/components/BaseButton.vue'
-import FormValidationErrors from '@/components/FormValidationErrors.vue'
-import NotificationBarInCard from '@/components/NotificationBarInCard.vue'
-import BaseLevel from '@/components/BaseLevel.vue'
+import SectionFullScreen from '@/components/backend/SectionFullScreen.vue'
+import CardBox from '@/components/backend/CardBox.vue'
+import FormField from '@/components/backend/FormField.vue'
+import FormControl from '@/components/backend/FormControl.vue'
+import DividerHorizontal from '@/components/backend/DividerHorizontal.vue'
+import BaseButton from '@/components/backend/BaseButton.vue'
+import FormValidationErrors from '@/components/backend/FormValidationErrors.vue'
+import NotificationBarInCard from '@/components/backend/NotificationBarInCard.vue'
+import BaseLevel from '@/components/backend/BaseLevel.vue'
 
 defineProps({
   status: {
@@ -45,7 +45,7 @@ const submit = () => {
     >
       <FormValidationErrors />
 
-      <NotificationBarInCard 
+      <NotificationBarInCard
         v-if="status"
         color="info"
       >

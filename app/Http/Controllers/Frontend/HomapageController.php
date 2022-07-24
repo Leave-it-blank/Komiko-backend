@@ -135,7 +135,10 @@ class HomapageController extends Controller
 
            return Inertia::render('Frontend/Comics/Reader/ViewChapter', [
             'chapter' => $chapter,
-             'pages' => $chapter->pages->getPage()
+             'pages' => $chapter->pages->map(function ($page)
+             {
+               return [ 'page_url' => $page->getPage()];
+             }),
             ]);
           }
         return 'request expired, please go back to homepage.';

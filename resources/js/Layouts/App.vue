@@ -1,13 +1,13 @@
 <script setup>
 import { computed } from 'vue'
-
+import {  mdiMonitorCellphone } from '@mdi/js'
 import { useMainStore } from '@/stores/main'
 import menu from '@/menu.js'
-import NavBar from '@/components/NavBar.vue'
-import AsideMenu from '@/components/AsideMenu.vue'
-import FooterBar from '@/components/FooterBar.vue'
-import OverlayLayer from '@/components/OverlayLayer.vue'
-import NotificationBar from '@/components/NotificationBar.vue'
+import NavBar from '@/components/backend/NavBar.vue'
+import AsideMenu from '@/components/backend/AsideMenu.vue'
+import FooterBar from '@/components/backend/FooterBar.vue'
+import OverlayLayer from '@/components/backend/OverlayLayer.vue'
+import NotificationBar from '@/components/backend/NotificationBar.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 const mainStore = useMainStore()
 defineProps({

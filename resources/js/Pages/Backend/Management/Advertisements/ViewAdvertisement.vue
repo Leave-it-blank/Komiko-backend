@@ -104,17 +104,17 @@ import { ref, reactive, computed } from 'vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { useSiteStore } from '@/stores/site'
 import { useMainStore } from '@/stores/main'
-import CarouselsTable from '@/components/CarouselsTable.vue'
+import CarouselsTable from '@/components/backend/CarouselsTable.vue'
 import { mdiMonitorCellphone, mdiAccountMultiple, mdiTableBorder, mdiTableOff } from '@mdi/js'
-import SectionMain from '@/components/SectionMain.vue'
-import NotificationBar from '@/components/NotificationBar.vue'
-import CardBox from '@/components/CardBox.vue'
-import SectionTitleBar from '@/components/SectionTitleBar.vue'
-import SectionHeroBar from '@/components/SectionHeroBar.vue'
+import SectionMain from '@/components/backend/SectionMain.vue'
+import NotificationBar from '@/components/backend/NotificationBar.vue'
+import CardBox from '@/components/backend/CardBox.vue'
+import SectionTitleBar from '@/components/backend/SectionTitleBar.vue'
+import SectionHeroBar from '@/components/backend/SectionHeroBar.vue'
 
-import BaseButtons from '@/components/BaseButtons.vue';
-import DividerHorizontal from '@/components/DividerHorizontal.vue'
-import BaseButton from '@/components/BaseButton.vue';
+import BaseButtons from '@/components/backend/BaseButtons.vue';
+import DividerHorizontal from '@/components/backend/DividerHorizontal.vue'
+import BaseButton from '@/components/backend/BaseButton.vue';
 const props = defineProps({
   advertisements: {
     type: Object,

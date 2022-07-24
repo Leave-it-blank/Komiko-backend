@@ -4,17 +4,17 @@ import { Inertia } from '@inertiajs/inertia'
 import { Head } from '@inertiajs/inertia-vue3'
 import { ref, reactive } from 'vue'
 import { mdiAccount, mdiAccountMultiple, mdiAccountCircle, mdiMail } from '@mdi/js'
-import SectionMain from '@/components/SectionMain.vue'
-import NotificationBar from '@/components/NotificationBar.vue'
-import CardBox from '@/components/CardBox.vue'
-import SectionTitleBar from '@/components/SectionTitleBar.vue'
-import SectionHeroBar from '@/components/SectionHeroBar.vue'
-import UploadChapterModal from '@/components/UploadChapterModal.vue'
-import PagesTable from '@/components/PagesTable.vue';
-import BaseButtons from '@/components/BaseButtons.vue';
-import DividerHorizontal from '@/components/DividerHorizontal.vue'
-import BaseButton from '@/components/BaseButton.vue';
-import Uploader from '@/components/UploaderPage.vue';
+import SectionMain from '@/components/backend/SectionMain.vue'
+import NotificationBar from '@/components/backend/NotificationBar.vue'
+import CardBox from '@/components/backend/CardBox.vue'
+import SectionTitleBar from '@/components/backend/SectionTitleBar.vue'
+import SectionHeroBar from '@/components/backend/SectionHeroBar.vue'
+import UploadChapterModal from '@/components/backend/UploadChapterModal.vue'
+import PagesTable from '@/components/backend/PagesTable.vue';
+import BaseButtons from '@/components/backend/BaseButtons.vue';
+import DividerHorizontal from '@/components/backend/DividerHorizontal.vue'
+import BaseButton from '@/components/backend/BaseButton.vue';
+import Uploader from '@/components/backend/UploaderPage.vue';
 const props = defineProps({
   chapter: {
     type: Object,

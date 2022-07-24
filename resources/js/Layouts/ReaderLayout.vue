@@ -8,7 +8,7 @@ import JetDropdown from '@/Jetstream/Dropdown.vue';
 import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
 import JetNavLink from '@/Jetstream/NavLink.vue';
 import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue';
-import ReaderNavBar from '@/components/ReaderNavBar.vue'
+import ReaderNavBar from '@/components/frontend/navigation/ReaderNavBar.vue'
 defineProps({
   title: String,
 });

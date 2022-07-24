@@ -80,11 +80,11 @@
 import { Head } from '@inertiajs/inertia-vue3'
 import { computed, ref, onMounted } from 'vue'
 import { useComicStore } from '@/stores/comic'
-import ComicCarousel from '@/components/ComicCarousel.vue'
+import ComicCarousel from '@/components/frontend/ComicCarousel.vue'
 import ReaderLayout from '@/Layouts/ReaderLayout.vue'
-import ComicCard from "@/components/ComicCard.vue";
-import ComicRecommended from "@/components/ComicRecommended.vue";
-import Carousel from '@/components/Carousel.vue'
+import ComicCard from "@/components/frontend/ComicCard.vue";
+import ComicRecommended from "@/components/frontend/ComicRecommended.vue";
+import Carousel from '@/components/frontend/Carousel.vue'
 const props = defineProps({
   comics: {
     type: Object,

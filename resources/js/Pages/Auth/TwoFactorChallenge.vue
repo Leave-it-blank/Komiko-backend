@@ -2,14 +2,14 @@
 import { useMainStore } from '@/stores/main'
 import { useForm, Head } from '@inertiajs/inertia-vue3'
 import { nextTick, ref } from 'vue'
-import SectionFullScreen from '@/components/SectionFullScreen.vue'
-import CardBox from '@/components/CardBox.vue'
-import FormControl from '@/components/FormControl.vue'
-import FormField from '@/components/FormField.vue'
-import DividerHorizontal from '@/components/DividerHorizontal.vue'
-import BaseButton from '@/components/BaseButton.vue'
-import FormValidationErrors from '@/components/FormValidationErrors.vue'
-import BaseLevel from '@/components/BaseLevel.vue'
+import SectionFullScreen from '@/components/backend/SectionFullScreen.vue'
+import CardBox from '@/components/backend/CardBox.vue'
+import FormControl from '@/components/backend/FormControl.vue'
+import FormField from '@/components/backend/FormField.vue'
+import DividerHorizontal from '@/components/backend/DividerHorizontal.vue'
+import BaseButton from '@/components/backend/BaseButton.vue'
+import FormValidationErrors from '@/components/backend/FormValidationErrors.vue'
+import BaseLevel from '@/components/backend/BaseLevel.vue'
 
 useMainStore().fullScreenToggle(true)
 

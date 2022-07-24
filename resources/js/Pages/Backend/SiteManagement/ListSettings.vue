@@ -4,7 +4,7 @@ import { Inertia } from '@inertiajs/inertia'
 import { Head } from '@inertiajs/inertia-vue3'
 import { ref, reactive, computed } from 'vue'
 import { useForm } from '@inertiajs/inertia-vue3'
-import SectionMain from '@/components/SectionMain.vue'
+import SectionMain from '@/components/backend/SectionMain.vue'
 import { useSiteStore } from '@/stores/site'
 import { useMainStore } from '@/stores/main'
 const props = defineProps({

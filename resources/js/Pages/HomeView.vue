@@ -13,19 +13,19 @@ import {
   mdiGithub,
   mdiChartPie
 } from '@mdi/js'
-import * as chartConfig from '@/components/Charts/chart.config.js'
-import LineChart from '@/components/Charts/LineChart.vue'
-import SectionMain from '@/components/SectionMain.vue'
-import SectionTitleBar from '@/components/SectionTitleBar.vue'
-import SectionHeroBar from '@/components/SectionHeroBar.vue'
-import CardBoxWidget from '@/components/CardBoxWidget.vue'
-import CardBox from '@/components/CardBox.vue'
-import TableSampleClients from '@/components/TableSampleClients.vue'
-import NotificationBar from '@/components/NotificationBar.vue'
-import BaseButton from '@/components/BaseButton.vue'
-import CardBoxTransaction from '@/components/CardBoxTransaction.vue'
-import CardBoxClient from '@/components/CardBoxClient.vue'
-import SectionTitleBarSub from '@/components/SectionTitleBarSub.vue'
+import * as chartConfig from '@/components/backend/Charts/chart.config.js'
+import LineChart from '@/components/backend/Charts/LineChart.vue'
+import SectionMain from '@/components/backend/SectionMain.vue'
+import SectionTitleBar from '@/components/backend/SectionTitleBar.vue'
+import SectionHeroBar from '@/components/backend/SectionHeroBar.vue'
+import CardBoxWidget from '@/components/backend/CardBoxWidget.vue'
+import CardBox from '@/components/backend/CardBox.vue'
+import TableSampleClients from '@/components/backend/TableSampleClients.vue'
+import NotificationBar from '@/components/backend/NotificationBar.vue'
+import BaseButton from '@/components/backend/BaseButton.vue'
+import CardBoxTransaction from '@/components/backend/CardBoxTransaction.vue'
+import CardBoxClient from '@/components/backend/CardBoxClient.vue'
+import SectionTitleBarSub from '@/components/backend/SectionTitleBarSub.vue'
 
 const titleStack = ref(['Admin', 'Dashboard'])
 
@@ -56,7 +56,7 @@ const darkMode = computed(() => mainStore.darkMode)
 <app>
 
   <SectionTitleBar :title-stack="titleStack" />
-  <SectionHeroBar>Performance Stats </SectionHeroBar>
+  <SectionHeroBar>Performance Stats 2 2 </SectionHeroBar>
 
  <!--  {{$page.props.auth.user.permissions }} -->
   <SectionMain>

@@ -206,7 +206,7 @@ class ChaptersController extends Controller
                 'volume_number' => $chapter->volume->number
             ],
 
-            'pages' =>   Page::Where('chapter_id', $chapter->id)->orderBy('fileName', 'desc')->get()->map(function ($page) {
+            'pages' =>   Page::Where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->get()->map(function ($page) {
                 return [
                 'id' => $page->id,
                 'fileName' => $page->fileName,

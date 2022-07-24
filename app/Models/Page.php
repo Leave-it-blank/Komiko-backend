@@ -27,7 +27,7 @@ class Page extends Model  implements HasMedia
 
         return $this->hasOne( Chapter::class, 'id', 'chapter_id');
     }
-    public function getPage()
+    public function getPages()
     {
         return  $this->getFirstMediaUrl(['page' , 'page_custom']);
     }
