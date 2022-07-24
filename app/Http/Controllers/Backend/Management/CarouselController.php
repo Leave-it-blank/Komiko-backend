@@ -63,6 +63,7 @@ class CarouselController extends Controller
             $carousel["thumb"]->storeAs('/public/temp/carousel/', $uid . '.' . $extension);
             $carouseURL = '/public/temp/carousel/' . $uid . '.' . $extension;
             $Tcarousel->addMediaFromDisk($carouseURL)
+                ->withResponsiveImages()
                 ->toMediaCollection('carousels');
             $Tcarousel->save();
 
@@ -130,6 +131,7 @@ class CarouselController extends Controller
                 $Tcarousel["thumb"]->storeAs('/public/temp/cover/', $carousel->uid . '.' . $extension);
                 $thumbnail_url = '/public/temp/cover/' . $carousel->uid . '.' . $extension;
                 $carousel->addMediaFromDisk($thumbnail_url)
+                    ->withResponsiveImages()
                     ->toMediaCollection('carousels');
                 //$comic->save();
 

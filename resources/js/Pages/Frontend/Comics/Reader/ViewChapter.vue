@@ -17,7 +17,6 @@
 import { Head } from '@inertiajs/inertia-vue3'
 import { computed, ref, onMounted } from 'vue'
 import { useComicStore } from '@/stores/comic'
-import ComicCarousel from '@/components/frontend/ComicCarousel.vue'
 import ReaderLayout from '@/Layouts/ReaderLayout.vue'
 
 

@@ -39,6 +39,13 @@ module.exports = {
         animation: {
           fadeOut: 'fadeOut 250ms ease-in-out',
           fadeIn: 'fadeIn 250ms ease-in-out'
+        },
+        fontFamily: {
+          'sans': ['ui-sans-serif', 'system-ui'],
+          'serif': ['ui-serif', 'Georgia'],
+          'mono': ['ui-monospace', 'SFMono-Regular'],
+          'roboto': ['Roboto', 'sans-serif'],
+
         }
       }
     },

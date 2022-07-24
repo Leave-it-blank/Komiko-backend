@@ -47,6 +47,7 @@ class ChaptersController extends Controller
                     'chapter_id' => $chapter->id
                 ]);
                 $page->addMediaFromDisk($thumbnail_url)
+                    ->withResponsiveImages()
                     ->toMediaCollection('page');
                 //$comic->save();
 

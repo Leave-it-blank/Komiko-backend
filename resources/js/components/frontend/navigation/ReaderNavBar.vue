@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <Disclosure as="nav" class="bg-zinc-900" v-slot="{ open }">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="  mx-auto px-2 sm:px-6 lg:px-8 font-roboto">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
@@ -12,7 +12,7 @@
             <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
         </div>
-        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start text-purple-500 hover:text-purple-400 cursor-pointer">
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start text-yellow-500 font-extrabold capitalize  font-roboto hover:text-yellow-300 cursor-pointer">
           <div class="flex-shrink-0 flex items-center font-bold">
                {{$page.props.sitedata.site_name}}
           </div>
