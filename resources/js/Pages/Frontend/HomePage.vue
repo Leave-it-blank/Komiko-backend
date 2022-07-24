@@ -9,9 +9,9 @@
         <div v-if="props.carousels" class="rounded-lg">
           <CarouselCard :carousels="props.carousels" />
         </div>
-        HHHHjugu hjguyfyug nhgjv
+
   </div>
- awd awd
+
   </ReaderLayout>
 
 </template>
@@ -38,7 +38,7 @@ import CarouselCard from '../../components/frontend/carousel/CarouselCard.vue';
     default: null
   },
 })
-console.log(props.recommended)
+console.log(props.carousels)
 </script>
 <style>
 .comicChapter {

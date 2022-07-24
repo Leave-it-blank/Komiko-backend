@@ -86,7 +86,15 @@ class HomapageController extends Controller
             'carousels' =>   Carousel::where('is_enabled', true)->orderBy('position', 'asc')->get()->map(function ($carousel) {
                 return [
 
-                    'img' => $carousel->getFirstMediaUrl('carousels'),
+                    'img' => $carousel->getMedia('carousels')->map(function($media) {
+                        return [
+                            'id' => $media->id,
+                            'responsive' => $media()->toHtml(),
+                            'alt' => $media->name,
+
+                        ];
+                    }),
+
                     'position' => $carousel->position,
                     'url' => $carousel->url
                 ];

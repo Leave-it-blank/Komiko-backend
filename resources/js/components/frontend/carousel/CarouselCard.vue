@@ -9,7 +9,9 @@
 
   >
     <swiper-slide v-for="item in  carousels">
-    <img :src="item.img" /></swiper-slide>
+
+   <div class="image" v-html="item.img[0].responsive"></div>
+    </swiper-slide>
 
   </swiper>
 </template>
