@@ -1,3 +1,4 @@
+
 // See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
     "name": "codespaces-laravel",
@@ -37,7 +38,7 @@
 
     // Use 'postCreateCommand' to run commands after the container is created.
 
-    "postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && yarn install && php artisan migrate --seed && php artisan storage:link && yarn run watch ",
+    "postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && yarn install && php artisan migrate --seed && php artisan storage:link && yarn run development",
 
 	"portsAttributes": {
 		"80": {
