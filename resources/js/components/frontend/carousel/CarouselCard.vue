@@ -5,12 +5,12 @@
     }"
     :navigation="true"
     :modules="modules"
-    class="mySwiper rounded-md"
+    class="mySwiper rounded-md text-yellow-500"
 
   >
     <swiper-slide v-for="item in  carousels">
 
-   <div class="image" v-html="item.img[0].responsive"></div>
+   <div class="image select-none" v-html="item.img[0].responsive" :alt="item.img[0].alt"></div>
     </swiper-slide>
 
   </swiper>
@@ -56,7 +56,7 @@ export default {
 
   text-align: center;
   font-size: 58px;
-  background: #fff;
+
 
 
   /* Center slide text vertically */

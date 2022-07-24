@@ -5,7 +5,7 @@
       <title>{{ $page.props.sitedata.site_name }}</title>
       <meta name="description" content="webcomics: HomePage" />
     </Head>
-  <div  class="max-w-screen-2xl py-10 bg-blue-400 w-full h-screen mx-auto">
+  <div  class="max-w-screen-2xl py-10   w-full h-screen mx-auto">
         <div v-if="props.carousels" class="rounded-lg">
           <CarouselCard :carousels="props.carousels" />
         </div>
