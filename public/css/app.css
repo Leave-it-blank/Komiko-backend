@@ -1532,9 +1532,6 @@ select {
 .h-72 {
     height: 18rem
 }
-.h-48 {
-    height: 12rem
-}
 .max-h-modal {
     max-height: calc(100vh - 160px)
 }
@@ -2344,9 +2341,6 @@ select {
 }
 .font-mono {
     font-family: ui-monospace, SFMono-Regular
-}
-.font-serif {
-    font-family: ui-serif, Georgia
 }
 .font-roboto {
     font-family: Roboto, sans-serif
