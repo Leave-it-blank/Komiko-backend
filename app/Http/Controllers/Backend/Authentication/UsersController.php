@@ -53,14 +53,22 @@ class UsersController extends Controller
     public function storeDetails(User $user, Request $request)
     {
         $this->authorize('handle authentication',  Auth::user());
-       $userdata =  $this->validate($request, [ 'name' => 'required|string|max:5', 'email' => 'required|max:50|email' ]);
+       $userdata =  $this->validate($request, [ 'name' => 'required|string|max:40', 'email' => 'required|max:50|email' ]);
 
-       $user->update([
-        'name' => $userdata['name'],
-        'email'=> $userdata['email']
-       ]);
-       $user->save();
-        return Redirect::route('authentication.users')->with('message', 'Updated Successfully.');
+       try {
+        $user->update([
+            'name' => $userdata['name'],
+            'email'=> $userdata['email']
+           ]);
+           $user->save();
+            return Redirect::route('authentication.users') ->with('message', 'Updated Successfully.');
+
+       } catch (\Throwable $th) {
+
+            return Redirect::route('authentication.users') ->with('error', $th);
+
+       }
+
 
 
     }
@@ -70,12 +78,17 @@ class UsersController extends Controller
         //dd($request);
         $userdata =  $this->validate($request, [ 'password' =>'required|min:8|max:15' ]);
         //dd($userdata);
-        $user->update([
-          'password' => Hash::make($userdata['password'])
-        ]);
-        //$this->UpdateUserPassword::adminUpdate($user, $userdata);
-        $user->save();
-        return Redirect::route('authentication.users')->with('message', 'Updated Successfully.');
+        try {
+            $user->update([
+                'password' => Hash::make($userdata['password'])
+              ]);
+              //$this->UpdateUserPassword::adminUpdate($user, $userdata);
+              $user->save();
+              return Redirect::route('authentication.users')->with('message', 'Updated Successfully.');
+        } catch (\Throwable $th) {
+            return Redirect::route('authentication.users')->with('error', 'Something went Wrong~');
+        }
+
     }
 
 
