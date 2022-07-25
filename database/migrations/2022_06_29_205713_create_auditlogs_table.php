@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('auditlogs', function (Blueprint $table) {
             $table->id();
-            $table->string('eventName');
-            $table->string('eventDesc');
+            $table->string('name');
+            $table->string('desc');
+            $table->string('note')->nullable();
             $table->boolean('isDanger')->default(false);
             $table->timestamps();
         });

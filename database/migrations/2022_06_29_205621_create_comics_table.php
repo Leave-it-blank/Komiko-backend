@@ -21,6 +21,9 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('url')->nullable();
             $table->string('thumbnailUrl')->nullable();
+            $table->string('status')->nullable();
+            $table->string('choice')->nullable();
+            $table->string('type')->nullable();
             $table->boolean('isHidden')->default(0);
             $table->boolean('isMature')->default(0);
             $table->string('released_at')->nullable();

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->boolean('isLocked')->default(0);
             $table->string('Url')->nullable();
-            $table->foreignId('volume_id')->constrained('volumes')->onUpdate('CASCADE')->onDelete('CASCADE');;
+            $table->foreignId('volume_id')->constrained('volumes')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreignId('comic_id')->constrained('comics')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();
 
         });
