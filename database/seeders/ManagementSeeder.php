@@ -49,22 +49,27 @@ class ManagementSeeder extends Seeder
         $management = new Tag();
         $management->name = 'action';
         $management->tagCode= Str::uuid();
+        $management->svg= 'public/defaults/action.svg';
         $management->save();
 
         $management = new Tag();
         $management->name = 'adventure';
         $management->tagCode = Str::uuid();
+        $management->svg= 'public/defaults/action.svg';
         $management->save();
         $management = new Tag();
         $management->name = 'martial arts';
+        $management->svg= 'public/defaults/action.svg';
         $management->tagCode = Str::uuid();
         $management->save();
         $management = new Tag();
         $management->name = 'reincarnation';
+        $management->svg= 'public/defaults/action.svg';
         $management->tagCode = Str::uuid();
         $management->save();
         $management = new Tag();
         $management->name = 'romance';
+        $management->svg= 'public/defaults/action.svg';
         $management->tagCode = Str::uuid();
         $management->save();
     }

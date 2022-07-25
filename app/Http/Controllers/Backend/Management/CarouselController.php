@@ -83,7 +83,7 @@ class CarouselController extends Controller
         $this->authorize('handle management',    Auth::user());
        try{
         $carousel->delete();
-        return redirect()->back();
+        return redirect(route('admin.management.carousel'))->with('error', 'Deleted Successfully.');
        }catch( \Exception $e){
             throw $e;
        }

@@ -31,7 +31,7 @@ export default [
     permission: ['view comic management' , 'handle comic management']
   },
   {
-    route: 'admin.management.tags.',
+    route: 'admin.management.tags',
     label: 'Tags',
     icon: mdiTelevisionGuide,
     permission: ['handle management' , 'view management']
