@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
 use App\Http\Controllers\Frontend\HomapageController;
+use App\Http\Controllers\Frontend\TagsController;
 
 Route::get('/', [HomapageController::class, 'viewHomepage'])->name('reader.homepage.view');
 
@@ -13,4 +14,8 @@ Route::get('/comics/{comic:titleSlug}', [HomapageController::class, 'viewComic']
 
 //Route::get('/test', [ComicpageController::class, 'dash_home'])->name('comic_test');
 
-Route::get('/{random}/{chapter}', [HomapageController::class, 'viewChapterReader'])->name('reader.chapter.view');
+Route::get('/c/{random}/{chapter}', [HomapageController::class, 'viewChapterReader'])->name('reader.chapter.view');
+
+
+
+ Route::get('/tags/{tag:tagCode}', [TagsController::class, 'tagView'])->name('reader.tag.view');

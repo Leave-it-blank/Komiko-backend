@@ -49,7 +49,8 @@ class HomapageController extends Controller
             return [
                 'name' => $tag->name,
                 'id'=> $tag->id,
-                'svg' => $tag->svg
+                'svg' => $tag->svg,
+                'tagCode' => $tag->tagCode
             ];
 
         });
