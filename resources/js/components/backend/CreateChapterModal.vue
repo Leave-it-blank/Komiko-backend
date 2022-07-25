@@ -103,7 +103,7 @@ const cancel = () => confirmCancel('cancel')
         </FormField>
         <FormField label="Lock the chapter?" :help="props.errors.isLocked">
 
-          <div class="flex inline">
+          <div class="flex ">
                  <input type="radio" id="one" :value="true" v-model="chapterForm.isLocked" class="my-1"/>
           <label for="one"  class="mx-2">Yes</label>
 
