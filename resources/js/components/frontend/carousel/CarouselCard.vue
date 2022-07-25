@@ -1,4 +1,5 @@
 <template>
+  <div class="relative">
   <swiper
     :pagination="{
       dynamicBullets: true,
@@ -10,10 +11,11 @@
   >
     <swiper-slide v-for="item in  carousels">
 
-   <div class="image select-none" v-html="item.img[0].responsive" :alt="item.img[0].alt"></div>
+   <div class="image select-none  rounded-xl " v-html="item.img[0].responsive" :alt="item.img[0].alt"></div>
     </swiper-slide>
 
   </swiper>
+  </div>
 </template>
 
 
@@ -50,6 +52,8 @@ export default {
   .swiper {
   width: 100%;
   height: 100%;
+
+
 }
 
 .swiper-slide {
@@ -75,7 +79,7 @@ export default {
 }
 
 .swiper-slide img {
-  display: block;
+  display: inline;
   width: 100%;
   height: 100%;
   min-height: 150px;

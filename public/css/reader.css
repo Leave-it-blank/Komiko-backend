@@ -1208,6 +1208,9 @@ select {
 .pointer-events-none {
     pointer-events: none
 }
+.static {
+    position: static
+}
 .fixed {
     position: fixed
 }
@@ -1216,6 +1219,10 @@ select {
 }
 .relative {
     position: relative
+}
+.sticky {
+    position: -webkit-sticky;
+    position: sticky
 }
 .inset-0 {
     top: 0px;
@@ -1241,6 +1248,9 @@ select {
 }
 .top-14 {
     top: 3.5rem
+}
+.bottom-0 {
+    bottom: 0px
 }
 .z-0 {
     z-index: 0
@@ -1339,6 +1349,18 @@ select {
 .my-3 {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
+}
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem
+}
+.mx-5 {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem
+}
+.mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem
 }
 .ml-3 {
     margin-left: 0.75rem
@@ -1457,6 +1479,21 @@ select {
 .mb-0 {
     margin-bottom: 0px
 }
+.mb-20 {
+    margin-bottom: 5rem
+}
+.mt-20 {
+    margin-top: 5rem
+}
+.mb-10 {
+    margin-bottom: 2.5rem
+}
+.mb-1 {
+    margin-bottom: 0.25rem
+}
+.mb-5 {
+    margin-bottom: 1.25rem
+}
 .block {
     display: block
 }
@@ -1532,6 +1569,14 @@ select {
 .h-72 {
     height: 18rem
 }
+.h-fit {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content
+}
+.h-80 {
+    height: 20rem
+}
 .max-h-modal {
     max-height: calc(100vh - 160px)
 }
@@ -1600,6 +1645,24 @@ select {
 }
 .w-11 {
     width: 2.75rem
+}
+.w-2\/3 {
+    width: 66.666667%
+}
+.w-3\/5 {
+    width: 60%
+}
+.w-2\/5 {
+    width: 40%
+}
+.w-4\/5 {
+    width: 80%
+}
+.w-1\/5 {
+    width: 20%
+}
+.w-40 {
+    width: 10rem
 }
 .min-w-0 {
     min-width: 0px
@@ -2084,6 +2147,42 @@ select {
     --tw-bg-opacity: 1;
     background-color: rgb(228 228 231 / var(--tw-bg-opacity))
 }
+.bg-red-400 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(248 113 113 / var(--tw-bg-opacity))
+}
+.bg-yellow-400 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(250 204 21 / var(--tw-bg-opacity))
+}
+.bg-zinc-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(113 113 122 / var(--tw-bg-opacity))
+}
+.bg-yellow-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(234 179 8 / var(--tw-bg-opacity))
+}
+.bg-yellow-700 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(161 98 7 / var(--tw-bg-opacity))
+}
+.bg-green-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(34 197 94 / var(--tw-bg-opacity))
+}
+.bg-zinc-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(39 39 42 / var(--tw-bg-opacity))
+}
+.bg-neutral-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(38 38 38 / var(--tw-bg-opacity))
+}
+.bg-neutral-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(23 23 23 / var(--tw-bg-opacity))
+}
 .bg-opacity-25 {
     --tw-bg-opacity: 0.25
 }
@@ -2199,6 +2298,9 @@ select {
 .p-4 {
     padding: 1rem
 }
+.p-5 {
+    padding: 1.25rem
+}
 .px-4 {
     padding-left: 1rem;
     padding-right: 1rem
@@ -2279,6 +2381,10 @@ select {
     padding-left: 1.25rem;
     padding-right: 1.25rem
 }
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem
+}
 .pt-6 {
     padding-top: 1.5rem
 }
@@ -2323,6 +2429,12 @@ select {
 }
 .pl-4 {
     padding-left: 1rem
+}
+.pt-10 {
+    padding-top: 2.5rem
+}
+.pb-2 {
+    padding-bottom: 0.5rem
 }
 .text-left {
     text-align: left
@@ -2372,6 +2484,14 @@ select {
 .text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem
+}
+.text-5xl {
+    font-size: 3rem;
+    line-height: 1
+}
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem
 }
 .font-medium {
     font-weight: 500
@@ -2527,6 +2647,14 @@ select {
     --tw-text-opacity: 1;
     color: rgb(229 231 235 / var(--tw-text-opacity))
 }
+.text-yellow-400 {
+    --tw-text-opacity: 1;
+    color: rgb(250 204 21 / var(--tw-text-opacity))
+}
+.text-gray-100 {
+    --tw-text-opacity: 1;
+    color: rgb(243 244 246 / var(--tw-text-opacity))
+}
 .underline {
     -webkit-text-decoration-line: underline;
             text-decoration-line: underline
@@ -2615,8 +2743,15 @@ select {
     --tw-ring-opacity: 1;
     --tw-ring-color: rgb(29 78 216 / var(--tw-ring-opacity))
 }
+.ring-yellow-400 {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(250 204 21 / var(--tw-ring-opacity))
+}
 .ring-opacity-5 {
     --tw-ring-opacity: 0.05
+}
+.ring-opacity-25 {
+    --tw-ring-opacity: 0.25
 }
 .blur {
     --tw-blur: blur(8px);
@@ -2771,6 +2906,30 @@ select {
     --tw-bg-opacity: 1;
     background-color: rgb(39 39 42 / var(--tw-bg-opacity))
 }
+.hover\:bg-yellow-800:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(133 77 14 / var(--tw-bg-opacity))
+}
+.hover\:bg-zinc-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(63 63 70 / var(--tw-bg-opacity))
+}
+.hover\:bg-zinc-500:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(113 113 122 / var(--tw-bg-opacity))
+}
+.hover\:bg-zinc-600:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(82 82 91 / var(--tw-bg-opacity))
+}
+.hover\:bg-neutral-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(64 64 64 / var(--tw-bg-opacity))
+}
+.hover\:bg-neutral-800:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(38 38 38 / var(--tw-bg-opacity))
+}
 .hover\:bg-opacity-50:hover {
     --tw-bg-opacity: 0.5
 }
@@ -2817,6 +2976,10 @@ select {
 .hover\:text-yellow-300:hover {
     --tw-text-opacity: 1;
     color: rgb(253 224 71 / var(--tw-text-opacity))
+}
+.hover\:text-gray-50:hover {
+    --tw-text-opacity: 1;
+    color: rgb(249 250 251 / var(--tw-text-opacity))
 }
 .hover\:shadow-lg:hover {
     --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -2935,6 +3098,10 @@ select {
     --tw-ring-opacity: 1;
     --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity))
 }
+.focus\:ring-yellow-500:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(234 179 8 / var(--tw-ring-opacity))
+}
 .focus\:ring-opacity-50:focus {
     --tw-ring-opacity: 0.5
 }
@@ -3026,6 +3193,10 @@ select {
 .dark .dark\:bg-purple-400 {
     --tw-bg-opacity: 1;
     background-color: rgb(192 132 252 / var(--tw-bg-opacity))
+}
+.dark .dark\:bg-gray-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(75 85 99 / var(--tw-bg-opacity))
 }
 .dark .dark\:from-gray-700 {
     --tw-gradient-from: #374151;
@@ -3594,11 +3765,28 @@ select {
     .xl\:w-4\/12 {
         width: 33.333333%
     }
+    .xl\:w-2\/3 {
+        width: 66.666667%
+    }
+    .xl\:w-1\/3 {
+        width: 33.333333%
+    }
     .xl\:pl-60 {
         padding-left: 15rem
     }
     .dark .xl\:dark\:bg-gray-900\/70 {
         background-color: rgb(17 24 39 / 0.7)
+    }
+}
+@media (min-width: 1536px) {
+    .\32xl\:block {
+        display: block
+    }
+    .\32xl\:w-2\/3 {
+        width: 66.666667%
+    }
+    .\32xl\:w-1\/3 {
+        width: 33.333333%
     }
 }
 

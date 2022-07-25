@@ -25,9 +25,12 @@ const logout = () => {
   <div>
     <Head :title="title" />
       <!-- Page Content -->
-      <ReaderNavBar />
+      <div class="relative  ">
+       <ReaderNavBar />
+      </div>
+
       <main>
-          <div class="dark:bg-black w-full h-screen">
+          <div class="dark:bg-black w-full h-full min-h-screen  ">
                  <slot />
          </div>
 

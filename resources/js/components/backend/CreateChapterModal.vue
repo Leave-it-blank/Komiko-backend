@@ -117,7 +117,7 @@ const cancel = () => confirmCancel('cancel')
       <DividerHorizontal />
 
       <BaseButtons>
-        <BaseButton :label="buttonLabel" :color="button" type="submit" />
+        <BaseButton :label="buttonLabel" :color="button" type="submit" :disabled="chapterForm.processing"/>
         <BaseButton v-if="hasCancel" label="Cancel" :color="button" outline @click="cancel" />
       </BaseButtons>
     </CardBox>

@@ -1,35 +1,35 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <Disclosure as="nav" class="bg-zinc-900" v-slot="{ open }">
+  <Disclosure as="nav" class=" bg-zinc-900" v-slot="{ open }">
     <div class="  mx-auto px-2 sm:px-6 lg:px-8 font-roboto">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
           <DisclosureButton
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            class="inline-flex items-center justify-center p-2 rounded-md text-yellow-400 hover:text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
             <span class="sr-only">Open main menu</span>
             <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
         </div>
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start text-yellow-500 font-extrabold capitalize  font-roboto hover:text-yellow-300 cursor-pointer">
-          <div class="flex-shrink-0 flex items-center font-bold">
+          <div class="flex-shrink-0 flex items-center font-bold text-2xl">
                {{$page.props.sitedata.site_name}}
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <a v-for="item in navigation" :key="item.name" :href="item.href"
-                :class="[item.current ? 'bg-zinc-700 text-white' : 'text-gray-300 hover:bg-zinc-800 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+                :class="[item.current ? 'bg-yellow-600 text-gray-100' : 'text-gray-300 hover:bg-yellow-800 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
                 :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
             </div>
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <button type="button"
-            class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+            class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-yellow-500">
             <span class="sr-only">View notifications</span>
             <Switch @click="toggleLightDark(enabled)" v-model="enabled"
-              :class="enabled ? 'bg-teal-700' : '  bg-teal-900'"
+              :class="enabled ? 'bg-yellow-400' : '  bg-yellow-600'"
               class="relative inline-flex h-6 w-11 items-center rounded-full">
               <span class="sr-only">Dark Mode</span>
               <span :class="enabled ? 'translate-x-1' : '  translate-x-6'"
@@ -38,7 +38,7 @@
           </button>
 
           <!-- Profile dropdown -->
-          <Menu as="div" class="ml-3 relative">
+          <Menu as="div" class="ml-3 relative ">
             <div>
               <MenuButton
                 class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -53,29 +53,29 @@
               leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
               leave-to-class="transform opacity-0 scale-95">
               <MenuItems
-                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                class="origin-top-right absolute right-0 mt-2 w-48  rounded-md shadow-lg py-1 bg-white dark:bg-black  first-line: ring-1 ring-yellow-400 ring-opacity-25 focus:outline-none">
                 <MenuItem v-slot="{ active }">
-                <a :href="profile" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Your
+                <a :href="profile" :class="[active ? 'bg-gray-100 dark:bg-gray-600' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200']">Your
                   Profile</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                <Link href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings
+                <Link href="#" :class="[active ? 'bg-gray-100 dark:bg-gray-600' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200']">Settings
                 </Link>
                 </MenuItem>
                 <div v-if="$page.props.auth.user">
                  <MenuItem v-slot="{ active }"  v-if="$page.props.auth.user.permissions.filter(x => permArray.includes(x)).length  !== 0">
                 <a :href="dashboard"
-                  :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Dashboard</a>
+                  :class="[active ? 'bg-gray-100 dark:bg-gray-600' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200']">Dashboard</a>
                 </MenuItem>
                 </div>
 
                 <MenuItem v-slot="{ active }" v-if="$page.props.auth.user">
-                <a @click="logout" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign
+                <a @click="logout" :class="[active ? 'bg-gray-100 dark:bg-gray-600' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200']">Sign
                   out</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }" v-if="!$page.props.auth.user">
                 <Link :href="login"
-                  :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Login</Link>
+                  :class="[active ? 'bg-gray-100 dark:bg-gray-600' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200']">Login</Link>
                 </MenuItem>
               </MenuItems>
             </transition>
@@ -87,7 +87,7 @@
     <DisclosurePanel class="sm:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href"
-          :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium']"
+          :class="[item.current ? 'bg-yellow-600 text-gray-200' : 'text-gray-300 hover:bg-yellow-800 font-roboto hover:text-gray-50', 'block px-3 py-2 rounded-md text-base font-medium']"
           :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
       </div>
     </DisclosurePanel>

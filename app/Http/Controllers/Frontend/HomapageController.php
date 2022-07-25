@@ -19,39 +19,32 @@ class HomapageController extends Controller
 
     public function viewHomepage()
     {
+       /*  $comics = Comic::where('isHidden', false)->orderBy('updated_at', 'asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
+            return [
+                'id' => $comic->id,
+                'title' => $comic->title,
+                'viewUrl' => 'reader.comic.view',
+                'titleslug' => $comic->titleSlug,
+                'isMature' => $comic->isMature,
+                'isLocked' => $comic->isLocked,
+                'createdAt' => $comic->created_at,
+                'updatedAt' => $comic->updated_at,
+
+                'thumb' => $comic->getMedia('thumbnail')->map(function($media) {
+                    return [
+                        'id' => $media->id,
+                        'responsive' => $media()->toHtml(),
+                        'alt' => $media->name,
+
+                    ];
+                }),
+
+            ];
+
+        })->toArray();
 
         return Inertia::render('Frontend/HomePage', [
-            'comics' => Comic::where('isHidden', false)->orderBy('updated_at', 'asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
-                return [
-                    'id' => $comic->id,
-                    'title' => $comic->title,
-                    'viewUrl' => 'reader.comic.view',
-                    'titleslug' => $comic->titleSlug,
-                    'isMature' => $comic->isMature,
-                    'isLocked' => $comic->isLocked,
-                    'createdAt' => $comic->created_at,
-                    'updatedAt' => $comic->updated_at,
-
-                    'thumb' => $comic->getFullThumbnailUrl(),
-                    'volumes' => $comic->volumes->map(function ($volume) {
-                        return [
-                            'chapters' =>  $volume->chapters->sortBy('desc')->take(3)->map(function ($c) {
-                                $uid = Session::getId();
-                                return [
-                                    'id' => $c->id,
-                                    'number' => $c->number,
-                                    'name' => $c->name,
-                                    'url' =>  'reader.chapter.view',
-                                    'urldata' => ['random' => $uid, 'chapter' => $c]
-                                ];
-                            }),
-
-                        ];
-                    }),
-
-
-                ];
-            })->toArray(),
+            'comics' => $comics,
             'recommended' =>  Comic::where('isHidden', false)->orderByViews('asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
                 return [
                     'id' => $comic->id,
@@ -62,7 +55,14 @@ class HomapageController extends Controller
                     'isLocked' => $comic->isLocked,
                     'createdAt' => $comic->created_at,
                     'updatedAt' => $comic->updated_at,
-                    'thumb' => $comic->getThumbnailUrl(),
+                    'thumb' => $comic->getMedia('thumbnail')->map(function($media) {
+                        return [
+                            'id' => $media->id,
+                            'responsive' => $media()->toHtml(),
+                            'alt' => $media->name,
+
+                        ];
+                    }),
                     'volumes' => $comic->volumes->map(function ($volume) {
                         return [
                             'chapters' =>  $volume->chapters->sortBy('desc')->take(1)->map(function ($c) {
@@ -91,7 +91,104 @@ class HomapageController extends Controller
                             'id' => $media->id,
                             'responsive' => $media()->toHtml(),
                             'alt' => $media->name,
+                        ];
+                    }),
 
+                    'position' => $carousel->position,
+                    'url' => $carousel->url
+                ];
+            }),
+
+        ]); */
+        return Inertia::render('Frontend/HomePage', [
+            'comics' => Comic::where('isHidden', false)->orderBy('updated_at', 'asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
+                return [
+                    'id' => $comic->id,
+                    'title' => $comic->title,
+                    'viewUrl' => 'reader.comic.view',
+                    'titleslug' => $comic->titleSlug,
+                    'isMature' => $comic->isMature,
+                    'isLocked' => $comic->isLocked,
+                    'createdAt' => $comic->created_at,
+                    'updatedAt' => $comic->updated_at,
+
+                    'thumb' => $comic->getMedia('thumbnail')->map(function($media) {
+                        return [
+                            'id' => $media->id,
+                            'responsive' => $media()->toHtml(),
+                            'alt' => $media->name,
+
+                        ];
+                    }),
+                    'volumes' => $comic->volumes->sortByDesc('number')->take(1)->map(function ($volume) {
+                        return [
+                            'chapters' =>  $volume->chapters->sortBy('desc')->take(3)->map(function ($c) {
+                                $uid = Session::getId();
+                                return [
+                                    'id' => $c->id,
+                                    'number' => $c->number,
+                                    'name' => $c->name,
+                                    'url' =>  'reader.chapter.view',
+                                    'urldata' => ['random' => $uid, 'chapter' => $c],
+
+
+                                ];
+
+                            }),
+                            'id' => $volume->id,
+                            'number' => $volume->number,
+                        ];
+                    }),
+
+
+                ];
+            })->toArray(),
+            'recommended' =>  Comic::where('isHidden', false)->orderByViews('asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
+                return [
+                    'id' => $comic->id,
+                    'title' => $comic->title,
+                    'viewUrl' => 'reader.comic.view',
+                    'titleslug' => $comic->titleSlug,
+                    'isMature' => $comic->isMature,
+                    'isLocked' => $comic->isLocked,
+                    'createdAt' => $comic->created_at,
+                    'updatedAt' => $comic->updated_at,
+                    'thumb' => $comic->getMedia('thumbnail')->map(function($media) {
+                        return [
+                            'id' => $media->id,
+                            'responsive' => $media()->toHtml(),
+                            'alt' => $media->name,
+
+                        ];
+                    }),
+                    'volumes' => $comic->volumes->map(function ($volume) {
+                        return [
+                            'chapters' =>  $volume->chapters->sortBy('desc')->take(1)->map(function ($c) {
+                                $uid = Session::getId();
+                                return [
+                                    'id' => $c->id,
+                                    'number' => $c->number,
+                                    'name' => $c->name,
+                                    'url' =>  'reader.chapter.view',
+                                    'urldata' => ['random' => $uid, 'chapter' => $c]
+                                ];
+                            }),
+
+                        ];
+                    }),
+
+
+                ];
+            })->toArray(),
+
+            'carousels' =>   Carousel::where('is_enabled', true)->orderBy('position', 'asc')->get()->map(function ($carousel) {
+                return [
+
+                    'img' => $carousel->getMedia('carousels')->map(function($media) {
+                        return [
+                            'id' => $media->id,
+                            'responsive' => $media()->toHtml(),
+                            'alt' => $media->name,
                         ];
                     }),
 
@@ -122,7 +219,14 @@ class HomapageController extends Controller
                 'isLocked' => $comic[0]->isLocked,
                 'createdAt' => $comic[0]->created_at,
                 'updatedAt' => $comic[0]->updated_at,
-                'thumb' => $comic[0]->getFullThumbnailUrl(),
+                'thumb' => $comic[0]->getMedia('thumbnail')->map(function($media) {
+                    return [
+                        'id' => $media->id,
+                        'responsive' => $media()->toHtml(),
+                        'alt' => $media->name,
+
+                    ];
+                }),
                 'volumes' => $comic[0]->volumes->map(function ($volume) {
                     return [
                         'chapters' => $volume->chapters->reverse(),
