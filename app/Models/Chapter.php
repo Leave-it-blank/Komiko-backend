@@ -13,7 +13,7 @@ class Chapter extends Model implements Viewable
     use HasFactory;
 
     protected $fillable = [
-        'name', 'number', 'id', 'volume_id', 'isLocked'
+        'name', 'number', 'id', 'volume_id', 'isLocked', 'comic_id'
     ];
     protected $removeViewsOnDelete = true;
 

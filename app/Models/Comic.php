@@ -28,7 +28,7 @@ class Comic extends Model implements HasMedia, Viewable
     ];
     protected $fillable = [
         'uid','title', 'description', 'author_id', 'artist_id','publisher_id', 'thumbnailUrl', 'url', 'slug',
-        'titleSlug', 'isNovel', 'isMature', 'isLocked', 'isHidden','country_id','upload_date'
+        'titleSlug', 'isNovel', 'isMature', 'isLocked', 'isHidden','country_id','upload_date', 'choice', 'status', 'type'
     ];
     protected $dates = [ 'deleted_at' ];
     protected $removeViewsOnDelete = true;
