@@ -58,6 +58,9 @@ const comicForm = useForm({
   publisher: props.comic.publisher_id,
   country: props.comic.country_id,
   thumb: '',
+  status: props.comic.status,
+  choice: props.comic.choice,
+  type:  props.comic.type,
 
 })
 function submit() {
@@ -164,6 +167,52 @@ const titleStack = ref(['Dashboard', 'Comics', 'Edit Comic'])
                   </select>
                 </div>
  -->
+              </div>
+              <DividerHorizontal />
+
+               <div class="grid grid-cols-8 gap-3 my-4">
+                <div class="col-span-8 sm:col-span-4 xl:col-span-2">
+                  <label class="block text-sm font-medium text-primary-dark dark:text-primary-light">Status</label>
+                  <select v-model.lazy="comicForm.status" name="is_enabled"
+                    class="block px-3 py-2 mt-1 mr-3 w-full bg-transparent rounded-md border shadow-sm dark:text-gray-400 border-primary-dark dark:border-primary-light focus:outline-none focus:ring-primary-lighter focus:border-primary-lighter sm:text-sm">
+
+                    <option :value="'ongoing'">Ongoing</option>
+                    <option :value="'hiatus'">Hiatus</option>
+                    <option :value="'dropped'">Dropped</option>
+                    <option :value="'completed'">Completed</option>
+                  </select>
+                  <div v-if="errors.status" class="p-1 text-sm text-red-300">{{ errors.status }} </div>
+
+                </div>
+                <div class="col-span-8 sm:col-span-4 xl:col-span-2">
+                  <label class="block text-sm font-medium text-primary-dark dark:text-primary-light"> Type</label>
+                  <select v-model.lazy="comicForm.type" name="is_enabled"
+                    class="block px-3 py-2 mt-1 mr-3 w-full bg-transparent rounded-md border shadow-sm dark:text-gray-400 border-primary-dark dark:border-primary-light focus:outline-none focus:ring-primary-lighter focus:border-primary-lighter sm:text-sm">
+
+                    <option :value="'manga'">Manga</option>
+                    <option :value="'manwha'">Manwha</option>
+                    <option :value="'manhua'">Manhua</option>
+                    <option :value="'ru manga'">Ru Manga</option>
+                  </select>
+                  <div v-if="errors.type" class="p-1 text-sm text-red-300">{{ errors.type }} </div>
+                </div>
+                <div class="col-span-8 sm:col-span-4 xl:col-span-2">
+                  <label class="block text-sm font-medium text-primary-dark dark:text-primary-light">Editor Choice</label>
+                  <select v-model.lazy="comicForm.choice" name="is_enabled" autocomplete="choice"
+                    class="block px-3 py-2 mt-1 mr-3 w-full bg-transparent rounded-md border shadow-sm dark:text-gray-400 border-primary-dark dark:border-primary-light focus:outline-none focus:ring-primary-lighter focus:border-primary-lighter sm:text-sm">
+
+                    <option :value="'Hot'">Hot</option>
+                    <option :value="'New'">New</option>
+                    <option :value="'Latest'">Latest</option>
+                    <option :value="'Best'">Best</option>
+                    <option :value="'Top'">Top</option>
+                    <option :value="'Editor\'s Choice'">Editor's Choice</option>
+                  </select>
+
+                  <div v-if="errors.choice" class="p-1 text-sm text-red-300">{{ errors.choice }} </div>
+
+                </div>
+
               </div>
               <DividerHorizontal />
               <div class="grid grid-cols-8 gap-3 my-4">

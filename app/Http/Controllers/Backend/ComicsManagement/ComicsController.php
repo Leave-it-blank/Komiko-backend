@@ -99,7 +99,10 @@ class ComicsController extends Controller
             'artist' => 'int|required',
             'publisher' => 'int|required',
             'country' => 'int|required',
-            'tags' => 'array|nullable'
+            'tags' => 'array|nullable',
+            'choice' => 'string|required',
+            'type' => 'string|required',
+            'status' => 'string|nullable'
         ]);
         //dd($comic);
 
@@ -120,6 +123,9 @@ class ComicsController extends Controller
                 'publisher_id' => $comic["publisher"],
                 'country_id' => $comic["country"],
                 'uid' => $uid,
+                'choice' => $comic["choice"],
+                'type' => $comic["type"],
+                'status' => $comic["status"],
 
             ]);
             $Tcomic->save();
@@ -214,7 +220,10 @@ class ComicsController extends Controller
             'artist' => 'int|required',
             'publisher' => 'int|required',
             'country' => 'int|required',
-            'tags' => 'array|nullable'
+            'tags' => 'array|nullable',
+            'choice' => 'string|required',
+            'type' => 'string|required',
+            'status' => 'string|nullable'
         ]);
 
         try {
@@ -231,6 +240,9 @@ class ComicsController extends Controller
                 'artist_id' => $valcomic["artist"],
                 'publisher_id' => $valcomic["publisher"],
                 'country_id' => $valcomic["country"],
+                'choice' => $valcomic["choice"],
+                'type' => $valcomic["type"],
+                'status' => $valcomic["status"],
 
             ]);
 
