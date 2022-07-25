@@ -83,7 +83,8 @@ class ChaptersController extends Controller
                 'name' => $chapterdata["name"],
                 'number' => $chapterdata["number"],
                 'isLocked' => $chapterdata["isLocked"],
-                'volume_id' => $volume->id
+                'volume_id' => $volume->id,
+                'comic_id' => $volume->comic->id
             ]);
           return   Redirect::route('comics_management.volume.view',   $volume->id)->with('message', 'Chapter Successfully Created.');
         }
