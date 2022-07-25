@@ -3,7 +3,7 @@ services:
   app:
     build: ./docker/app
     volumes:
-      - ../:/workspace:default
+      - ../:/workspace:consistent
     ports:
       - 80:80
     tty: true
