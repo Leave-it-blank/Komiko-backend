@@ -30,6 +30,12 @@ export default [
     icon: mdiTable,
     permission: ['view comic management' , 'handle comic management']
   },
+  {
+    route: 'admin.management.tags.',
+    label: 'Tags',
+    icon: mdiTelevisionGuide,
+    permission: ['handle management' , 'view management']
+  },
    /*  {
       label: 'Chapters',
       icon: mdiTelevisionGuide,
@@ -80,7 +86,7 @@ export default [
     }
 
   ],
-  'About',
+  'Site',
   [
     {
 

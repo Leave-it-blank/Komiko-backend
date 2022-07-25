@@ -21,7 +21,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Management\AdvertismentController;
 use App\Http\Controllers\Backend\Management\CarouselController;
-
+use App\Http\Controllers\Backend\Management\TagsController;
 
 /*
 
@@ -127,6 +127,10 @@ Route::group(
         Route::get('admin/management/carousel/{carousel}/edit', [CarouselController::class, 'editCarousel'])->name('comic.management.carousel.edit');
         Route::get('admin/management/carousel/{carousel}/delete', [CarouselController::class,  'deleteCarousel'])->name('comics_management.carousel.delete');  //intentional to avoid extra work making new component.
         Route::post('admin/management/carousel/{carousel}/update', [CarouselController::class, 'updateStoreCarousel'])->name('comic.management.carousel.store.update');
+
+        Route::get('admin/management/tags',  [TagsController::class, 'viewTags'])->name('admin.management.tags');
+        Route::get('admin/management/tags/create', [TagsController::class, 'createTags'])->name('comic.management.tags.create');
+        Route::post('admin/management/tags/store', [TagsController::class, 'storeTags'])->name('comic.management.tags.store');
 
         Route::get('admin/management/advertisements/view',  [AdvertismentController::class, 'viewAdvertisement'])->name('site.management.advertisements.view');
         Route::get('admin/management/advertisements/{advertisement}/edit',  [AdvertismentController::class, 'editAdvertisement'])->name('site.management.advertisements.edit');

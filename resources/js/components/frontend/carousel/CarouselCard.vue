@@ -1,29 +1,30 @@
 <template>
   <div class="relative">
-  <swiper
-    :pagination="{
-      dynamicBullets: true,
-    }"
-    :navigation="true"
-    :modules="modules"
-    class="mySwiper rounded-md text-yellow-500"
-
-  >
-    <swiper-slide v-for="item in  carousels" :key="item.position">
-        <Link :href="item.url" >
-            <div class="image select-none  rounded-xl " v-html="item.img[0].responsive" :alt="item.img[0].alt"></div>
-</Link>
-            </swiper-slide>
-
-  </swiper>
+    <swiper
+      :pagination="{
+        dynamicBullets: true,
+      }"
+      :navigation="true"
+      :modules="modules"
+      class="mySwiper rounded-md text-yellow-500"
+    >
+      <swiper-slide v-for="item in carousels" :key="item.position">
+        <Link :href="item.url">
+          <div
+            class="image select-none rounded-xl"
+            v-html="item.img[0].responsive"
+            :alt="item.img[0].alt"
+          ></div>
+        </Link>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
-
 
 <script>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from "@inertiajs/inertia-vue3";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -33,15 +34,15 @@ import { Pagination, Navigation } from "swiper";
 
 export default {
   props: {
-   carousels: {
-    type: Object,
-    default: null
-  },
+    carousels: {
+      type: Object,
+      default: null,
+    },
   },
   components: {
     Swiper,
     SwiperSlide,
-    Link
+    Link,
   },
   setup() {
     return {
@@ -51,20 +52,15 @@ export default {
 };
 </script>
 
-  <style scoped>
-  .swiper {
+<style scoped>
+.swiper {
   width: 100%;
   height: 100%;
-
-
 }
 
 .swiper-slide {
-
   text-align: center;
   font-size: 58px;
-
-
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -91,36 +87,41 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .swiper-slide img {
-  object-fit: contain;
-}
+    object-fit: contain;
+  }
 }
 
-    /*loadin*/
-    @-webkit-keyframes loading-7{
-      0%{margin-bottom:0}
-      50%{margin-bottom:20px;}
-      100%{margin-bottom:0px;}
-    }
-    .loadingDot .loading-7 i {
-      display: inline-block;
-      margin-left: 5px;
-      background: #333;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-    }
-    .loadingDot i:nth-child(1) {
-      -webkit-animation: loading-7 .7s ease-in 0s loopedSlides;
-      animation: loading-7 .7s ease-in 0s loopedSlides;
-    }
-    .loadingDot i:nth-child(2) {
-      -webkit-animation: loading-7 .7s ease-in 0.15s loopedSlides;
-    }
-    .loadingDot i:nth-child(3) {
-      -webkit-animation: loading-7 .7s ease-in 0.3s loopedSlides;
-    }
-    .loadingDot i:nth-child(4) {
-      -webkit-animation: loading-7 .7s ease-in 0.45s loopedSlides;
-    }
-  </style>
-
+/*loadin*/
+@-webkit-keyframes loading-7 {
+  0% {
+    margin-bottom: 0;
+  }
+  50% {
+    margin-bottom: 20px;
+  }
+  100% {
+    margin-bottom: 0px;
+  }
+}
+.loadingDot .loading-7 i {
+  display: inline-block;
+  margin-left: 5px;
+  background: #333;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.loadingDot i:nth-child(1) {
+  -webkit-animation: loading-7 0.7s ease-in 0s loopedSlides;
+  animation: loading-7 0.7s ease-in 0s loopedSlides;
+}
+.loadingDot i:nth-child(2) {
+  -webkit-animation: loading-7 0.7s ease-in 0.15s loopedSlides;
+}
+.loadingDot i:nth-child(3) {
+  -webkit-animation: loading-7 0.7s ease-in 0.3s loopedSlides;
+}
+.loadingDot i:nth-child(4) {
+  -webkit-animation: loading-7 0.7s ease-in 0.45s loopedSlides;
+}
+</style>

@@ -10,7 +10,7 @@ class Tag extends Model
     use HasFactory;
     protected $table = 'tags';
     protected $fillable = [
-        'name', 'tagCode' 
+        'name', 'tagCode', 'svg'
     ];
 
     public function comics()
