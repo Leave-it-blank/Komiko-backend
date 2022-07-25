@@ -2,3 +2,6 @@
 @import "tailwind/_components.css";
 @import "tailwind/_utilities.css";
 
+.dark{
+  background: black !important;
+}

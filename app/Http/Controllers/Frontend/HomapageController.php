@@ -12,14 +12,15 @@ use App\Models\Comic;
 use App\Models\Volume;
 use App\Models\Chapter;
 use Session;
+use App\Models\Tag;
 
 class HomapageController extends Controller
 {
-
+  /* @method Session */
 
     public function viewHomepage()
     {
-       /*  $comics = Comic::where('isHidden', false)->orderBy('updated_at', 'asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
+        $comics = Comic::where('isHidden', false)->orderBy('updated_at', 'asc')  ->take(10)->get()->map(function ($comic) {
             return [
                 'id' => $comic->id,
                 'title' => $comic->title,
@@ -29,21 +30,32 @@ class HomapageController extends Controller
                 'isLocked' => $comic->isLocked,
                 'createdAt' => $comic->created_at,
                 'updatedAt' => $comic->updated_at,
-
+                'type' => $comic->type,
+                'choice' => $comic->choice,
                 'thumb' => $comic->getMedia('thumbnail')->map(function($media) {
                     return [
                         'id' => $media->id,
-                        'responsive' => $media()->toHtml(),
+                        'responsive' => $media()->attributes(['class' => 'rounded-xl h-72 w-48'])->toHtml(),
                         'alt' => $media->name,
 
                     ];
                 }),
+                'chapter_count' => Chapter::where('comic_id', $comic->id)->count(),
 
             ];
 
         })->toArray();
+        $tags = Tag::all()->map(function ($tag){
+            return [
+                'name' => $tag->name,
+                'id'=> $tag->id,
+                'svg' => $tag->svg
+            ];
+
+        });
 
         return Inertia::render('Frontend/HomePage', [
+            'tags' => $tags,
             'comics' => $comics,
             'recommended' =>  Comic::where('isHidden', false)->orderByViews('asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
                 return [
@@ -99,8 +111,8 @@ class HomapageController extends Controller
                 ];
             }),
 
-        ]); */
-        return Inertia::render('Frontend/HomePage', [
+        ]);
+       /*  return Inertia::render('Frontend/HomePage', [
             'comics' => Comic::where('isHidden', false)->orderBy('updated_at', 'asc')->with(['volumes', 'volumes.chapters'])->take(4)->get()->map(function ($comic) {
                 return [
                     'id' => $comic->id,
@@ -197,7 +209,7 @@ class HomapageController extends Controller
                 ];
             }),
 
-        ]);
+        ]); */
     }
 
 
