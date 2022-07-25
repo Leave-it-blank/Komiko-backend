@@ -9,10 +9,11 @@
     class="mySwiper rounded-md text-yellow-500"
 
   >
-    <swiper-slide v-for="item in  carousels">
-
-   <div class="image select-none  rounded-xl " v-html="item.img[0].responsive" :alt="item.img[0].alt"></div>
-    </swiper-slide>
+    <swiper-slide v-for="item in  carousels" :key="item.position">
+        <Link :href="item.url" >
+            <div class="image select-none  rounded-xl " v-html="item.img[0].responsive" :alt="item.img[0].alt"></div>
+</Link>
+            </swiper-slide>
 
   </swiper>
   </div>
@@ -22,6 +23,7 @@
 <script>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { Link } from '@inertiajs/inertia-vue3'
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
