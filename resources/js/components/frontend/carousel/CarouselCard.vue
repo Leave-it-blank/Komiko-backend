@@ -23,7 +23,7 @@
 <script>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/inertia-vue3';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -41,6 +41,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    Link
   },
   setup() {
     return {
