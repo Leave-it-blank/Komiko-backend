@@ -48,29 +48,39 @@ class ManagementSeeder extends Seeder
         //Tag for categories
         $management = new Tag();
         $management->name = 'action';
-        $management->tagCode= Str::uuid();
+        $management->tagCode= 'default';
         $management->svg= '/defaults/action.svg';
         $management->save();
 
         $management = new Tag();
         $management->name = 'adventure';
-        $management->tagCode = Str::uuid();
-        $management->svg= '/defaults/action.svg';
+        $management->tagCode = 'default';
+        $management->svg= '/defaults/adventure.svg';
         $management->save();
         $management = new Tag();
-        $management->name = 'martial arts';
-        $management->svg= '/defaults/action.svg';
-        $management->tagCode = Str::uuid();
+        $management->name = 'comedy';
+        $management->svg= '/defaults/comedy.svg';
+        $management->tagCode = 'default';
         $management->save();
         $management = new Tag();
-        $management->name = 'reincarnation';
-        $management->svg= '/defaults/action.svg';
-        $management->tagCode = Str::uuid();
+        $management->name = 'horror';
+        $management->svg= '/defaults/horror.svg';
+        $management->tagCode = 'default';
         $management->save();
         $management = new Tag();
         $management->name = 'romance';
-        $management->svg= '/defaults/action.svg';
-        $management->tagCode = Str::uuid();
+        $management->svg= '/defaults/romance.svg';
+        $management->tagCode = 'default';
+        $management->save();
+        $management = new Tag();
+        $management->name = 'fantasy';
+        $management->svg= '/defaults/fantasy.svg';
+        $management->tagCode = 'default';
+        $management->save();
+        $management = new Tag();
+        $management->name = 'mature';
+        $management->svg= '/defaults/mature.svg';
+        $management->tagCode = 'default';
         $management->save();
     }
 }

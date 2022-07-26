@@ -1,0 +1,16 @@
+<svg fill="none" height="44" viewBox="0 0 44 44" width="44" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <filter id="a" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="52" width="52" x="-4" y="-4">
+    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+    <feGaussianBlur in="BackgroundImage" stdDeviation="2" />
+    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_6319:24018" />
+    <feBlend in="SourceGraphic" in2="effect1_backgroundBlur_6319:24018" mode="normal" result="shape" />
+  </filter>
+  <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="22" x2="12.5098" y1="7.18954" y2="41.9869">
+    <stop offset="0" stop-color="#b600f1" />
+    <stop offset="1" stop-color="#ff3ceb" />
+  </linearGradient>
+
+  <rect fill="url(#b)" fill-opacity=".15" height="44" rx="8" width="44" />
+
+  <path d="m21.9945 33c.5358 0 1.3449-.5051 2.165-1.0532 5.8277-3.8476 9.8405-8.5443 9.8405-13.1979 0-4.7181-3.4005-7.7489-7.1399-7.7489-2.3508 0-3.9471 1.2682-4.8656 2.9985-.9184-1.7303-2.5038-2.9985-4.8546-2.9985-3.7504 0-7.1399 3.0308-7.1399 7.7489 0 4.6536 4.0128 9.3503 9.8296 13.1979.8201.5481 1.6292 1.0532 2.1649 1.0532z" fill="#e0529c" opacity=".67" />
+</svg>

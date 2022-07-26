@@ -1478,6 +1478,9 @@ select {
 .mb-0 {
     margin-bottom: 0px
 }
+.ml-10 {
+    margin-left: 2.5rem
+}
 .block {
     display: block
 }
@@ -1621,6 +1624,27 @@ select {
 }
 .w-11 {
     width: 2.75rem
+}
+.w-3\/5 {
+    width: 60%
+}
+.w-2\/5 {
+    width: 40%
+}
+.w-1\/5 {
+    width: 20%
+}
+.w-8\/12 {
+    width: 66.666667%
+}
+.w-4\/12 {
+    width: 33.333333%
+}
+.w-7\/12 {
+    width: 58.333333%
+}
+.w-3\/12 {
+    width: 25%
 }
 .min-w-0 {
     min-width: 0px
@@ -1799,6 +1823,9 @@ select {
 .justify-around {
     justify-content: space-around
 }
+.justify-evenly {
+    justify-content: space-evenly
+}
 .justify-items-center {
     justify-items: center
 }
@@ -1813,6 +1840,9 @@ select {
 }
 .gap-3 {
     gap: 0.75rem
+}
+.gap-2 {
+    gap: 0.5rem
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
@@ -2103,6 +2133,10 @@ select {
 .bg-zinc-200 {
     --tw-bg-opacity: 1;
     background-color: rgb(228 228 231 / var(--tw-bg-opacity))
+}
+.bg-red-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(239 68 68 / var(--tw-bg-opacity))
 }
 .bg-opacity-25 {
     --tw-bg-opacity: 0.25
@@ -3235,6 +3269,10 @@ select {
         margin-left: 2.5rem;
         margin-right: 2.5rem
     }
+    .sm\:my-10 {
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem
+    }
     .sm\:ml-3 {
         margin-left: 0.75rem
     }
@@ -3693,6 +3731,9 @@ select {
     .xl\:col-span-2 {
         grid-column: span 2 / span 2
     }
+    .xl\:ml-10 {
+        margin-left: 2.5rem
+    }
     .xl\:block {
         display: block
     }
@@ -3704,6 +3745,12 @@ select {
     }
     .xl\:w-4\/12 {
         width: 33.333333%
+    }
+    .xl\:w-8\/12 {
+        width: 66.666667%
+    }
+    .xl\:flex-row {
+        flex-direction: row
     }
     .xl\:pl-60 {
         padding-left: 15rem
