@@ -5,7 +5,7 @@
     {{ comic.title }}
   </div>
   <div
-    class="flex flex-col md:flex-row justify-center sm:justify-evenly gap-10 my-2 mx-auto sm:mb-10 bg-neutral-900 py-5 md:px-24 px-2 xl:px-5 rounded-lg min-w-fit"
+    class="flex flex-col md:flex-row justify-center sm:justify-evenly gap-10 my-2 mx-auto sm:mb-5 bg-neutral-900 py-5 md:px-24 px-2 xl:px-5 rounded-lg min-w-fit"
   >
     <div class="image2 mx-auto md:ml-8 xl:mx-auto">
       <div class="relative w-48">
@@ -57,15 +57,65 @@
             <h3 class="px-4 pt-2">{{ "Author: " + comic.author }}</h3>
             <h3 class="px-4 pt-2">{{ "Publisher: " + comic.publisher }}</h3>
             <h3 class="px-4 pt-2">{{ "Artist: " + comic.artist }}</h3>
-
-            <h3 class="px-4 pt-2">{{ "Tags " }}</h3>
-            <h3 class="px-4 pt-2">
-              <span v-for="tag in props.comic.tags"> {{ tag.name }}</span>
-            </h3>
           </span>
         </div>
       </div>
     </div>
+  </div>
+
+  <div
+    class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-900 py-5 rounded-lg min-w-fit"
+  >
+    <h3 class="flex flex-wrap">
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+      <span
+        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        v-for="tag in props.comic.tags"
+      >
+        {{ tag.name }}</span
+      >
+    </h3>
   </div>
 
   <div

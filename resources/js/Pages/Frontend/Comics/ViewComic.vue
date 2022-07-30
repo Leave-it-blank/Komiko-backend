@@ -27,9 +27,5 @@ const props = defineProps({
   errors: Object,
 });
 
-  onMounted(() => {
-      useComicStore.setComic(props.comic);
-    });
-
 
 </script>
