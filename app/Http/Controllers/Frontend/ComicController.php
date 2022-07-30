@@ -18,7 +18,7 @@ class ComicController extends Controller
 {
     public function viewComic(Comic $comic)
     {
-        $comic = Comic::where('id', $comic->id)->with(['volumes', 'volumes.chapters'])->get();
+        $comic = Comic::where('id', $comic->id)->with(['volumes', 'volumes.chapters', 'artist', 'author', 'publisher', 'tags'])->get();
         //dd($comic);
         return Inertia::render('Frontend/Comics/ViewComic', [
             'comic' => [
@@ -26,8 +26,23 @@ class ComicController extends Controller
                 'title' => $comic[0]->title,
                 'viewUrl' => 'reader.comic.view',
                 'titleslug' => $comic[0]->titleSlug,
+                'description' => $comic[0]->description,
+                'created_at' => $comic[0]->created_at,
+                'updated_at' => $comic[0]->updated_at,
                 'isMature' => $comic[0]->isMature,
                 'isLocked' => $comic[0]->isLocked,
+                'author' => $comic[0]->author->name,
+                'artist' => $comic[0]->artist->name,
+                'publisher' => $comic[0]->publisher->name,
+                'tags' => $comic[0]->tags->map(function ($tag) {
+                    return [
+
+                        'name' => $tag->name,
+                        'svg' => $tag->number,
+                        'tagCode' => $tag->tagCode
+
+                    ];
+                }),
                 'updatedAt' => $comic[0]->updated_at,
                 'type' => $comic[0]->type,
                 'thumb' => $comic[0]->getMedia('thumbnail')->map(function($media) {
