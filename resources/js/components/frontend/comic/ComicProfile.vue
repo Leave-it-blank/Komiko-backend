@@ -121,15 +121,50 @@
   <div
     class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
-    <h1 class="mb-3 mx-1 sm:mx-2 text-yellow-500">Description:</h1>
+    <h1 class="mb-3 mx-1 sm:mx-2 text-yellow-500 text-lg">Description:</h1>
     <div class="mx-2 sm:mx-4 text- text-gray-400">
       <div v-if="!showmore">
         <p class="line-clamp-2">{{ comic.description + " " }}</p>
-        <span class="text-gray-200" @click="showmore = !showmore">Show more</span>
+        <span class="text-gray-200 cursor-pointer" @click="showmore = !showmore"
+          >Show more</span
+        >
       </div>
       <div v-if="showmore">
         <p>{{ comic.description + " " }}</p>
-        <span class="text-gray-200" @click="showmore = !showmore">Show Less</span>
+        <span class="text-gray-200 cursor-pointer" @click="showmore = !showmore"
+          >Show Less</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-900 py-5 rounded-lg min-w-fit"
+  >
+    <h1 class="mb-3 mx-1 sm:mx-2 text-yellow-500 text-lg">Chapters:</h1>
+
+    <div class="flex flex-col mx-2">
+      <div
+        class="flex flex-col justify-between bg-black p-2 rounded-md my-2 pl-3"
+        v-for="volume in props.comic.volumes"
+      >
+        <div class="my-1">Volume {{ " " + volume.number }}</div>
+        <div v-for="chapter in volume.chapters">
+          <div class="flex flex-row justify-between my-2 items-center">
+            <div>
+              <div
+                class="image select-none first-letter:rounded-xl"
+                v-html="props.comic.chapterthumb[0].responsive"
+                :alt="props.comic.titleSlug"
+              ></div>
+            </div>
+            <div
+              class="dark:text-gray-400 text-md uppercase font-roboto font-semibold flex text-center pr-3"
+            >
+              {{ "Chapter " + chapter.number + ": " + chapter.name }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

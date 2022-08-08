@@ -53,6 +53,14 @@ class ComicController extends Controller
 
                     ];
                 }),
+                'chapterthumb' => $comic[0]->getMedia('thumbnail')->map(function($media) {
+                    return [
+                        'id' => $media->id,
+                        'responsive' => $media()->attributes(['class' => 'rounded-md h-20 w-28 select-none'])->toHtml(),
+                        'alt' => $media->name,
+
+                    ];
+                }),
                 'volumes' => $comic[0]->volumes->map(function ($volume) {
                     return [
                         'chapters' => $volume->chapters->reverse(),
