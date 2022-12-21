@@ -11,23 +11,32 @@ use Inertia\Inertia;
 use App\Models\Comic;
 use App\Models\Volume;
 use App\Models\Chapter;
+use App\Models\Page;
 use Session;
 use App\Models\Tag;
 
 class ChapterController extends Controller
 {
-    public function viewChapterReader( $uid, Chapter $chapter)
-    {
-          if($uid == Session::getId()){
+  public function viewChapterReader(Comic $comic, Volume $volume, Chapter $chapter)
+  {
 
-           return Inertia::render('Frontend/Comics/Reader/ViewChapter', [
-            'chapter' => $chapter,
-             'pages' => $chapter->pages->map(function ($page)
-             {
-               return [ 'page_url' => $page->getPage()];
-             }),
-            ]);
-          }
-        return 'request expired, please go back to homepage.';
-    }
+    $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->get();
+
+    return Inertia::render('Frontend/Comics/Reader/ViewChapter', [
+      "pages" => $pages->map(function ($page) {
+        return [
+          "id" => $page->id,
+          "fileName" => $page->fileName,
+          "chapter_id" => $page->chapter_id,
+          "chapter" => $page->chapter,
+          "url" => $page->getFirstMediaUrl('page'),
+        ];
+      }),
+      "chapter" => $chapter,
+      "volume" => $volume,
+      "comic" => $comic,
+      "nextChapter" => Chapter::where('number', '>', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'asc')->first(),
+      "previousChapter" => Chapter::where('number', '<', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'desc')->first(),
+    ]);
+  }
 }

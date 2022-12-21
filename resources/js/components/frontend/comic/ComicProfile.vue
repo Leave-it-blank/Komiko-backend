@@ -1,11 +1,11 @@
 <template>
   <div
-    class="mx-8 my-3 pb-3 text-3xl capitalize font-roboto font-semibold text-center line-clamp-2"
+    class="mx-8 my-3 pb-2 text-2xl capitalize font-catamaran font-bold text-right line-clamp-2"
   >
     {{ comic.title }}
   </div>
   <div
-    class="flex flex-col md:flex-row justify-center sm:justify-evenly gap-10 my-2 mx-auto sm:mb-5 bg-neutral-900 py-5 md:px-24 px-2 xl:px-5 rounded-lg min-w-fit"
+    class="flex flex-col md:flex-row justify-center sm:justify-evenly gap-10 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 md:px-24 px-2 xl:px-5 rounded-lg min-w-fit"
   >
     <div class="image2 mx-auto md:ml-8 xl:mx-auto">
       <div class="relative w-48">
@@ -26,91 +26,32 @@
       </div>
     </div>
 
-    <div class="max-w-md min-w-fit w-full mx-auto md:mr-8 xl:mx-auto md:px-4">
-      <div class="p-2 flex flex-row justify-center gap-2">
+    <div
+      class="max-w-md min-w-fit w-full mx-auto md:mr-8 xl:mx-auto md:px-4 relative gap-3 h-16 md:h-auto"
+    >
+      <div id="ads_comic_profile"></div>
+      <div class="absolute bottom-0 flex justify-around w-full text-white">
         <button
-          @click="toggle = !toggle"
-          class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg"
-          :class="{ active: toggle === true }"
+          class="py-2 px-4 bg-purple-500 rounded-md m-3"
+          onclick="alert('functionality yet to be added')"
         >
-          Information
+          Bookmark
         </button>
-      </div>
-      <div
-        class="bg-black xl:p-5 p-3 mt-5 text-gray-300 w-full xl:w-96 rounded-lg pb-4"
-        style="min-width: 15em; min-height: 5em"
-      >
-        <div
-          v-if="toggle"
-          class="text-xl font-roboto font-light w-full text-justify max-w-md mx-auto"
-        >
-          <h3 class="px-4 pt-2">{{ "Views: " + comic.author }}</h3>
-          <h3 class="px-4 pt-2">{{ "Created On: " + dateshow2(comic.created_at) }}</h3>
-          <h3 class="px-4 pt-2">{{ "Last Updated: " + dateshow(comic.updated_at) }}</h3>
-        </div>
-
-        <div
-          v-if="!toggle"
-          class="text-xl font-roboto font-light w-full text-justify max-w-md mx-auto"
-        >
-          <span>
-            <h3 class="px-4 pt-2">{{ "Author: " + comic.author }}</h3>
-            <h3 class="px-4 pt-2">{{ "Publisher: " + comic.publisher }}</h3>
-            <h3 class="px-4 pt-2">{{ "Artist: " + comic.artist }}</h3>
-          </span>
-        </div>
+        <Link :href="comic.firstChapterUrl">
+          <button class="py-2 px-4 bg-lime-700 rounded-md m-3">
+            Read First Chapter
+          </button>
+        </Link>
       </div>
     </div>
   </div>
 
   <div
-    class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-900 py-5 rounded-lg min-w-fit"
+    class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
     <h3 class="flex flex-wrap">
       <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
-        v-for="tag in props.comic.tags"
-      >
-        {{ tag.name }}</span
-      >
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-red-400 to-lime-500 rounded-xl text-white"
+        class="px-4 m-1 py-2 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl text-white font-bold font-catamaran text-sm capitalize"
         v-for="tag in props.comic.tags"
       >
         {{ tag.name }}</span
@@ -119,51 +60,44 @@
   </div>
 
   <div
-    class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-900 py-5 rounded-lg min-w-fit"
+    id="ads-comic-middle"
+    class="sm:px-10 px-3 my-2 mx-auto py-5 rounded-lg min-w-fit"
   >
-    <h1 class="mb-3 mx-1 sm:mx-2 text-yellow-500 text-lg">Description:</h1>
-    <div class="mx-2 sm:mx-4 text- text-gray-400">
-      <div v-if="!showmore">
-        <p class="line-clamp-2">{{ comic.description + " " }}</p>
-        <span class="text-gray-200 cursor-pointer" @click="showmore = !showmore"
-          >Show more</span
-        >
-      </div>
-      <div v-if="showmore">
-        <p>{{ comic.description + " " }}</p>
-        <span class="text-gray-200 cursor-pointer" @click="showmore = !showmore"
-          >Show Less</span
-        >
-      </div>
-    </div>
+    Reserved For ads
   </div>
 
   <div
-    class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-900 py-5 rounded-lg min-w-fit"
+    class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
-    <h1 class="mb-3 mx-1 sm:mx-2 text-yellow-500 text-lg">Chapters:</h1>
+    <h3 class="text-xl font-roboto p-1 w-full text-justify max-w-md font-bold">
+      {{ "Chapters" }}
+    </h3>
 
     <div class="flex flex-col mx-2">
       <div
-        class="flex flex-col justify-between bg-black p-2 rounded-md my-2 pl-3"
+        class="flex flex-col justify-between p-2 rounded-md my-2 pl-3 border border-zinc-100 dark:border-zinc-800"
         v-for="volume in props.comic.volumes"
       >
         <div class="my-1">Volume {{ " " + volume.number }}</div>
         <div v-for="chapter in volume.chapters">
-          <div class="flex flex-row justify-between my-2 items-center">
-            <div>
-              <div
-                class="image select-none first-letter:rounded-xl"
-                v-html="props.comic.chapterthumb[0].responsive"
-                :alt="props.comic.titleSlug"
-              ></div>
-            </div>
+          <Link :href="chapter.url">
             <div
-              class="dark:text-gray-400 text-md uppercase font-roboto font-semibold flex text-center pr-3"
+              class="flex flex-row justify-between my-2 items-center cursor-pointer dark:text-gray-400 bg-white dark:bg-black p-3 rounded-md"
             >
-              {{ "Chapter " + chapter.number + ": " + chapter.name }}
+              <div class=" ">
+                <div
+                  class="image select-none first-letter:rounded-xl"
+                  v-html="props.comic.chapterthumb[0].responsive"
+                  :alt="props.comic.titleSlug"
+                ></div>
+              </div>
+              <div
+                class="text-md captalize font-catamaran flex text-center pr-3 text-xs sm:text-md md:text-lg 2xl:text-xl"
+              >
+                {{ "Chapter " + chapter.number + ": " + chapter.name }}
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
@@ -171,11 +105,7 @@
 </template>
 
 <script setup>
-import { Head } from "@inertiajs/inertia-vue3";
-import { computed, ref, onMounted } from "vue";
-import { useComicStore } from "@/stores/comic";
-import ReaderLayout from "@/Layouts/ReaderLayout.vue";
-import moment from "moment";
+import { Link } from "@inertiajs/inertia-vue3";
 const props = defineProps({
   comic: {
     type: Object,
@@ -184,18 +114,6 @@ const props = defineProps({
 
   errors: Object,
 });
-
-function dateshow(value) {
-  return moment(value).fromNow(); // here u modify data
-}
-
-function dateshow2(value) {
-  return moment(value).format("MMM Do YY"); // here u modify data
-}
-console.log(props.comic);
-console.log(props.comic.tags);
-const showmore = ref(false);
-const toggle = ref(false);
 </script>
 <style scoped>
 .active {

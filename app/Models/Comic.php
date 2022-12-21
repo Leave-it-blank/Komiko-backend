@@ -15,6 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+
 class Comic extends Model implements HasMedia, Viewable
 {
 
@@ -27,16 +28,16 @@ class Comic extends Model implements HasMedia, Viewable
         'deleted_at',
     ];
     protected $fillable = [
-        'uid','title', 'description', 'author_id', 'artist_id','publisher_id', 'thumbnailUrl', 'url', 'slug',
-        'titleSlug', 'isNovel', 'isMature', 'isLocked', 'isHidden','country_id','upload_date', 'choice', 'status', 'type'
+        'uid', 'title', 'description', 'author_id', 'artist_id', 'publisher_id', 'thumbnailUrl', 'url', 'slug',
+        'titleSlug', 'isNovel', 'isMature', 'isLocked', 'isHidden', 'country_id', 'upload_date', 'choice', 'status', 'type'
     ];
-    protected $dates = [ 'deleted_at' ];
+    protected $dates = ['deleted_at'];
     protected $removeViewsOnDelete = true;
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['uid','title'])
+            ->generateSlugsFrom(['uid', 'title'])
             ->saveSlugsTo('titleSlug');
     }
     public function registerMediaConversions(Media $media = null): void
@@ -50,11 +51,10 @@ class Comic extends Model implements HasMedia, Viewable
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
-
     }
     public function country()
     {
-        return $this->belongsTo(country::class,'country_id')->withDefault([
+        return $this->belongsTo(country::class, 'country_id')->withDefault([
             'id' => 0,
             'name' => 'south korea',
             'cid' => 'default',
@@ -84,7 +84,10 @@ class Comic extends Model implements HasMedia, Viewable
             'pub_id' => Str::uuid()
         ]);
     }
-
+    public function shouldBeSearchable()
+    {
+        return $this->isVisible();
+    }
     public function scopeIsVisible(Builder $query)
     {
         return $query->where('isHidden', false);
@@ -98,30 +101,33 @@ class Comic extends Model implements HasMedia, Viewable
         return $this->hasMany(Volume::class, 'comic_id', 'id');
     }
 
-    public function chapters(){
+    public function chapters()
+    {
         return $this->hasManyThrough(Chapter::class, Volume::class);
     }
-    public function chapters_count_get(){
+    public function chapters_count_get()
+    {
         return $this->hasManyThrough(Chapter::class, Volume::class)->count();
     }
 
     public function getThumbnailUrl()
     {
-        return $this->getFirstMediaUrl('thumbnail','thumbsm');
+        return $this->getFirstMediaUrl('thumbnail', 'thumbsm');
     }
     public function getFullThumbnailOptimizedUrl()
     {
-        return $this->getFirstMediaUrl('thumbsm' );
+        return $this->getFirstMediaUrl('thumbsm');
     }
     public function getFullThumbnailUrl()
     {
-        return $this->getFirstMediaUrl('thumbnail' );
+        return $this->getFirstMediaUrl('thumbnail');
     }
     public function getURL(): string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
     {
-        return  route('reader.comic.data', ['comic'=> $this->title_slug]);
+        return  route('reader.comic.data', ['comic' => $this->title_slug]);
     }
-    public function getFirstChapter(){
+    public function getFirstChapter()
+    {
         return $this->hasManyThrough(Chapter::class, Volume::class)->first();
     }
 }

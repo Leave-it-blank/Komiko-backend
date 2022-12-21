@@ -34,6 +34,7 @@ class ComicController extends Controller
                 'author' => $comic[0]->author->name,
                 'artist' => $comic[0]->artist->name,
                 'publisher' => $comic[0]->publisher->name,
+                'firstChapterUrl' => route('reader.chapter.view', ['comic' => $comic[0]->titleSlug, 'volume' => $comic[0]->volumes->first()->number, 'chapter' => $comic[0]->volumes->first()->chapters->first()->number]),
                 'tags' => $comic[0]->tags->map(function ($tag) {
                     return [
 
@@ -43,9 +44,8 @@ class ComicController extends Controller
 
                     ];
                 }),
-                'updatedAt' => $comic[0]->updated_at,
                 'type' => $comic[0]->type,
-                'thumb' => $comic[0]->getMedia('thumbnail')->map(function($media) {
+                'thumb' => $comic[0]->getMedia('thumbnail')->map(function ($media) {
                     return [
                         'id' => $media->id,
                         'responsive' => $media()->attributes(['class' => 'rounded-xl h-72 w-48 select-none'])->toHtml(),
@@ -53,7 +53,7 @@ class ComicController extends Controller
 
                     ];
                 }),
-                'chapterthumb' => $comic[0]->getMedia('thumbnail')->map(function($media) {
+                'chapterthumb' => $comic[0]->getMedia('thumbnail')->map(function ($media) {
                     return [
                         'id' => $media->id,
                         'responsive' => $media()->attributes(['class' => 'rounded-md h-20 w-28 select-none'])->toHtml(),
@@ -61,9 +61,16 @@ class ComicController extends Controller
 
                     ];
                 }),
-                'volumes' => $comic[0]->volumes->map(function ($volume) {
+                'volumes' => $comic[0]->volumes->reverse()->map(function ($volume) {
                     return [
-                        'chapters' => $volume->chapters->reverse(),
+                        'chapters' => $volume->chapters->map(function ($c) {
+                            return [
+                                "number" => $c->number,
+                                "name" => $c->name,
+                                "id" => $c->id,
+                                "url" => route('reader.chapter.view', ['comic' => $c->volume->comic->titleSlug, 'volume' => $c->volume->number, 'chapter' => $c->number]),
+                            ];
+                        })->reverse(),
                         'name' => $volume->name,
                         'number' => $volume->number,
                         'id' => $volume->id
@@ -74,5 +81,4 @@ class ComicController extends Controller
             ]
         ]);
     }
-
 }

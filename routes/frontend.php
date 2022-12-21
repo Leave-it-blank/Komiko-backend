@@ -15,8 +15,8 @@ Route::get('/comics/{comic:titleSlug}', [ComicController::class, 'viewComic'])->
 
 //Route::get('/test', [ComicpageController::class, 'dash_home'])->name('comic_test');
 
-Route::get('/c/{random}/{chapter}', [ChapterController::class, 'viewChapterReader'])->name('reader.chapter.view');
+Route::get('/comic/{comic:titleSlug}/volume/{volume}/chapter/{chapter}', [ChapterController::class, 'viewChapterReader'])->name('reader.chapter.view');
 
 
 
- Route::get('/tags/{tag:tagCode}', [TagsController::class, 'tagView'])->name('reader.tag.view');
+Route::get('/tags/{tag:tagCode}', [TagsController::class, 'tagView'])->name('reader.tag.view');

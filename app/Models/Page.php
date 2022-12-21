@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
+
 class Page extends Model  implements HasMedia
 {
     use HasFactory;
@@ -23,12 +24,13 @@ class Page extends Model  implements HasMedia
             ->quality(75)
             ->queued();
     }
-    public function chapter(){
+    public function chapter()
+    {
 
-        return $this->hasOne( Chapter::class, 'id', 'chapter_id');
+        return $this->hasOne(Chapter::class, 'id', 'chapter_id');
     }
     public function getPages()
     {
-        return  $this->getFirstMediaUrl(['page' , 'page_custom']);
+        return  $this->getFirstMediaUrl(['page', 'page_custom']);
     }
 }

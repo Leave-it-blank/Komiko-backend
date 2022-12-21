@@ -4,19 +4,22 @@
       <title>{{ $page.props.sitedata.site_name }}</title>
       <meta name="description" content="webcomics: HomePage" />
     </Head>
-    <div class="max-w-screen-2xl py-10 w-full h-screen mx-auto">
+    <div class="max-w-screen-xl py-10 w-full md:mx-auto">
       <div v-if="props.carousels" class="rounded-lg">
         <CarouselCard :carousels="props.carousels" />
       </div>
       <div class="flex mt-10">
-        <div class="h-screen w-full 2xl:w-2/3 mx-5">
+        <div class="w-full">
           <div class="flex flex-col">
-            <HotUpdates :comics="props.comics" />
+            <LatestUpdates :comics="props.latest" />
+          </div>
+          <div class="flex flex-col">
+            <HotUpdates :comics="props.recommended" />
           </div>
         </div>
-        <div class="h-screen 2xl:w-1/3 mx-5 hidden 2xl:block">
+        <!-- <div class="2xl:w-1/3 mx-5">
           <SideBar :tags="props.tags" />
-        </div>
+        </div> -->
       </div>
     </div>
   </ReaderLayout>
@@ -24,16 +27,15 @@
 
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
-import { computed, ref, onMounted } from "vue";
-import { useComicStore } from "@/stores/comic";
 import ReaderLayout from "@/Layouts/ReaderLayout.vue";
 import ComicCard from "@/components/frontend/ComicCard.vue";
 import ComicRecommended from "@/components/frontend/ComicRecommended.vue";
 import CarouselCard from "../../components/frontend/carousel/CarouselCard.vue";
 import SideBar from "../../components/frontend/homepage/SideBar.vue";
 import HotUpdates from "../../components/frontend/homepage/HotUpdates.vue";
+import LatestUpdates from "../../components/frontend/homepage/LatestUpdates.vue";
 const props = defineProps({
-  comics: {
+  latest: {
     type: Object,
     default: null,
   },
@@ -50,7 +52,7 @@ const props = defineProps({
     default: null,
   },
 });
-console.log(props.carousels);
+console.log(props.latest);
 </script>
 <style>
 .comicChapter {

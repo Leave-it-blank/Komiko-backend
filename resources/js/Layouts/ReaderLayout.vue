@@ -9,6 +9,7 @@ import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
 import JetNavLink from '@/Jetstream/NavLink.vue';
 import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue';
 import ReaderNavBar from '@/components/frontend/navigation/ReaderNavBar.vue'
+import ReaderFooter from '../components/frontend/navigation/ReaderFooter.vue';
 defineProps({
   title: String,
 });
@@ -22,7 +23,7 @@ const logout = () => {
 </script>
 
 <template>
-  <div>
+  <div class="relative">
     <Head :title="title" />
       <!-- Page Content -->
       <div class="relative  ">
@@ -30,12 +31,12 @@ const logout = () => {
       </div>
 
       <main>
-          <div class="dark:bg-black w-full h-full min-h-screen  ">
+          <div class="dark:bg-black w-full   h-full min-h-screen  ">
                  <slot />
          </div>
 
       </main>
-
+      <ReaderFooter />
     </div>
 
 </template>
