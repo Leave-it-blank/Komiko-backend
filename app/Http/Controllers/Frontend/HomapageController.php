@@ -22,7 +22,7 @@ class HomapageController extends Controller
     {
 
         //Latests
-        $latest = Chapter::with('volume', 'volume.comic')->whereHas('volume.comic', function ($c) {
+        $latest = Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
             $c->where('isHidden', false);
         })->orderBy('updated_at', 'desc')->take(10)->get()->map(function ($chapter) {
             return [
@@ -51,14 +51,14 @@ class HomapageController extends Controller
 
             ];
         })->toArray();
-        $tags = Tag::all()->map(function ($tag) {
-            return [
-                'name' => $tag->name,
-                'id' => $tag->id,
-                'svg' => $tag->svg,
-                'tagCode' => $tag->tagCode
-            ];
-        });
+        // $tags = Tag::all()->map(function ($tag) {
+        //     return [
+        //         'name' => $tag->name,
+        //         'id' => $tag->id,
+        //         'svg' => $tag->svg,
+        //         'tagCode' => $tag->tagCode
+        //     ];
+        // });
 
         $carousel =  Carousel::where('is_enabled', true)->orderBy('position', 'asc')->get()->map(function ($carousel) {
             return [
@@ -77,7 +77,7 @@ class HomapageController extends Controller
         });
 
         //recommended HOT UPDATES
-        $recommended =  Comic::where('isHidden', false)->orderByViews('asc')->take(8)->get()->map(function ($comic) {
+        $recommended =  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->take(8)->get()->map(function ($comic) {
             return [
                 'id' => $comic->id,
                 'title' => $comic->title,
@@ -97,14 +97,14 @@ class HomapageController extends Controller
 
                     ];
                 }),
-                'chapter_count' => Chapter::where('comic_id', $comic->id)->count(),
+                'chapter_count' => $comic->chapters_count,
 
 
             ];
         })->toArray();
 
         return Inertia::render('Frontend/HomePage', [
-            'tags' => $tags,
+            // 'tags' => $tags,
             'latest' => $latest,
             'recommended' =>   $recommended,
             'carousels' =>   $carousel
@@ -210,39 +210,53 @@ class HomapageController extends Controller
         ]); */
     }
 
+    public function viewLatest()
+    {
+        $latest = Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
+            $c->where('isHidden', false);
+        })->orderBy('updated_at', 'desc')->paginate(15)->through(function ($chapter) {
+            $chapter->cid = $chapter->volume->comic->id;
+            $chapter->cnumber = $chapter->number;
+            $chapter->vnumber = $chapter->volume->number;
+            $chapter->comic_title = $chapter->volume->comic->title;
+            $chapter->cname = $chapter->name;
+            $chapter->thumb = $chapter->volume->comic->getMedia('thumbnail')->map(function ($media) {
+                return [
+                    'id' => $media->id,
+                    'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  '])->toHtml(),
+                    'alt' => $media->name,
+
+                ];
+            });
+            $chapter->viewUrl = route('reader.chapter.view', ['comic' => $chapter->volume->comic->titleSlug, 'volume' => $chapter->volume->number, 'chapter' => $chapter->number]);
+            return $chapter;
+        });
+
+
+        return Inertia::render('Frontend/LatestPage', [
+            'chapters' => $latest,
+        ]);
+    }
+
     public function viewComics()
     {
 
-        $comics =  Comic::where('isHidden', false)->orderByViews('asc')->take(8)->get()->map(function ($comic) {
-            return [
-                'id' => $comic->id,
-                'title' => $comic->title,
-                'viewUrl' => route('reader.comic.view', $comic->titleSlug),
-                'titleslug' => $comic->titleSlug,
-                'isMature' => $comic->isMature,
-                'isLocked' => $comic->isLocked,
-                'createdAt' => $comic->created_at,
-                'updatedAt' => $comic->updated_at,
-                'type' => $comic->type,
-                'choice' => $comic->choice,
-                'thumb' => $comic->getMedia('thumbnail')->map(function ($media) {
-                    return [
-                        'id' => $media->id,
-                        'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  '])->toHtml(),
-                        'alt' => $media->name,
+        $comics =  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->paginate(15)->through(function ($comic) {
+            $comic->thumb = $comic->getMedia('thumbnail')->map(function ($media) {
+                return [
+                    'id' => $media->id,
+                    'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  '])->toHtml(),
+                    'alt' => $media->name,
 
-                    ];
-                }),
-                'chapter_count' => Chapter::where('comic_id', $comic->id)->count(),
-
-            ];
-        })->toArray();
-
-        return Inertia::render('Frontend/Comics/ComicsPage', [
-
-            'comics' =>   $comics,
+                ];
+            });
+            $comic->viewUrl = route('reader.comic.view', $comic->titleSlug);
+            return $comic;
+        });
 
 
+        return Inertia::render('Frontend/ComicsPage', [
+            'comics' => $comics,
         ]);
     }
 }

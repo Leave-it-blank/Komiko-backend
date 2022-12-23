@@ -6,7 +6,7 @@
         <div class="xl:w-8/12 w-full  rounded-lg mx-auto">
           <ComicProfile :comic="props.comic" />
         </div>
-        <div class="rounded-lg   xl:w-4/12 xl:ml-10 mx-auto">
+        <div class="rounded-lg w-full  xl:w-4/12 xl:ml-10 mx-auto">
           <div
             class="flex flex-col md:flex-col justify-center sm:justify-evenly gap-3 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 md:px-24 px-2 xl:px-5 rounded-lg min-w-fit"
           >
@@ -87,6 +87,7 @@ const props = defineProps({
 
   errors: Object,
 });
+
 const isMature = computed(() => {
     if(props.comic.isMature == 1){
         return "Ayo";

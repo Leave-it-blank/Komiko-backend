@@ -37,7 +37,7 @@
         >
           Bookmark
         </button>
-        <Link :href="comic.firstChapterUrl">
+        <Link :href="props.comic.first_ch_url">
           <button class="py-2 px-4 bg-lime-700 rounded-md m-3">
             Read First Chapter
           </button>
@@ -70,7 +70,7 @@
     class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
     <h3 class="text-xl font-roboto p-1 w-full text-justify max-w-md font-bold">
-      {{ "Chapters" }}
+      {{ "Content" }}
     </h3>
 
     <div class="flex flex-col mx-2">
@@ -80,7 +80,15 @@
       >
         <div class="my-1">Volume {{ " " + volume.number }}</div>
         <div v-for="chapter in volume.chapters">
-          <Link :href="chapter.url">
+          <Link
+            :href="
+              route(chapter.url, {
+                comic: props.comic.titleSlug,
+                volume: volume.number,
+                chapter: chapter.number,
+              })
+            "
+          >
             <div
               class="flex flex-row justify-between my-2 items-center cursor-pointer dark:text-gray-400 bg-white dark:bg-black p-3 rounded-md"
             >

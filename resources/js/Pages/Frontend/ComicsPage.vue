@@ -19,7 +19,8 @@
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pb-2 gap-2 md:gap-4 mx-auto justify-center sm:justify-start overflow-clip w-full"
               >
                 <div
-                  v-for="comic in comics"
+                  v-for="comic in props.comics.data"
+                  :key="comic.id"
                   class="m-2 grow flex justify-center"
                 >
                   <Link :href="comic.viewUrl">
@@ -34,25 +35,18 @@
                               v-html="comic.thumb[0].responsive"
                               :alt="comic.thumb[0].alt"
                             ></div>
-                            <div
-                              class="absolute top-5 left-0 right-0 text-md font-bold font-catamaran text-purple-500 bg-gray-200 opacity-70 mt-1 uppercase text-left select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-1 flex-0"
-                            >
-                              <span class="">
-                                <BaseIcon :path="mdiBookOpenVariant" />
-                              </span>
-                              {{ "  " + comic.choice }}
-                            </div>
+
                             <div
                               class="absolute bottom-0 left-0 right-0 px-4 py-2 bg-gradient-to-t from-black via-gray-600 to-transparent opacity-80"
                             >
                               <div
                                 v-if="
-                                  comic.chapter_count !== 0 &&
+                                  comic.chapters_count !== 0 &&
                                   comic.volume_count !== 1
                                 "
                                 class="text-lg font-semibold mt-2 font-roboto capitalize text-gray-100 text-center select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-2 flex-0 stroke-purple-900 stroke-1"
                               >
-                                {{ comic.chapter_count + " Chapters " }}
+                                {{ comic.chapters_count + " Chapters " }}
                               </div>
                               <div
                                 v-if="comic.volume_count === 1"
@@ -88,6 +82,9 @@
                   </Link>
                 </div>
               </div>
+              <div class="mx-auto flex justify-center md:justify-start">
+                <pagination :links="props.comics.links" />
+              </div>
             </div>
           </div>
         </div>
@@ -102,12 +99,15 @@ import moment from "moment";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { mdiBookOpenVariant } from "@mdi/js";
 import BaseIcon from "@/components/backend/BaseIcon.vue";
+import Pagination from "@/components/frontend/navigation/pagination.vue";
 const props = defineProps({
   comics: {
     type: Object,
     default: null,
   },
 });
+
+console.log(props.comics);
 
 function dateshow(value) {
   return moment(value).fromNow(); // here u modify data

@@ -24,6 +24,8 @@ class Comic extends Model implements HasMedia, Viewable
     use HasFactory;
     use SoftDeletes;
     use HasSlug;
+
+
     protected $hidden = [
         'deleted_at',
     ];
@@ -43,10 +45,17 @@ class Comic extends Model implements HasMedia, Viewable
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumbsm')
+            ->performOnCollections('thumbnail')
             ->width(450)
             ->height(650)
             ->quality(.7)
-            ->nonQueued();
+            ->Queued();
+        $this->addMediaConversion('thumbch')
+            ->performOnCollections('thumbnail')
+            ->width(112)
+            ->height(80)
+            ->quality(.5)
+            ->Queued();
     }
     public function tags()
     {

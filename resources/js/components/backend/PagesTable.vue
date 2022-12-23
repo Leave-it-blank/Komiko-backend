@@ -90,7 +90,6 @@ const checked = (isChecked, client) => {
 </script>
 
 <template>
-
   <div class="mb-3 xl:w-96">
    <SearchTable :searchArray="prop.pages" Search  searchIndexName='id'  :searchComic="true" />
   </div>

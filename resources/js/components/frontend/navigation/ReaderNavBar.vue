@@ -217,8 +217,15 @@ const navigation = [
     href: route("reader.homepage.view"),
     current: route().current() === "reader.homepage.view" ? true : false,
   },
-  { name: "Latest", href: "#", current: false },
-  { name: "Bookmarks", href: "#", current: false },
-  { name: "Comics", href: route("reader.comicspage.view")  , current: route().current() === "reader.comicspage.view" ? true : false },
+  {
+    name: "Latest",
+    href: route("reader.latestpage.view"),
+    current: route().current() === "reader.latestpage.view" ? true : false,
+  },
+  {
+    name: "Comics",
+    href: route("reader.comicspage.view"),
+    current: route().current() === "reader.comicspage.view" ? true : false,
+  },
 ];
 </script>

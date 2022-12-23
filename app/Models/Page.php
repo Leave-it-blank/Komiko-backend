@@ -15,22 +15,12 @@ class Page extends Model  implements HasMedia
     protected $fillable = [
         'fileName', 'fileSize', 'id', 'chapter_id', 'fileUrl'
     ];
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('page_custom')
-            ->width(720)
-            ->withResponsiveImages()
-            ->sharpen(10)
-            ->quality(75)
-            ->queued();
-    }
     public function chapter()
     {
-
         return $this->hasOne(Chapter::class, 'id', 'chapter_id');
     }
     public function getPages()
     {
-        return  $this->getFirstMediaUrl(['page', 'page_custom']);
+        return  $this->getFirstMediaUrl('page');
     }
 }

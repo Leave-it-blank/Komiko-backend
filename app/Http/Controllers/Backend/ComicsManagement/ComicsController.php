@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Chapter;
 use App\Models\Volume;
 use Illuminate\Support\Facades\Auth;
+
 class ComicsController extends Controller
 {
     use AuthorizesRequests;
@@ -279,7 +280,6 @@ class ComicsController extends Controller
                 //$Tcomic->delete();
                 // $Tcomic->getFirstMedia('thumbnail')->delete();
                 throw $e;
-
             }
         } else {
             return redirect(route('comics_management.comics.view', $comic->id))->with('message', 'Updated Successfully.');
@@ -290,7 +290,7 @@ class ComicsController extends Controller
     {
 
         $this->authorize('view comic management',    Auth::user());
-      //  $volume = Volume::Where('comic_id', $comic->id)->get();
+        //  $volume = Volume::Where('comic_id', $comic->id)->get();
         //dd( $volume );
         return Inertia::render('Backend/ComicsManagement/Comics/Actions/viewComic', [
             'comic' => [
@@ -306,12 +306,12 @@ class ComicsController extends Controller
             'volumes' =>   Volume::Where('comic_id', $comic->id)->orderBy('number', 'desc')->get()->map(function ($volume) {
                 return [
                     'id' => $volume->id,
-                'name' => $volume->name,
-                'number' => $volume->number,
-                'editUrl' => 'comics_management.volume.view',
-                'viewUrl' => 'comics_management.volume.view',
-                'createdAt' => $volume->created_at,
-                'updatedAt' => $volume->updated_at,
+                    'name' => $volume->name,
+                    'number' => $volume->number,
+                    'editUrl' => 'comics_management.volume.view',
+                    'viewUrl' => 'comics_management.volume.view',
+                    'createdAt' => $volume->created_at,
+                    'updatedAt' => $volume->updated_at,
                 ];
             })->toArray(),
 
