@@ -9,7 +9,7 @@ use App\Http\Controllers\Frontend\HomapageController;
 use App\Http\Controllers\Frontend\TagsController;
 
 Route::get('/', [HomapageController::class, 'viewHomepage'])->name('reader.homepage.view');
-
+Route::get('/comics', [HomapageController::class, 'viewComics'])->name('reader.comicspage.view');
 Route::get('/comics/{comic:titleSlug}', [ComicController::class, 'viewComic'])->name('reader.comic.view');
 //Route::get('/comics', [ComicpageController::class, 'dash_home'])->name('comic_home');
 

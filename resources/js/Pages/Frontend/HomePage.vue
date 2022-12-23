@@ -8,12 +8,12 @@
       <div v-if="props.carousels" class="rounded-lg">
         <CarouselCard :carousels="props.carousels" />
       </div>
-      <div class="flex mt-10">
+      <div class="flex mt-5">
         <div class="w-full">
-          <div class="flex flex-col">
+          <div class="flex flex-col my-2">
             <LatestUpdates :comics="props.latest" />
           </div>
-          <div class="flex flex-col">
+          <div class="flex flex-col my-2">
             <HotUpdates :comics="props.recommended" />
           </div>
         </div>

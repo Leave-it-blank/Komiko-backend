@@ -209,4 +209,40 @@ class HomapageController extends Controller
 
         ]); */
     }
+
+    public function viewComics()
+    {
+
+        $comics =  Comic::where('isHidden', false)->orderByViews('asc')->take(8)->get()->map(function ($comic) {
+            return [
+                'id' => $comic->id,
+                'title' => $comic->title,
+                'viewUrl' => route('reader.comic.view', $comic->titleSlug),
+                'titleslug' => $comic->titleSlug,
+                'isMature' => $comic->isMature,
+                'isLocked' => $comic->isLocked,
+                'createdAt' => $comic->created_at,
+                'updatedAt' => $comic->updated_at,
+                'type' => $comic->type,
+                'choice' => $comic->choice,
+                'thumb' => $comic->getMedia('thumbnail')->map(function ($media) {
+                    return [
+                        'id' => $media->id,
+                        'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  '])->toHtml(),
+                        'alt' => $media->name,
+
+                    ];
+                }),
+                'chapter_count' => Chapter::where('comic_id', $comic->id)->count(),
+
+            ];
+        })->toArray();
+
+        return Inertia::render('Frontend/Comics/ComicsPage', [
+
+            'comics' =>   $comics,
+
+
+        ]);
+    }
 }

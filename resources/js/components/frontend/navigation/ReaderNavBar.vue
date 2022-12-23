@@ -219,6 +219,6 @@ const navigation = [
   },
   { name: "Latest", href: "#", current: false },
   { name: "Bookmarks", href: "#", current: false },
-  { name: "Comics", href: "#", current: false },
+  { name: "Comics", href: route("reader.comicspage.view")  , current: route().current() === "reader.comicspage.view" ? true : false },
 ];
 </script>
