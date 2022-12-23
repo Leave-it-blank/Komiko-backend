@@ -101,7 +101,7 @@ import ReaderLayout from "@/Layouts/ReaderLayout.vue";
 import moment from "moment";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { mdiBookOpenVariant } from "@mdi/js";
-import BaseIcon from "../../backend/BaseIcon.vue";
+import BaseIcon from "@/components/backend/BaseIcon.vue";
 const props = defineProps({
   comics: {
     type: Object,
