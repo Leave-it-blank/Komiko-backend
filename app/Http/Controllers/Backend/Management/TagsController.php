@@ -52,8 +52,6 @@ class TagsController extends Controller
                     ->withResponsiveImages()
                     ->toMediaCollection('tag'); */
             $tag->update(['svg' => $thumbnail_url]);
-
-
             return   Redirect::route('admin.management.tags')->with('message', 'Tag Successfully Created.');
         } catch (\Exception $e) {
             //return dd($e);

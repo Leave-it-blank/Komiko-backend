@@ -97,6 +97,7 @@ Route::group(
         Route::get('admin/management/page/{page}/delete', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'deletePage'])->name('comics_management.page.delete');
         Route::post('admin/management/chapter/{chapter}/upload/data', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'uploadChapter'])->name('comics_management.chapter.upload.store');
         Route::get('admin/management/chapter/{chapter}/view', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'viewChapter'])->name('comics_management.chapter.view');
+        Route::get('admin/management/chapter/{chapter}/purge', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'purgeChapter'])->name('comics_management.chapter.purge');
 
         Route::get('admin/management/page/{page}/view', [\App\Http\Controllers\Backend\ComicsManagement\ChaptersController::class, 'viewPage'])->name('comics_management.page.view');
     }
@@ -129,7 +130,7 @@ Route::group(
         Route::post('admin/management/carousel/{carousel}/update', [CarouselController::class, 'updateStoreCarousel'])->name('comic.management.carousel.store.update');
 
         Route::get('admin/management/tags',  [TagsController::class, 'viewTags'])->name('admin.management.tags');
-      //  Route::get('admin/management/tags/create', [TagsController::class, 'createTags'])->name('comic.management.tags.create');
+        //  Route::get('admin/management/tags/create', [TagsController::class, 'createTags'])->name('comic.management.tags.create');
         Route::post('admin/management/tags/store', [TagsController::class, 'storeTags'])->name('comic.management.tags.store');
         Route::get('admin/management/tag/{tag}/delete', [TagsController::class,  'deleteTag'])->name('comics_management.tag.delete');  //intentional to avoid extra work making new component.
 
@@ -142,4 +143,3 @@ Route::group(
 Route::middleware(['auth:sanctum',   config('jetstream.auth_session'), 'verified', 'permission:view dashboard'])->group(function () {
     Route::get('/admin/dashboard',  [DashboardController::class, 'viewDashboard'])->name('dashboard');
 });
-

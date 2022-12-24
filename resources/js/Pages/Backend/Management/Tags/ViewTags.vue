@@ -3,9 +3,19 @@
     <Head title="Tags" />
     <SectionTitleBar :title-stack="titleStack" routeName="dashboard" />
     <SectionMain>
-    <CreateTagsModal hasCancel v-model="isModalActive"   buttonLabel="Create"   :errors="props.errors"
-        title="Create Tag" :icon="mdiAccountCircle"  />
-   <BaseButton label="Create Tag" @click="isModalActive = true" color="info" />
+      <CreateTagsModal
+        hasCancel
+        v-model="isModalActive"
+        buttonLabel="Create"
+        :errors="props.errors"
+        title="Create Tag"
+        :icon="mdiTrashCan"
+      />
+      <BaseButton
+        label="Create Tag"
+        @click="isModalActive = true"
+        color="info"
+      />
       <DividerHorizontal />
       <CardBox
         class="mb-6 px-5"
@@ -13,7 +23,7 @@
         :icon="mdiAccountMultiple"
         has-table
       >
-     <div v-if="props.tags">
+        <div v-if="props.tags">
           <TagsTable :tags="props.tags"></TagsTable>
         </div>
       </CardBox>
@@ -24,12 +34,9 @@
 <script setup>
 import AppLayout from "@/Layouts/App.vue";
 import { Head } from "@inertiajs/inertia-vue3";
-import { ref} from "vue";
-import {
-  mdiAccountMultiple,
-  mdiAccountCircle,
-} from "@mdi/js";
-import TagsTable from "@/components/backend/management/tags/TagsTable.vue"
+import { ref } from "vue";
+import { mdiAccountMultiple, mdiTrashCan } from "@mdi/js";
+import TagsTable from "@/components/backend/management/tags/TagsTable.vue";
 import SectionMain from "@/components/backend/SectionMain.vue";
 import CardBox from "@/components/backend/CardBox.vue";
 import SectionTitleBar from "@/components/backend/SectionTitleBar.vue";
@@ -45,6 +52,6 @@ const props = defineProps({
     type: Object,
   },
 });
-const isModalActive = ref(false)
+const isModalActive = ref(false);
 const titleStack = ref(["Dashboard", "Tags"]);
 </script>

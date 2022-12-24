@@ -219,6 +219,18 @@ class ChaptersController extends Controller
         ]);
     }
 
+    public function purgeChapter(Chapter $chapter)
+    {
+        $this->authorize('handle comic management',    Auth::user());
+        try {
+            Page::destroy($chapter->pages->pluck('id'));
+            return redirect()->back()->with('error', 'Purged Successfully.');
+        } catch (\Exception $e) {
+            throw $e;
+            return redirect()->back()->with('error', 'An Error Has Occured.');
+        }
+    }
+
     public function viewPage(Page $page)
     {
         return redirect($page->getFirstMediaUrl('page'));

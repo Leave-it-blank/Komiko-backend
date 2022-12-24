@@ -1191,10 +1191,6 @@ select {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
 }
-.mx-1 {
-    margin-left: 0.25rem;
-    margin-right: 0.25rem
-}
 .mx-3 {
     margin-left: 0.75rem;
     margin-right: 0.75rem
@@ -1203,9 +1199,9 @@ select {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem
 }
-.my-4 {
-    margin-top: 1rem;
-    margin-bottom: 1rem
+.mx-1 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem
 }
 .ml-3 {
     margin-left: 0.75rem
@@ -1898,14 +1894,6 @@ select {
     --tw-border-opacity: 1;
     border-color: rgb(75 85 99 / var(--tw-border-opacity))
 }
-.border-gray-500 {
-    --tw-border-opacity: 1;
-    border-color: rgb(107 114 128 / var(--tw-border-opacity))
-}
-.border-gray-800 {
-    --tw-border-opacity: 1;
-    border-color: rgb(31 41 55 / var(--tw-border-opacity))
-}
 .bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity))
@@ -2020,10 +2008,6 @@ select {
 .bg-zinc-100 {
     --tw-bg-opacity: 1;
     background-color: rgb(244 244 245 / var(--tw-bg-opacity))
-}
-.bg-zinc-200 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(228 228 231 / var(--tw-bg-opacity))
 }
 .bg-opacity-25 {
     --tw-bg-opacity: 0.25
@@ -2544,10 +2528,6 @@ select {
 .text-purple-800 {
     --tw-text-opacity: 1;
     color: rgb(107 33 168 / var(--tw-text-opacity))
-}
-.text-blue-400 {
-    --tw-text-opacity: 1;
-    color: rgb(96 165 250 / var(--tw-text-opacity))
 }
 .text-red-300 {
     --tw-text-opacity: 1;
@@ -3121,14 +3101,6 @@ select {
     --tw-bg-opacity: 1;
     background-color: rgb(75 85 99 / var(--tw-bg-opacity))
 }
-.dark .dark\:bg-zinc-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(24 24 27 / var(--tw-bg-opacity))
-}
-.dark .dark\:bg-purple-400 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(192 132 252 / var(--tw-bg-opacity))
-}
 .dark .dark\:from-gray-700 {
     --tw-gradient-from: #374151;
     --tw-gradient-to: rgb(55 65 81 / 0);
@@ -3177,10 +3149,6 @@ select {
     --tw-text-opacity: 1;
     color: rgb(216 180 254 / var(--tw-text-opacity))
 }
-.dark .dark\:text-blue-500 {
-    --tw-text-opacity: 1;
-    color: rgb(59 130 246 / var(--tw-text-opacity))
-}
 .dark .dark\:placeholder-gray-400::-moz-placeholder {
     --tw-placeholder-opacity: 1;
     color: rgb(156 163 175 / var(--tw-placeholder-opacity))
@@ -3195,10 +3163,6 @@ select {
 }
 .dark .dark\:hover\:bg-gray-700\/50:hover {
     background-color: rgb(55 65 81 / 0.5)
-}
-.dark .dark\:hover\:bg-purple-700:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(126 34 206 / var(--tw-bg-opacity))
 }
 .dark .dark\:hover\:text-gray-900:hover {
     --tw-text-opacity: 1;

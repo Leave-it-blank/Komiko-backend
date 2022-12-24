@@ -64,11 +64,16 @@ const titleStack = ref([
         :crftoken="props.crftoken"
       />
 
-      <BaseButton
-        label="Upload"
-        @click="isModalActive = true"
-        color="warning"
-      />
+      <div class="flex justify-between">
+        <BaseButton label="Upload" @click="isModalActive = true" color="info" />
+        <BaseButton
+          label="Purge Chapter"
+          onclick="return confirm('Are you sure you want to purge this chapter?')"
+          :href="route('comics_management.chapter.purge', props.chapter.id)"
+          color="danger"
+        />
+      </div>
+
       <DividerHorizontal />
       <CardBox class="mb-6" title="Pages" :icon="mdiAccountMultiple" has-table>
         <div v-if="props.pages">

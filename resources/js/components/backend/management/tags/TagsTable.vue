@@ -1,112 +1,120 @@
 <script setup>
-import { computed, ref  } from 'vue'
-import { useMainStore } from '@/stores/main'
-import { mdiEye, mdiTrashCan , mdiAccountEdit} from '@mdi/js'
-import DeleteItemsModal from '@/components/backend/DeleteItemsModal.vue'
-import TableCheckboxCell from '@/components/backend/TableCheckboxCell.vue'
-import BaseLevel from '@/components/backend/BaseLevel.vue'
-import BaseButtons from '@/components/backend/BaseButtons.vue'
-import BaseButton from '@/components/backend/BaseButton.vue'
-import UserAvatar from '@/components/backend/UserAvatar.vue'
-import moment from 'moment'
-import SearchTable from '@/components/backend/SearchTable.vue'
+import { computed, ref } from "vue";
+import { useMainStore } from "@/stores/main";
+import { mdiEye, mdiTrashCan, mdiAccountEdit } from "@mdi/js";
+import DeleteItemsModal from "@/components/backend/DeleteItemsModal.vue";
+import TableCheckboxCell from "@/components/backend/TableCheckboxCell.vue";
+import BaseLevel from "@/components/backend/BaseLevel.vue";
+import BaseButtons from "@/components/backend/BaseButtons.vue";
+import BaseButton from "@/components/backend/BaseButton.vue";
+import UserAvatar from "@/components/backend/UserAvatar.vue";
+import moment from "moment";
+import SearchTable from "@/components/backend/SearchTable.vue";
 
 const prop = defineProps({
   checkable: Boolean,
   tags: {
     type: Array,
-    default: null
-  }
+    default: null,
+  },
 });
 function dateshow(value) {
-    return moment(value).fromNow() // here u modify data
+  return moment(value).fromNow(); // here u modify data
 }
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
-const lightBorderStyle = computed(() => mainStore.lightBorderStyle)
+const lightBorderStyle = computed(() => mainStore.lightBorderStyle);
 
-const lightBgStyle = computed(() => mainStore.lightBgStyle)
+const lightBgStyle = computed(() => mainStore.lightBgStyle);
 
-const tableTrStyle = computed(() => mainStore.tableTrStyle)
+const tableTrStyle = computed(() => mainStore.tableTrStyle);
 
-const tableTrOddStyle = computed(() => mainStore.tableTrOddStyle)
+const tableTrOddStyle = computed(() => mainStore.tableTrOddStyle);
 
-const darkMode = computed(() => mainStore.darkMode)
+const darkMode = computed(() => mainStore.darkMode);
 
 mainStore.clients = prop.tags;
 
-let dataChapter = computed(() => mainStore.itemId)
-const items = computed(() => mainStore.clients)
+let dataChapter = computed(() => mainStore.itemId);
+const items = computed(() => mainStore.clients);
 
-const isModalActive = ref(false)
+const isModalActive = ref(false);
 
-const isModalDangerActive = ref(false)
+const isModalDangerActive = ref(false);
 
-const perPage = ref(10)
+const perPage = ref(10);
 
-const currentPage = ref(0)
+const currentPage = ref(0);
 
-const checkedRows = ref([])
+const checkedRows = ref([]);
 
-const itemsPaginated = computed(
-  () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
-)
+const itemsPaginated = computed(() =>
+  items.value.slice(
+    perPage.value * currentPage.value,
+    perPage.value * (currentPage.value + 1)
+  )
+);
 
-const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
 
-const currentPageHuman = computed(() => currentPage.value + 1)
+const currentPageHuman = computed(() => currentPage.value + 1);
 
 const pagesList = computed(() => {
-  const pagesList = []
+  const pagesList = [];
 
   for (let i = 0; i < numPages.value; i++) {
-    pagesList.push(i)
+    pagesList.push(i);
   }
 
-  return pagesList
-})
+  return pagesList;
+});
 
 const remove = (arr, cb) => {
-  const newArr = []
+  const newArr = [];
 
-  arr.forEach(item => {
+  arr.forEach((item) => {
     if (!cb(item)) {
-      newArr.push(item)
+      newArr.push(item);
     }
-  })
+  });
 
-  return newArr
-}
+  return newArr;
+};
 
 const checked = (isChecked, client) => {
   if (isChecked) {
-    checkedRows.value.push(client)
+    checkedRows.value.push(client);
   } else {
-    checkedRows.value = remove(checkedRows.value, row => row.id === client.id)
+    checkedRows.value = remove(
+      checkedRows.value,
+      (row) => row.id === client.id
+    );
   }
-}
-
+};
 </script>
 
 <template>
-
   <div class="mb-3 xl:w-96">
-   <SearchTable :searchArray="prop.tags" Search  searchIndexName='name'  :searchComic="true" />
+    <SearchTable
+      :searchArray="prop.tags"
+      Search
+      searchIndexName="name"
+      :searchComic="true"
+    />
   </div>
-
 
   <DeleteItemsModal
     v-model="isModalActive"
     title="Do you really wanna delete the Tag?"
-    button ="danger"
-    buttonLabel ="Delete"
+    button="danger"
+    buttonLabel="Delete"
     hasCancel
-    itemName ="tag"
+    itemName="tag"
     :itemId="dataChapter"
   >
-     You are About to delete Tag number {{dataChapter}} permanently.
-      Warning:  [Action can't be rolled back]
+    You are About to delete Tag number {{ dataChapter }} permanently. Warning:
+    [Action can't be rolled back]
   </DeleteItemsModal>
 
   <div
@@ -152,39 +160,35 @@ const checked = (isChecked, client) => {
         </td>
         <td data-label="Name">
           {{ client.name }}
-        </td>     <td data-label="Tag Code">
+        </td>
+        <td data-label="Tag Code">
           {{ client.tagCode }}
         </td>
 
         <td data-label="Svg">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.svg"
-          >{{ client.svg  }}</small>
+          <small class="text-gray-500 dark:text-gray-400" :title="client.svg">{{
+            client.svg
+          }}</small>
         </td>
         <td data-label="Created">
           <small
             class="text-gray-500 dark:text-gray-400"
             :title="client.createdAt"
-          >{{  dateshow(client.createdAt)  }}</small>
+            >{{ dateshow(client.createdAt) }}</small
+          >
         </td>
         <td class="actions-cell">
-          <BaseButtons
-            type="justify-start lg:justify-end"
-            no-wrap
-          >
-
-
-           <BaseButton
+          <BaseButtons type="justify-start lg:justify-end" no-wrap>
+            <BaseButton
               color="danger"
-              :icon="mdiAccountEdit"
+              :icon="mdiTrashCan"
               small
-              v-on:click="mainStore.itemId=client.id,isModalActive = true"
-
+              v-on:click="
+                (mainStore.itemId = client.id), (isModalActive = true)
+              "
             />
           </BaseButtons>
         </td>
-
       </tr>
     </tbody>
   </table>
@@ -206,6 +210,5 @@ const checked = (isChecked, client) => {
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
-
   </div>
 </template>
