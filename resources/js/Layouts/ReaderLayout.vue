@@ -17,7 +17,7 @@ const logout = () => {
   Inertia.post(route("logout"));
 };
 
-console.log(usePage().props.ads_global);
+console.log(usePage().props);
 </script>
 
 <template>
