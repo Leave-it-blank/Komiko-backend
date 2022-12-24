@@ -89,13 +89,13 @@
                 class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-black first-line: ring-1 ring-purple-400 ring-opacity-25 focus:outline-none"
               >
                 <MenuItem v-slot="{ active }">
-                  <a
+                  <Link
                     :href="profile"
                     :class="[
                       active ? 'bg-gray-100 dark:bg-gray-600' : '',
                       'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200',
                     ]"
-                    >Your Profile</a
+                    >Your Profile</Link
                   >
                 </MenuItem>
                 <MenuItem v-slot="{ active }">

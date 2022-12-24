@@ -77,12 +77,6 @@ export default [
       label: 'Styles',
       icon: mdiPalette,
       permission: ['admin']
-    },
-    {
-      route: 'profile.show',
-      label: 'Profile',
-      icon: mdiAccountCircle,
-      permission: ['reader' , 'view dashboard' ]
     }
 
   ],

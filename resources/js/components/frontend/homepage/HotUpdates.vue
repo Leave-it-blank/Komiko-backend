@@ -8,6 +8,7 @@
 
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pb-2 gap-2 md:gap-4 mx-auto justify-center sm:justify-start overflow-clip w-full"
+      style="min-height: 10rem"
     >
       <div v-for="comic in comics" class="m-2 grow flex justify-center">
         <Link :href="comic.viewUrl">

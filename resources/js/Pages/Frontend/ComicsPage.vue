@@ -1,7 +1,8 @@
 <template>
   <ReaderLayout>
     <Head>
-      <title>{{ $page.props.sitedata.site_name }}</title>
+      <title>{{ "Comics - " + $page.props.sitedata.site_name }}</title>
+
       <meta name="description" content="webcomics: ComicsPage" />
     </Head>
     <div class="max-w-screen-xl py-10 w-full md:mx-auto">
@@ -106,8 +107,6 @@ const props = defineProps({
     default: null,
   },
 });
-
-console.log(props.comics);
 
 function dateshow(value) {
   return moment(value).fromNow(); // here u modify data

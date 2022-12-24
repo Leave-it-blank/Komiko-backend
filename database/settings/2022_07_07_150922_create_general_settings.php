@@ -12,11 +12,13 @@ class CreateGeneralSettings extends SettingsMigration
         $this->migrator->add('general.session_encryption', false);
         $this->migrator->add('general.cache_drive', 'database');
         $this->migrator->add('general.patreon', 'patreon.com');
-        $this->migrator->add('general.disqus_shortname', 'database');
+        $this->migrator->add('general.disqus_shortname', 'testsite-q2cy98osnk');
         $this->migrator->add('general.discord_server_id', 'discord.com');
         $this->migrator->add('general.discord_invite', 'discord.gg');
-        $this->migrator->add('general.analytics','google.com');
-        $this->migrator->add('general.tag_manager', 'googletag.com');
+        $this->migrator->add('general.adsense', 'google.com');
+        $this->migrator->add('general.tag_manager', 'UA-11572402280-1');
+        $this->migrator->add('general.favicon', 'url');
+        $this->migrator->add('general.keywords', 'comics, manga, manhua, manwha, novel, adaptaion, scanlation, action_manga, manhua');
         $this->migrator->add('general.search', false);
         $this->migrator->add('general.dark_mode', false);
         $this->migrator->add('general.side_bar', false);

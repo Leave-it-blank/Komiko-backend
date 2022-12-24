@@ -7,6 +7,7 @@ use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
 use Illuminate\Support\Facades\Auth;
 use App\Settings\GeneralSettings;
+
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -14,8 +15,8 @@ class HandleInertiaRequests extends Middleware
      *
      * @var string
      */
-  //  protected $rootView = 'app';
-  public function rootView(Request $request): string
+    //  protected $rootView = 'app';
+    public function rootView(Request $request): string
     {
         if (request()->is('admin/*')) {
             return 'app';
@@ -50,7 +51,8 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message'),
                 'error' => fn () => $request->session()->get('error')
             ],
-            'sitedata' => function (){
+            'sitedata' => function () {
+                //TODO :- CACHE THIS MF
                 return app(GeneralSettings::class);
             },
             'auth' => function () use ($request) {
@@ -61,7 +63,7 @@ class HandleInertiaRequests extends Middleware
                         'email' => $request->user()->email,
                         'isAdmin'  => $request->user()->hasRole(['Super-Admin', 'Admin']),
                         'permissions' => $request->user()->getPermissionsViaRoles()->map(function ($p) {
-                            return $p->name  ;
+                            return $p->name;
                         })->toArray(),
 
                     ] : null,

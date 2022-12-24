@@ -1,8 +1,11 @@
 <template>
   <ReaderLayout>
     <Head>
-      <title>{{ $page.props.sitedata.site_name }}</title>
-      <meta name="description" content="webcomics: Latest Releases Page" />
+      <title>Latests - {{ $page.props.sitedata.site_name }}</title>
+      <meta
+        name="description"
+        content="webcomics: Latest Releases, A place to read manga, manhua and manwha for free of cost."
+      />
     </Head>
     <div class="max-w-screen-xl py-10 w-full md:mx-auto">
       <div class="flex mt-5">

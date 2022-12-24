@@ -1,8 +1,13 @@
 <template>
   <ReaderLayout>
     <Head>
-      <title>{{ $page.props.sitedata.site_name }}</title>
-      <meta name="description" content="webcomics: HomePage" />
+      <title>HomePage - {{ $page.props.sitedata.site_name }}</title>
+      <meta
+        name="description"
+        content="webcomics: HomePage, A place to read manga, manhua and manwha for free of cost."
+      />
+
+
     </Head>
     <div class="max-w-screen-xl py-10 w-full md:mx-auto">
       <div v-if="props.carousels" class="rounded-lg">

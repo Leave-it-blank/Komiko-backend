@@ -56,10 +56,10 @@ return [
     | these features or you can even remove all of these if you need to.
     |
     */
-    'prefix' => 'admin',
+    'prefix' => 'dash',
     'features' => [
         // Features::termsAndPrivacyPolicy(),
-         Features::profilePhotos(),
+        Features::profilePhotos(),
         // Features::api(),
         // Features::teams(['invitations' => true]),
         Features::accountDeletion(),

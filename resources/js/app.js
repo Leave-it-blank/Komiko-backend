@@ -11,10 +11,10 @@ import { Inertia } from '@inertiajs/inertia'
 
 const pinia = createPinia()
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel'
+ //const appName = window.document.getElementsByTagName('title')[0]?.innerText ||' '
 
 createInertiaApp({
-  title: (title) => `${title} - ${appName}`,
+  title: (title) => `${title} `,
   resolve: (name) => require(`./Pages/${name}.vue`),
   setup({ el, app, props, plugin }) {
     return createApp({ render: () => h(app, props) })

@@ -12,7 +12,7 @@ use App\Models\Comic;
 use App\Models\Volume;
 use App\Models\Chapter;
 use Session;
-use App\Models\Tag;
+
 
 class HomapageController extends Controller
 {
@@ -212,6 +212,9 @@ class HomapageController extends Controller
 
     public function viewLatest()
     {
+
+
+
         $latest = Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
             $c->where('isHidden', false);
         })->orderBy('updated_at', 'desc')->paginate(15)->through(function ($chapter) {
@@ -241,6 +244,8 @@ class HomapageController extends Controller
     public function viewComics()
     {
 
+
+
         $comics =  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->paginate(15)->through(function ($comic) {
             $comic->thumb = $comic->getMedia('thumbnail')->map(function ($media) {
                 return [
@@ -257,6 +262,7 @@ class HomapageController extends Controller
 
         return Inertia::render('Frontend/ComicsPage', [
             'comics' => $comics,
+
         ]);
     }
 }
