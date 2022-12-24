@@ -16,8 +16,8 @@ const showingNavigationDropdown = ref(false);
 const logout = () => {
   Inertia.post(route("logout"));
 };
-
-console.log(usePage().props);
+const ads_global_1 = usePage().props.value.ads_global.above_rec;
+console.log(usePage().props.value.ads_global.above_rec);
 </script>
 
 <template>
@@ -26,7 +26,7 @@ console.log(usePage().props);
     <div class="relative">
       <ReaderNavBar />
     </div>
-    <div id="ads_global_nav"></div>
+    <div v-html="ads_global_1" id="ads_global_nav"></div>
     <main>
       <div class="dark:bg-black w-full h-full min-h-screen">
         <slot />
