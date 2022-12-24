@@ -85,6 +85,8 @@ class ChaptersController extends Controller
                 'volume_id' => $volume->id,
                 'comic_id' => $volume->comic->id
             ]);
+            Cache::forget('latest_comics');
+            Cache::forget('latests_page');
             return   Redirect::route('comics_management.volume.view',   $volume->id)->with('message', 'Chapter Successfully Created.');
         } catch (\Exception $e) {
             // $this->emit('Danger_alert',   'Something went wrong~ Try again~');
@@ -162,6 +164,8 @@ class ChaptersController extends Controller
         // dd($chapter);
         try {
             $chapter->delete();
+            Cache::forget('latest_comics'); //homepage
+            Cache::forget('latests_page');
             return redirect()->back()->with('error', 'Deleted Successfully.');
         } catch (\Exception $e) {
             throw $e;
@@ -172,6 +176,8 @@ class ChaptersController extends Controller
         $this->authorize('handle comic management',    Auth::user());
         try {
             $volume->delete();
+            Cache::forget('latest_comics'); //homepage
+            Cache::forget('latests_page');
             return redirect()->back()->with('error', 'Deleted Successfully.');
         } catch (\Exception $e) {
             throw $e;
@@ -224,6 +230,7 @@ class ChaptersController extends Controller
         $this->authorize('handle comic management',    Auth::user());
         try {
             Page::destroy($chapter->pages->pluck('id'));
+            Cache::forget('comic_' . $chapter->volume->comic->titleSlug . $chapter->volume->id . $chapter->id);
             return redirect()->back()->with('error', 'Purged Successfully.');
         } catch (\Exception $e) {
             throw $e;

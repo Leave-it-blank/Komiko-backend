@@ -19,24 +19,21 @@ class ChapterController extends Controller
 {
     public function viewChapterReader(Comic $comic, Volume $volume, Chapter $chapter)
     {
+        $data =  cache()->remember('comic_' . $comic->titleSlug . $volume->id . $chapter->id, now()->addMinutes(2), function () use ($chapter, $volume, $comic) {
+            $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->with('media')->get();
 
-        $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->with('media')->get();
+            $nch = Chapter::where('number', '>', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'asc')->first();
+            $pch = Chapter::where('number', '<', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'desc')->first();
 
-        $nch = Chapter::where('number', '>', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'asc')->first();
-        $pch = Chapter::where('number', '<', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'desc')->first();
-
-        $nextChapter = null;
-        $previousChapter = null;
-        if ($nch != null) {
-            $nextChapter =  route('reader.chapter.view', ['comic' => $comic->titleSlug, 'volume' =>  $nch->volume->number, 'chapter' => $nch->number]);
-        }
-        if ($pch != null) {
-            $previousChapter   =  route('reader.chapter.view', ['comic' => $comic->titleSlug, 'volume' =>  $pch->volume->number, 'chapter' => $pch->number]);
-        }
-
-
-        return Inertia::render('Frontend/Comics/Reader/ViewChapter', [
-            "pages" => $pages->map(function ($page) {
+            $nextChapter = null;
+            $previousChapter = null;
+            if ($nch != null) {
+                $nextChapter =  route('reader.chapter.view', ['comic' => $comic->titleSlug, 'volume' =>  $nch->volume->number, 'chapter' => $nch->number]);
+            }
+            if ($pch != null) {
+                $previousChapter   =  route('reader.chapter.view', ['comic' => $comic->titleSlug, 'volume' =>  $pch->volume->number, 'chapter' => $pch->number]);
+            }
+            $pages_data = $pages->map(function ($page) {
                 return [
                     "id" => $page->id,
                     "fileName" => $page->fileName,
@@ -50,13 +47,26 @@ class ChapterController extends Controller
                         ];
                     }),
                 ];
-            }),
+            });
+            $data = array(
+                [
+                    "pages_data" => $pages_data,
+                    "nextChapter" => $nextChapter,
+                    "previousChapter" => $previousChapter,
+                ]
+            );
+            return $data;
+        });
+
+
+        return Inertia::render('Frontend/Comics/Reader/ViewChapter', [
+            "pages" =>   $data["0"]["pages_data"],
             "chapter" => $chapter,
             "ctitle" => $comic->title,
             "c_vol_no" => $volume->number,
             "c_chap_no" => $chapter->number,
-            "nextChapter" =>  $nextChapter,
-            "previousChapter" => $previousChapter,
+            "nextChapter" =>  $data["0"]["nextChapter"],
+            "previousChapter" => $data["0"]["previousChapter"],
             "home" => route('reader.comic.view', ['comic' => $comic->titleSlug]),
         ]);
     }

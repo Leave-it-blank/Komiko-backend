@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend\Management;
+
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Carousel;
@@ -9,6 +10,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+
 class CarouselController extends Controller
 {
     use AuthorizesRequests;
@@ -49,7 +51,7 @@ class CarouselController extends Controller
             ]);
             $Tcarousel->save();
 
-            Cache::flush();
+            Cache::forget('carousels');
         } catch (\Exception $e) {
             //$this->emit('Danger_alert',   'Something went wrong~ Try again~');
             //$this->error = 'Error Creating comic, validation issue most likely. Contact @leaveitblank';
@@ -75,18 +77,18 @@ class CarouselController extends Controller
             $Tcarousel->delete();
             throw $e;
         }
-
     }
 
     public function deleteCarousel(Carousel $carousel)
     {
         $this->authorize('handle management',    Auth::user());
-       try{
-        $carousel->delete();
-        return redirect(route('admin.management.carousel'))->with('error', 'Deleted Successfully.');
-       }catch( \Exception $e){
+        try {
+            $carousel->delete();
+            Cache::forget('carousels');
+            return redirect(route('admin.management.carousel'))->with('error', 'Deleted Successfully.');
+        } catch (\Exception $e) {
             throw $e;
-       }
+        }
     }
     public function updateStoreCarousel(Carousel $carousel, Request $request)
     {
@@ -134,7 +136,7 @@ class CarouselController extends Controller
                     ->withResponsiveImages()
                     ->toMediaCollection('carousels');
                 //$comic->save();
-
+                Cache::forget('carousels');
                 return redirect(route('admin.management.carousel'))->with('message', 'Updated Successfully.');
             } catch (\Exception $e) {
                 //return dd($e);

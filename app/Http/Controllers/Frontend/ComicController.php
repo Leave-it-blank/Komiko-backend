@@ -19,7 +19,7 @@ class ComicController extends Controller
 {
     public function viewComic(Comic  $comic)
     {
-        Cache::forget('comic_' . $comic->titleSlug);
+        //Cache::forget('comic_' . $comic->titleSlug);
 
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;

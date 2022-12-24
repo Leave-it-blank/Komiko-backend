@@ -88,6 +88,7 @@ class ComicsController extends Controller
     public function storeComic(Request $request)
     {
         $this->authorize('handle comic management', Auth::user());
+
         $comic =  $this->validate($request, [
             'title' => 'required|min:2|max:255|string',
             //  'upload_date' => 'string',
@@ -131,13 +132,12 @@ class ComicsController extends Controller
             ]);
             $Tcomic->save();
             $Tcomic->tags()->attach($comic["tags"]);
-            Cache::flush();
+            Cache::forget('comicsPage');
         } catch (\Exception $e) {
             //$this->emit('Danger_alert',   'Something went wrong~ Try again~');
             //$this->error = 'Error Creating comic, validation issue most likely. Contact @leaveitblank';
 
             throw $e;
-            // return dd($e);
         }
         try {
             $extension = $comic["thumb"]->extension();
@@ -248,7 +248,7 @@ class ComicsController extends Controller
             ]);
 
             $comic->tags()->sync($valcomic["tags"]);
-            Cache::flush();
+            Cache::forget('comicsPage');
         } catch (\Exception $e) {
             //$this->emit('Danger_alert',   'Something went wrong~ Try again~');
             //$this->error = 'Error Creating comic, validation issue most likely. Contact @leaveitblank';
