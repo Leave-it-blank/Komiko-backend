@@ -24,7 +24,7 @@
               {{ "Description" }}
               </h3>
 
-             <p class="font-catamaran text-justify p-2 sm:mx-auto text-gray-800 dark:text-gray-400">
+             <p class="font-catamaran text-justify p-2 sm:mx-auto text-gray-800 dark:text-gray-400  ">
               {{ props.comic.description }}
              </p>
              <h3 class="text-xl font-roboto p-1 font-bold w-full text-justify max-w-md xl:mx-auto text-gray-900 dark:text-gray-100">
