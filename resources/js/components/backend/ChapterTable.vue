@@ -138,6 +138,7 @@ const checked = (isChecked, client) => {
         <th>Name</th>
         <th>Number</th>
         <th>Locked?</th>
+        <th>views</th>
         <th>Last Updated</th>
         <th>Created</th>
         <th />
@@ -162,6 +163,9 @@ const checked = (isChecked, client) => {
         </td>
         <td data-label="isLocked?">
           {{ client.isLocked ? "Locked" : "Open" }}
+        </td>
+        <td data-label="views">
+          {{ client.views }}
         </td>
         <td data-label="Updated">
           <small

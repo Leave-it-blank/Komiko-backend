@@ -3,18 +3,42 @@
     <Head>
       <title>{{ "Comics - " + $page.props.sitedata.site_name }}</title>
 
-      <meta name="description" content="webcomics: ComicsPage" />
+      <meta
+        name="description"
+        content="comics: List of all the comics you can enjoy on our website including your most favorite manga, manhua and manwha."
+      />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:title" :content="'Comics - ' + $page.props.sitedata.site_name" />
+      <meta
+        property="og:description"
+        content="comics: List of all the comics you can enjoy on our website including your most favorite manga, manhua and manwha."
+      />
+      <!-- <meta property="og:image" content="LINK TO THE IMAGE FILE" /> -->
+      <meta property="og:url" :content="$page.props.sitedata.site_url + '/latest'" />
+
+      <meta
+        name="twitter:title"
+        :content="'Comics - ' + $page.props.sitedata.site_name"
+      />
+      <meta
+        name="twitter:description"
+        content="comics: List of all the comics you can enjoy on our website including your most favorite manga, manhua and manwha."
+      />
+      <!-- <meta name="twitter:image" content="LINK TO IMAGE" /> -->
+
+      <meta property="twitter:url" :content="$page.props.sitedata.site_url + '/comics'" />
     </Head>
     <div class="max-w-screen-xl py-10 w-full md:mx-auto">
       <div class="flex mt-5">
         <div class="w-full">
           <div class="flex flex-col my-2">
             <div class="sm:mx-10">
-              <div
+              <h1
                 class="text-3xl px-2 pt-10 pb-2 font-roboto font-bold capitalize dark:text-white"
               >
                 Comics
-              </div>
+              </h1>
 
               <div
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pb-2 gap-2 md:gap-4 mx-auto justify-center sm:justify-start overflow-clip w-full"
@@ -25,9 +49,7 @@
                   class="m-2 grow flex justify-center"
                 >
                   <Link :href="comic.viewUrl">
-                    <div
-                      class="px-2 py-1 h-content bg-transparent dark:bg-black"
-                    >
+                    <div class="px-2 py-1 h-content bg-transparent dark:bg-black">
                       <div class="flex flex-shrink rounded-md">
                         <div class="flex flex-col rounded-md">
                           <div class="relative">
@@ -42,8 +64,7 @@
                             >
                               <div
                                 v-if="
-                                  comic.chapters_count !== 0 &&
-                                  comic.volume_count !== 1
+                                  comic.chapters_count !== 0 && comic.volume_count !== 1
                                 "
                                 class="text-lg font-semibold mt-2 font-roboto capitalize text-gray-100 text-center select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-2 flex-0 stroke-purple-900 stroke-1"
                               >
@@ -98,8 +119,7 @@
 import ReaderLayout from "@/Layouts/ReaderLayout.vue";
 import moment from "moment";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import { mdiBookOpenVariant } from "@mdi/js";
-import BaseIcon from "@/components/backend/BaseIcon.vue";
+
 import Pagination from "@/components/frontend/navigation/pagination.vue";
 const props = defineProps({
   comics: {

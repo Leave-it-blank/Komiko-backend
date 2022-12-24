@@ -28,7 +28,7 @@ class ComicsController extends Controller
         $this->authorize('view comic management',    Auth::user());
         //return 'hi';
         return Inertia::render('Backend/ComicsManagement/Comics/ComicsList', [
-            'comics' => Comic::orderBy('title', 'asc')->get()->map(function ($comic) {
+            'comics' => Comic::orderBy('title', 'asc')->withCount('views')->get()->map(function ($comic) {
                 return [
                     'id' => $comic->id,
                     'title' => $comic->title,
@@ -39,6 +39,7 @@ class ComicsController extends Controller
                     'isLocked' => $comic->isLocked,
                     'createdAt' => $comic->created_at,
                     'updatedAt' => $comic->updated_at,
+                    'views' => $comic->views_count,
                 ];
             })->toArray(),
 

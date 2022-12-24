@@ -9,7 +9,7 @@ class Advertisements
 
     const POSITIONS_ABOVE_FOOTER = 'above-footer';
 
-    const POSITIONS_HOMEPAGE_BELOW_LATEST= 'homepage-below-latest';
+    const POSITIONS_HOMEPAGE_BELOW_LATEST = 'homepage-below-latest';
 
     const POSITIONS_HOMEPAGE_IN_MIDDLE = 'homepage-in-middle';
 
@@ -34,12 +34,12 @@ class Advertisements
     // Homepage
     const HOMEPAGE = [
         [
-            'name' => 'Homepage - Below Recommended',
+            'name' => 'Homepage - Below Recommended BELOW_LATEST',
             'description' => 'On the Homepage, under the recommended comics.',
             'position' => self::POSITIONS_HOMEPAGE_BELOW_LATEST,
         ],
         [
-            'name' => 'Homepage - Above Comments',
+            'name' => 'Homepage - Above Comments IN_MIDDLE',
             'description' => 'On the Homepage, above the comments.',
             'position' => self::POSITIONS_HOMEPAGE_IN_MIDDLE,
         ],

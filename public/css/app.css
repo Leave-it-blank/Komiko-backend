@@ -2709,6 +2709,12 @@ select {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1
 }
+.line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3
+}
 .first-letter\:rounded-xl::first-letter {
     border-radius: 0.75rem
 }
@@ -3416,9 +3422,6 @@ select {
     .md\:mr-2 {
         margin-right: 0.5rem
     }
-    .md\:mr-3 {
-        margin-right: 0.75rem
-    }
     .md\:mt-2 {
         margin-top: 0.5rem
     }
@@ -3436,9 +3439,6 @@ select {
     }
     .md\:grid {
         display: grid
-    }
-    .md\:h-6 {
-        height: 1.5rem
     }
     .md\:h-5 {
         height: 1.25rem

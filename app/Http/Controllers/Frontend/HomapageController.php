@@ -12,7 +12,8 @@ use App\Models\Comic;
 use App\Models\Volume;
 use App\Models\Chapter;
 use Session;
-
+use App\Enums\Advertisements;
+use App\Models\Advertisement as AdvertModel;
 
 class HomapageController extends Controller
 {
@@ -20,6 +21,20 @@ class HomapageController extends Controller
 
     public function viewHomepage()
     {
+        Cache::forget('ads_homepage');
+        Cache::forget('ads_comic');
+        Cache::forget('ads_global');
+
+        $ads_rec =  cache()->remember('ads_homepage', now()->addMinutes(30), function () {
+            $ads_above_rec = \App\Helpers\Advertisement::aboveRecommended();
+            $ads_below_rec = \App\Helpers\Advertisement::belowRecommended();
+
+            return [
+                'above_rec' => $ads_above_rec,
+                'below_rec' => $ads_below_rec,
+            ];
+        });
+
 
         //Latests
         $latest = cache()->remember('latest_comics', now()->addMinutes(2), function () {
@@ -112,7 +127,8 @@ class HomapageController extends Controller
             // 'tags' => $tags,
             'latest' => $latest,
             'recommended' =>   $recommended,
-            'carousels' =>   $carousel
+            'carousels' =>   $carousel,
+            'ads' => $ads_rec,
 
         ]);
         /*  return Inertia::render('Frontend/HomePage', [

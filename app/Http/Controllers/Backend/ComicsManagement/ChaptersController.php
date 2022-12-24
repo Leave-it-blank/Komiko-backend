@@ -143,7 +143,7 @@ class ChaptersController extends Controller
                 'comic_id' => $volume->comic_id
             ],
 
-            'chapters' =>   Chapter::Where('volume_id', $volume->id)->orderBy('name', 'desc')->get()->map(function ($chapter) {
+            'chapters' =>   Chapter::Where('volume_id', $volume->id)->withCount('views')->orderBy('name', 'desc')->get()->map(function ($chapter) {
                 return [
                     'id' => $chapter->id,
                     'name' => $chapter->name,
@@ -153,6 +153,7 @@ class ChaptersController extends Controller
                     'viewUrl' => 'comics_management.chapter.view',
                     'createdAt' => $chapter->created_at,
                     'updatedAt' => $chapter->updated_at,
+                    'views' => $chapter->views_count,
                 ];
             })->toArray(),
 

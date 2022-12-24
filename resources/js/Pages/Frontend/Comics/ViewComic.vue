@@ -6,7 +6,33 @@
         name="description"
         :content='props.comic.description'
       />
+      <meta name="image" :content="props.comic.chapterthumb[0].responsive" />
+      <meta property="og:type" content="website" />
 
+      <meta
+        property="og:title"
+        :content="props.comic.title"
+      />
+      <meta
+        property="og:description"
+        :content="props.comic.description"
+      />
+      <meta property="og:image" :content="props.comic.chapterthumb[0].responsive" />
+      <meta
+        property="og:url"
+        :content="route().current()"
+      />
+
+
+      <meta name="twitter:title" :content="props.comic.title" />
+    <meta name="twitter:description" :content="props.comic.description" />
+    <meta name="twitter:image" :content="props.comic.chapterthumb[0].responsive" />
+
+
+      <meta
+        property="twitter:url"
+        :content="route().current()"
+      />
 
     </Head>
     <div class="max-w-screen-2xl py-10 w-full min-h-screen mx-auto">

@@ -4,15 +4,33 @@
       <title>HomePage - {{ $page.props.sitedata.site_name }}</title>
       <meta
         name="description"
+        content="comics: HomePage, A place to read manga, manhua and manwha for free of cost."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="HomePage, where you can read comics for free." />
+      <meta
+        property="og:description"
+        content="comics: HomePage, A place to read manga, manhua and manwha for free of cost."
+      />
+      <!-- <meta property="og:image" content="LINK TO THE IMAGE FILE" /> -->
+      <meta property="og:url" :content="$page.props.sitedata.site_url" />
+
+      <meta
+        name="twitter:title"
+        content="HomePage, where you can read comics for free."
+      />
+      <meta
+        name="twitter:description"
         content="webcomics: HomePage, A place to read manga, manhua and manwha for free of cost."
       />
-
-
     </Head>
     <div class="max-w-screen-xl py-10 w-full md:mx-auto">
-      <div v-if="props.carousels" class="rounded-lg">
-        <CarouselCard :carousels="props.carousels" />
+      <div v-if="$page.props.sitedata.carousel">
+        <div v-if="props.carousels" class="rounded-lg">
+          <CarouselCard :carousels="props.carousels" />
+        </div>
       </div>
+
       <div class="flex mt-5">
         <div class="w-full">
           <div class="flex flex-col my-2">
@@ -33,10 +51,9 @@
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
 import ReaderLayout from "@/Layouts/ReaderLayout.vue";
-import ComicCard from "@/components/frontend/ComicCard.vue";
-import ComicRecommended from "@/components/frontend/ComicRecommended.vue";
+
 import CarouselCard from "../../components/frontend/carousel/CarouselCard.vue";
-import SideBar from "../../components/frontend/homepage/SideBar.vue";
+
 import HotUpdates from "../../components/frontend/homepage/HotUpdates.vue";
 import LatestUpdates from "../../components/frontend/homepage/LatestUpdates.vue";
 const props = defineProps({
@@ -57,7 +74,6 @@ const props = defineProps({
     default: null,
   },
 });
-console.log(props.latest);
 </script>
 <style>
 .comicChapter {

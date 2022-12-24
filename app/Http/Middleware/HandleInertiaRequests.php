@@ -43,6 +43,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $ads_global =  cache()->remember('ads_global', now()->addMinutes(30), function () {
+            $ads_above_rec = \App\Helpers\Advertisement::globalAboveFooter();
+            $ads_below_rec = \App\Helpers\Advertisement::globalBelowNav();
+
+            return [
+                'above_rec' => $ads_above_rec,
+                'below_rec' => $ads_below_rec,
+            ];
+        });
         return array_merge(parent::share($request), [
             'ziggy' => function () {
                 return (new Ziggy)->toArray();
@@ -55,6 +64,7 @@ class HandleInertiaRequests extends Middleware
                 //TODO :- CACHE THIS MF
                 return app(GeneralSettings::class);
             },
+            'ads_global' => $ads_global,
             'auth' => function () use ($request) {
                 return [
                     'user' => $request->user() ? [

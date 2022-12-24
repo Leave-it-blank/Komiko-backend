@@ -19,6 +19,9 @@ class ChapterController extends Controller
 {
     public function viewChapterReader(Comic $comic, Volume $volume, Chapter $chapter)
     {
+        views($chapter)
+            ->collection('comics_chapter_view')
+            ->record();
         $data =  cache()->remember('comic_' . $comic->titleSlug . $volume->id . $chapter->id, now()->addMinutes(2), function () use ($chapter, $volume, $comic) {
             $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->with('media')->get();
 
@@ -63,6 +66,7 @@ class ChapterController extends Controller
             "pages" =>   $data["0"]["pages_data"],
             "chapter" => $chapter,
             "ctitle" => $comic->title,
+            "cdesc" => $comic->description,
             "c_vol_no" => $volume->number,
             "c_chap_no" => $chapter->number,
             "nextChapter" =>  $data["0"]["nextChapter"],

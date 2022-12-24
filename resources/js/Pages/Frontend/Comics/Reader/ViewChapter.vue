@@ -4,10 +4,36 @@
       <title>{{ ctitle }} - {{ $page.props.sitedata.site_name }}</title>
       <meta
         name="description"
-        content="Manga Pages for {{ ctitle }} Vol {{ c_vol_no }} Chapter {{  c_chap_no }}"
+        :content="
+          cdesc + 'Comic Pages for' + ctitle + 'Vol' + c_vol_no + 'Chapter' + c_chap_no
+        "
       />
       <meta name="next" :content="nextChapter" />
       <meta name="previous" :content="previousChapter" />
+
+      <meta
+        name="image"
+        v-for="page in props.pages"
+        :content="page.thumb[0].responsive"
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" :content="ctitle" />
+      <meta property="og:description" :content="cdesc" />
+      <meta
+        property="og:image"
+        v-for="page in props.pages"
+        :content="page.thumb[0].responsive"
+      />
+      <meta property="og:url" :content="route().current()" />
+      <meta name="twitter:title" :content="ctitle" />
+      <meta name="twitter:description" :content="cdesc" />
+      <meta
+        name="twitter:image"
+        v-for="page in props.pages"
+        :content="page.thumb[0].responsive"
+      />
+
+      <meta property="twitter:url" :content="route().current()" />
     </Head>
     <div class="container mx-auto max-w-6xl pt-10 px-1">
       <div class="flex justify-between py-3 px-2 items-center">
@@ -23,11 +49,7 @@
         <div
           class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-start"
         >
-          <Link
-            :href="previousChapter"
-            v-if="previousChapter !== null"
-            class=" "
-          >
+          <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous Chapter
           </Link>
           <button v-else>No Previous Chapter</button>
@@ -64,11 +86,7 @@
         <div
           class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-start"
         >
-          <Link
-            :href="previousChapter"
-            v-if="previousChapter !== null"
-            class=" "
-          >
+          <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous Chapter
           </Link>
           <button v-else>No Previous Chapter</button>
@@ -115,8 +133,6 @@
 
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import { computed, ref, onMounted } from "vue";
-import { useComicStore } from "@/stores/comic";
 import ReaderLayout from "@/Layouts/ReaderLayout.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 const props = defineProps({
@@ -125,6 +141,10 @@ const props = defineProps({
     default: null,
   },
   ctitle: {
+    type: String,
+    default: null,
+  },
+  cdesc: {
     type: String,
     default: null,
   },

@@ -20,7 +20,19 @@ class ComicController extends Controller
     public function viewComic(Comic  $comic)
     {
         //Cache::forget('comic_' . $comic->titleSlug);
+        views($comic)
+            ->collection('comics_homepage_view')
+            ->record();
 
+        $ads_rec =  cache()->remember('ads_comics', now()->addMinutes(30), function () {
+            $ads_above_rec = \App\Helpers\Advertisement::comicAboveComments();
+            $ads_below_rec = \App\Helpers\Advertisement::comicBelowDescription();
+
+            return [
+                'above_rec' => $ads_above_rec,
+                'below_rec' => $ads_below_rec,
+            ];
+        });
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;
             if ($comic->volumes->count() != 0) {
@@ -117,6 +129,7 @@ class ComicController extends Controller
                 'chapterthumb' =>  $data["0"]["chapterthumb"],
                 'volumes' => $data["0"]["volumes"],
                 "titleSlug" => $data["0"]["slug"],
+                'ads' => $ads_rec,
             ],
 
         ]);

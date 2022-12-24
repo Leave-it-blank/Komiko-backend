@@ -1,9 +1,9 @@
 <template>
-  <div
-    class="mx-8 my-3 pb-2 text-2xl capitalize font-catamaran font-bold text-right line-clamp-2"
+  <h1
+    class="mx-8 my-3 pb-2 text-2xl capitalize font-catamaran font-bold text-right line-clamp-3"
   >
     {{ comic.title }}
-  </div>
+  </h1>
   <div
     class="flex flex-col md:flex-row justify-center sm:justify-evenly gap-10 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 md:px-24 px-2 xl:px-5 rounded-lg min-w-fit"
   >
@@ -78,7 +78,7 @@
         class="flex flex-col justify-between p-2 rounded-md my-2 pl-3 border border-zinc-100 dark:border-zinc-800"
         v-for="volume in props.comic.volumes"
       >
-        <div class="my-1">Volume {{ " " + volume.number }}</div>
+        <h4 class="my-1">Volume {{ " " + volume.number }}</h4>
         <div v-for="chapter in volume.chapters">
           <Link
             :href="
@@ -100,7 +100,7 @@
                 ></div>
               </div>
               <div
-                class="text-md captalize font-catamaran flex text-center pr-3 text-xs sm:text-md md:text-lg 2xl:text-xl"
+                class="text-md captalize font-catamaran flex text-center pr-3 text-sm sm:text-md md:text-lg 2xl:text-xl"
               >
                 {{ "Chapter " + chapter.number + ": " + chapter.name }}
               </div>

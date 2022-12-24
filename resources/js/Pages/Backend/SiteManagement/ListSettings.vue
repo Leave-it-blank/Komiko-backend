@@ -210,6 +210,9 @@ function setPatreonModal() {
                         <option class="p-2 m-2 bg-gray-800" value="database">
                           Database
                         </option>
+                        <option class="p-2 m-2 bg-gray-800" value="file">
+                          File
+                        </option>
                       </select>
                     </div>
                   </div>

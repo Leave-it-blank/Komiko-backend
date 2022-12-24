@@ -1,14 +1,13 @@
 <script setup>
-import { computed } from 'vue'
-import { useMainStore } from '@/stores/main'
-import BaseLevel from '@/components/backend/BaseLevel.vue'
-import JustboilLogo from '@/components/backend/JustboilLogo.vue'
+import { computed } from "vue";
+import { useMainStore } from "@/stores/main";
+import BaseLevel from "@/components/backend/BaseLevel.vue";
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
-const year = computed(() => new Date().getFullYear())
+const year = computed(() => new Date().getFullYear());
 
-const isFooterBarVisible = computed(() => !mainStore.isFullScreen)
+const isFooterBarVisible = computed(() => !mainStore.isFullScreen);
 </script>
 
 <template>
@@ -18,20 +17,13 @@ const isFooterBarVisible = computed(() => !mainStore.isFullScreen)
   >
     <BaseLevel>
       <div class="text-center md:text-left">
-        <b>&copy; {{ year }}, <a
-          href="https://justboil.me/"
-          target="_blank"
-        >JustBoil.me</a>.</b>
-        Get more with <a
-          href="https://justboil.me/tailwind-admin-templates/vue-dashboard/"
-          target="_blank"
-          class="text-blue-600"
-        >Premium version</a>
+        <b
+          >&copy; {{ year }}, <a href="#" target="_blank">2022@Mimo</a> -
+          BLaaS</b
+        >
       </div>
       <div class="md:py-2">
-        <a href="https://justboil.me">
-          <JustboilLogo class="w-auto h-8 md:h-6" />
-        </a>
+        <a href="#"> TOP </a>
       </div>
     </BaseLevel>
   </footer>

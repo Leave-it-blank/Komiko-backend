@@ -1,42 +1,44 @@
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const props = defineProps({
   options: {
     type: Object,
-    default: () => {}
+    default: () => {},
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
-    default: 'checkbox'
+    default: "checkbox",
   },
   column: Boolean,
   modelValue: {
     type: [Object, Array, String, Number],
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
 const computedValue = computed({
   get: () => props.modelValue,
-  set: value => {
-    emit('update:modelValue', value)
-  }
-})
+  set: (value) => {
+    emit("update:modelValue", value);
+  },
+});
 
-const inputType = computed(() => props.type === 'radio' ? 'radio' : 'checkbox')
+const inputType = computed(() =>
+  props.type === "radio" ? "radio" : "checkbox"
+);
 </script>
 
 <template>
   <div
     class="flex justify-start flex-wrap -mb-3"
-    :class="{'flex-col':column}"
+    :class="{ 'flex-col': column }"
   >
     <label
       v-for="(value, key) in options"
@@ -49,9 +51,9 @@ const inputType = computed(() => props.type === 'radio' ? 'radio' : 'checkbox')
         :type="inputType"
         :name="name"
         :value="key"
-      >
-      <span class="check" />
-      <span class="control-label">{{ value }}</span>
+      />
+      <span class="check rounded-full" />
+      <span class="control-label px-2">{{ value }}</span>
     </label>
   </div>
 </template>

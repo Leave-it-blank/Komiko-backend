@@ -18,6 +18,7 @@ const prop = defineProps({
     default: null,
   },
 });
+
 function dateshow(value) {
   return moment(value).fromNow(); // here u modify data
 }
@@ -128,6 +129,7 @@ const checked = (isChecked, client) => {
         <th v-if="prop.checkable" />
 
         <th>Title</th>
+        <th>Views</th>
         <th>isLocked</th>
         <th>isHidden</th>
         <th>Last Updated</th>
@@ -148,6 +150,9 @@ const checked = (isChecked, client) => {
 
         <td data-label="Name">
           {{ client.title }}
+        </td>
+        <td data-label="Name">
+          {{ client.views }}
         </td>
         <td data-label="isLocked">
           {{ client.isLocked ? "Locked" : "open" }}

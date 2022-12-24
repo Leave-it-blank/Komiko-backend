@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative px-2">
     <swiper
       :pagination="{
         dynamicBullets: true,
@@ -56,6 +56,8 @@ export default {
 .swiper {
   width: 100%;
   height: 100%;
+  max-width: 1180px;
+  max-height: 450px;
 }
 
 .swiper-slide {
