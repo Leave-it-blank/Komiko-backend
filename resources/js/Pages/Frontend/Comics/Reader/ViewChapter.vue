@@ -70,12 +70,21 @@
           <button v-else>No Next Chapter</button>
         </div>
       </div>
+      <div
+        v-html="props.ads_reader.ads_reader_above_content"
+        class="flex flex-col my-2"
+      ></div>
       <div class="min-h-screen">
-        <div v-for="page in props.pages">
+        <div v-for="(page, index) in props.pages">
           <div
             class="select-none w-full"
             v-html="page.thumb[0].responsive"
             :alt="page.thumb[0].alt"
+          ></div>
+          <div
+            v-if="index === 3"
+            v-html="props.ads_reader.ads_reader_inside_content"
+            class="flex flex-col my-2"
           ></div>
         </div>
       </div>
@@ -107,6 +116,10 @@
           <button v-else>No Next Chapter</button>
         </div>
       </div>
+      <div
+        v-html="props.ads_reader.ads_reader_below_content"
+        class="flex flex-col my-2"
+      ></div>
       <div class="py-10 container flex flex-col">
         <h3
           class="text-xl font-roboto p-1 w-full font-bold text-gray-900 dark:text-gray-100 text-start"
@@ -124,7 +137,7 @@
         <div
           v-on:click="loaddisq()"
           id="disqus_thread"
-          class="dark:text-purple-400"
+          class="dark:text-purple-400 px-2"
         ></div>
       </div>
     </div>
@@ -169,6 +182,10 @@ const props = defineProps({
     default: null,
   },
   pages: {
+    type: Object,
+    default: null,
+  },
+  ads_reader: {
     type: Object,
     default: null,
   },

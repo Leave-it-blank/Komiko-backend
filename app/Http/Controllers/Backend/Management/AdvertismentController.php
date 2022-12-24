@@ -27,6 +27,10 @@ class AdvertismentController extends Controller
         $this->authorize('view management',    Auth::user());
         try {
             $advertisement->is_enabled == true ? $advertisement->update(['is_enabled' => false]) : $advertisement->update(['is_enabled' => true]);
+            Cache::forget('ads_homepage');
+            Cache::forget('ads_comic');
+            Cache::forget('ads_global');
+            Cache::forget('ads_ads_reader');
             return redirect()->back()->with('message', 'Updated Successfully.');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Update unsuccessful.');
@@ -59,6 +63,7 @@ class AdvertismentController extends Controller
             Cache::forget('ads_homepage');
             Cache::forget('ads_comic');
             Cache::forget('ads_global');
+            Cache::forget('ads_ads_reader');
             return redirect()->back()->with('message', 'Updated Successfully.');
         } catch (Exception $e) {
             throw $e;

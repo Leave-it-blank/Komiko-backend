@@ -25,7 +25,7 @@ class HomapageController extends Controller
         Cache::forget('ads_comic');
         Cache::forget('ads_global');
 
-        $ads_rec =  cache()->remember('ads_homepage', now()->addMinutes(30), function () {
+        $ads_home =  cache()->remember('ads_homepage', now()->addMinutes(30), function () {
             $ads_above_rec = \App\Helpers\Advertisement::aboveRecommended();
             $ads_below_rec = \App\Helpers\Advertisement::belowRecommended();
 
@@ -128,7 +128,7 @@ class HomapageController extends Controller
             'latest' => $latest,
             'recommended' =>   $recommended,
             'carousels' =>   $carousel,
-            'ads' => $ads_rec,
+            'ads_home' => $ads_home,
 
         ]);
         /*  return Inertia::render('Frontend/HomePage', [

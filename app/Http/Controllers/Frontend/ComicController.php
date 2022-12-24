@@ -23,16 +23,24 @@ class ComicController extends Controller
         views($comic)
             ->collection('comics_homepage_view')
             ->record();
-
-        $ads_rec =  cache()->remember('ads_comics', now()->addMinutes(30), function () {
-            $ads_above_rec = \App\Helpers\Advertisement::comicAboveComments();
-            $ads_below_rec = \App\Helpers\Advertisement::comicBelowDescription();
+        Cache::forget('ads_comic');
+        $ads_comic =  cache()->remember('ads_comic', now()->addMinutes(30), function () {
+            $ads_above_comment = \App\Helpers\Advertisement::comicAboveComments();
+            $ads_below_desc = \App\Helpers\Advertisement::comicBelowDescription();
+            $ads_inside_content = \App\Helpers\Advertisement::comicInsideContent();
+            $ads_below_content = \App\Helpers\Advertisement::comicBelowContent();
+            $ads_below_title = \App\Helpers\Advertisement::comicBelowTitle();
 
             return [
-                'above_rec' => $ads_above_rec,
-                'below_rec' => $ads_below_rec,
+                'ads_above_comment' => $ads_above_comment,
+                'ads_below_desc' => $ads_below_desc,
+                'ads_inside_content' => $ads_inside_content,
+                'ads_below_content' => $ads_below_content,
+                'ads_below_title' => $ads_below_title,
+
             ];
         });
+
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;
             if ($comic->volumes->count() != 0) {
@@ -129,8 +137,8 @@ class ComicController extends Controller
                 'chapterthumb' =>  $data["0"]["chapterthumb"],
                 'volumes' => $data["0"]["volumes"],
                 "titleSlug" => $data["0"]["slug"],
-                'ads' => $ads_rec,
-            ],
+
+            ],   'ads_comic' => $ads_comic,
 
         ]);
     }

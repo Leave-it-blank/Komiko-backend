@@ -36,8 +36,30 @@
           <div class="flex flex-col my-2">
             <LatestUpdates :comics="props.latest" />
           </div>
+          <div v-html="props.ads_home.above_rec" class="flex flex-col my-2"></div>
           <div class="flex flex-col my-2">
             <HotUpdates :comics="props.recommended" />
+          </div>
+          <div v-html="props.ads_home.below_rec" class="flex flex-col my-2"></div>
+          <div class="py-10 container flex flex-col">
+            <h3
+              class="text-xl font-roboto p-1 w-full font-bold text-gray-900 dark:text-gray-100 text-start"
+            >
+              {{ "Comment Section" }}
+            </h3>
+            <div class="py-3"></div>
+            <button
+              id="disq_load"
+              v-on:click="loaddisq()"
+              class="p-2 bg-purple-500 text-white rounded-lg center"
+            >
+              Click to View Comment
+            </button>
+            <div
+              v-on:click="loaddisq()"
+              id="disqus_thread"
+              class="dark:text-purple-400 px-2"
+            ></div>
           </div>
         </div>
         <!-- <div class="2xl:w-1/3 mx-5">
@@ -51,7 +73,7 @@
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
 import ReaderLayout from "@/Layouts/ReaderLayout.vue";
-
+import { usePage } from "@inertiajs/inertia-vue3";
 import CarouselCard from "../../components/frontend/carousel/CarouselCard.vue";
 
 import HotUpdates from "../../components/frontend/homepage/HotUpdates.vue";
@@ -73,7 +95,28 @@ const props = defineProps({
     type: Object,
     default: null,
   },
+  ads_home: {
+    type: Object,
+    default: null,
+  },
 });
+
+function loaddisq() {
+  document.getElementById("disq_load").style.display = "none";
+  var disqus_config = function () {
+    this.page.url = route().current(); // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "HomePage"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  var disqus_shortname = usePage().props.value.sitedata.disqus_shortname;
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://" + disqus_shortname + ".disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+}
 </script>
 <style>
 .comicChapter {

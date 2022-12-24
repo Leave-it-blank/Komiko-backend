@@ -60,6 +60,19 @@ class ChapterController extends Controller
             );
             return $data;
         });
+        Cache::forget('ads_reader');
+        $ads_reader =  cache()->remember('ads_reader', now()->addMinutes(30), function () {
+            $ads_reader_above_content = \App\Helpers\Advertisement::readerAboveContent();
+            $ads_reader_below_content = \App\Helpers\Advertisement::readerBelowContent();
+            $ads_reader_inside_content = \App\Helpers\Advertisement::readerInsideContent();
+
+
+            return [
+                'ads_reader_inside_content' => $ads_reader_inside_content,
+                'ads_reader_below_content' => $ads_reader_below_content,
+                'ads_reader_above_content' => $ads_reader_above_content,
+            ];
+        });
 
 
         return Inertia::render('Frontend/Comics/Reader/ViewChapter', [
@@ -72,6 +85,8 @@ class ChapterController extends Controller
             "nextChapter" =>  $data["0"]["nextChapter"],
             "previousChapter" => $data["0"]["previousChapter"],
             "home" => route('reader.comic.view', ['comic' => $comic->titleSlug]),
+            'ads_reader' => $ads_reader,
+
         ]);
     }
 }

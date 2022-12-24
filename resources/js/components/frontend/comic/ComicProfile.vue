@@ -29,7 +29,11 @@
     <div
       class="max-w-md min-w-fit w-full mx-auto md:mr-8 xl:mx-auto md:px-4 relative gap-3 h-16 md:h-auto"
     >
-      <div id="ads_comic_profile"></div>
+      <div
+        id="ads_comic_profile"
+        v-html="props.ads_comic.ads_below_title"
+        class="hidden md:block"
+      ></div>
       <div class="absolute bottom-0 flex justify-around w-full text-white">
         <button
           class="py-2 px-4 bg-purple-500 rounded-md m-3"
@@ -38,9 +42,7 @@
           Bookmark
         </button>
         <Link :href="props.comic.first_ch_url">
-          <button class="py-2 px-4 bg-lime-700 rounded-md m-3">
-            Read First Chapter
-          </button>
+          <button class="py-2 px-4 bg-lime-700 rounded-md m-3">Read First Chapter</button>
         </Link>
       </div>
     </div>
@@ -59,15 +61,12 @@
     </h3>
   </div>
 
-  <div
-    id="ads-comic-middle"
-    class="sm:px-10 px-3 my-2 mx-auto py-5 rounded-lg min-w-fit"
-  >
-    Reserved For ads
+  <div id="ads-comic-middle" class="px-3 mb-2 sm:mb-5 mx-auto rounded-lg min-w-fit">
+    <div v-html="props.ads_comic.ads_below_desc" class="flex flex-col my-2"></div>
   </div>
 
   <div
-    class="sm:px-10 px-3 my-2 mx-auto sm:mb-10 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
+    class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
     <h3 class="text-xl font-roboto p-1 w-full text-justify max-w-md font-bold">
       {{ "Content" }}
@@ -76,10 +75,16 @@
     <div class="flex flex-col mx-2">
       <div
         class="flex flex-col justify-between p-2 rounded-md my-2 pl-3 border border-zinc-100 dark:border-zinc-800"
-        v-for="volume in props.comic.volumes"
+        v-for="(volume, index) in props.comic.volumes"
       >
         <h4 class="my-1">Volume {{ " " + volume.number }}</h4>
-        <div v-for="chapter in volume.chapters">
+
+        <div v-for="(chapter, index) in volume.chapters">
+          <div
+            v-if="index === 5"
+            v-html="props.ads_comic.ads_inside_content"
+            class="flex flex-col my-2"
+          ></div>
           <Link
             :href="
               route(chapter.url, {
@@ -116,6 +121,10 @@
 import { Link } from "@inertiajs/inertia-vue3";
 const props = defineProps({
   comic: {
+    type: Object,
+    default: null,
+  },
+  ads_comic: {
     type: Object,
     default: null,
   },
