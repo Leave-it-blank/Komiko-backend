@@ -20,7 +20,6 @@
             content="High quality comics and more with {{$globalsettings->site_name}}!">
             <link data-n-head="ssr" rel="icon" type="image/x-icon" href="{{$globalsettings->favicon}}">
 
-
             <link data-n-head="ssr"  rel="canonical" href="{{$globalsettings->site_url}}" />
 
             <meta data-n-head="ssr"  name="og:site_url" content="{{$globalsettings->site_url}}" />

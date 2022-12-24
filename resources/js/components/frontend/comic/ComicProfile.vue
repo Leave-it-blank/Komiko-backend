@@ -73,44 +73,39 @@
     </h3>
 
     <div class="flex flex-col mx-2">
-      <div
-        class="flex flex-col justify-between p-2 rounded-md my-2 pl-3 border border-zinc-100 dark:border-zinc-800"
-        v-for="(volume, index) in props.comic.volumes"
-      >
-        <h4 class="my-1">Volume {{ " " + volume.number }}</h4>
-
-        <div v-for="(chapter, index) in volume.chapters">
-          <div
-            v-if="index === 5"
-            v-html="props.ads_comic.ads_inside_content"
-            class="flex flex-col my-2"
-          ></div>
-          <Link
-            :href="
-              route(chapter.url, {
-                comic: props.comic.titleSlug,
-                volume: volume.number,
-                chapter: chapter.number,
-              })
-            "
-          >
-            <div
-              class="flex flex-row justify-between my-2 items-center cursor-pointer dark:text-gray-400 bg-white dark:bg-black p-3 rounded-md"
+      <div v-for="(vol, index) in props.comic.volumes">
+        <div
+          v-if="index === 1"
+          v-html="props.ads_comic.ads_inside_content"
+          class="flex flex-col my-2"
+        ></div>
+        <h4 class="my-1">{{ "Volume " + vol.number }}</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <div v-for="(ch, ind) in vol.chapters">
+            <Link
+              :href="
+                route(ch.url, {
+                  comic: props.comic.titleSlug,
+                  volume: vol.number,
+                  chapter: ch.number,
+                })
+              "
             >
-              <div class=" ">
+              <div
+                class="col-span-1 flex flex-row justify-start items-center p-3 rounded-md bg-gray-100 dark:bg-black gap-2"
+              >
                 <div
-                  class="image select-none first-letter:rounded-xl"
+                  class="image select-none first-letter:rounded-xl shrink-0"
                   v-html="props.comic.chapterthumb[0].responsive"
                   :alt="props.comic.titleSlug"
                 ></div>
+                <div class="flex flex-wrap justify-evenly items-center">
+                  <div>{{ "Chapter " + ch.number + " : " }}</div>
+                  <div class="text-sm text-gray-300 ml-2">{{ ch.name }}</div>
+                </div>
               </div>
-              <div
-                class="text-md captalize font-catamaran flex text-center pr-3 text-sm sm:text-md md:text-lg 2xl:text-xl"
-              >
-                {{ "Chapter " + chapter.number + ": " + chapter.name }}
-              </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

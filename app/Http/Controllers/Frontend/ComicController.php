@@ -40,6 +40,7 @@ class ComicController extends Controller
 
             ];
         });
+        Cache::forget('comic_' . $comic->titleSlug);
 
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;
@@ -77,7 +78,7 @@ class ComicController extends Controller
             $chapterthumb =  $data_thumb->map(function ($media) {
                 return [
                     'id' => $media->id,
-                    'responsive' => $media()->attributes(['class' => 'rounded-md h-20 w-28 select-none'])->toHtml(),
+                    'responsive' => $media()->attributes(['class' => 'rounded-md h-10 w-12 select-none'])->toHtml(),
                     'alt' => $media->name,
 
                 ];

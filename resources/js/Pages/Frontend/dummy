@@ -64,3 +64,43 @@
 
       </div>
     </div>
+  <!-- <div
+        class="flex flex-col justify-between p-2 rounded-md my-2 pl-3 border border-zinc-100 dark:border-zinc-800"
+        v-for="(volume, index) in props.comic.volumes"
+      >
+        <h4 class="my-1">Volume {{ " " + volume.number }}</h4>
+
+        <div v-for="(chapter, index) in volume.chapters">
+          <div
+            v-if="index === 5"
+            v-html="props.ads_comic.ads_inside_content"
+            class="flex flex-col my-2"
+          ></div>
+          <Link
+            :href="
+              route(chapter.url, {
+                comic: props.comic.titleSlug,
+                volume: volume.number,
+                chapter: chapter.number,
+              })
+            "
+          >
+            <div
+              class="flex flex-row justify-between my-2 items-center cursor-pointer dark:text-gray-400 bg-white dark:bg-black p-3 rounded-md"
+            >
+              <div class=" ">
+                <div
+                  class="image select-none first-letter:rounded-xl"
+                  v-html="props.comic.chapterthumb[0].responsive"
+                  :alt="props.comic.titleSlug"
+                ></div>
+              </div>
+              <div
+                class="text-md captalize font-catamaran flex text-center pr-3 text-sm sm:text-md md:text-lg 2xl:text-xl"
+              >
+                {{ "Chapter " + chapter.number + ": " + chapter.name }}
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div> -->

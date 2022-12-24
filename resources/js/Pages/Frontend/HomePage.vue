@@ -41,25 +41,26 @@
             <HotUpdates :comics="props.recommended" />
           </div>
           <div v-html="props.ads_home.below_rec" class="flex flex-col my-2"></div>
-          <div class="py-10 container flex flex-col">
+          <div class="py-10 container flex flex-col mx-auto">
             <h3
               class="text-xl font-roboto p-1 w-full font-bold text-gray-900 dark:text-gray-100 text-start"
             >
               {{ "Comment Section" }}
             </h3>
-            <div class="py-3"></div>
-            <button
-              id="disq_load"
-              v-on:click="loaddisq()"
-              class="p-2 bg-purple-500 text-white rounded-lg center"
-            >
-              Click to View Comment
-            </button>
-            <div
-              v-on:click="loaddisq()"
-              id="disqus_thread"
-              class="dark:text-purple-400 px-2"
-            ></div>
+            <div class="py-3">
+              <button
+                id="disq_load"
+                v-on:click="loaddisq()"
+                class="p-2 bg-purple-500 text-white rounded-lg center w-full"
+              >
+                Click to View Comment
+              </button>
+              <div
+                v-on:click="loaddisq()"
+                id="disqus_thread"
+                class="dark:text-purple-400 px-2 w-full"
+              ></div>
+            </div>
           </div>
         </div>
         <!-- <div class="2xl:w-1/3 mx-5">
