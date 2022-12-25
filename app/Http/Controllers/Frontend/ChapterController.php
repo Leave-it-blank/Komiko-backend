@@ -44,7 +44,7 @@ class ChapterController extends Controller
                     "thumb" => $page->getMedia('page')->map(function ($media) {
                         return [
                             'id' => $media->id,
-                            'responsive' => $media()->attributes(['class' => 'w-full'])->toHtml(),
+                            'responsive' => $media()->attributes(['class' => 'w-full' , 'alt' => $media->name])->toHtml(),
                             'alt' => $media->name,
 
                         ];

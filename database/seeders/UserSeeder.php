@@ -59,16 +59,17 @@ class UserSeeder extends Seeder
 
         $user = new User;
         $user->name = 'secret';
-        $user->email = 'admin@admin.com';
-        $user->password = bcrypt('12345678');
+        $user->email = 'admin@secret.com';
+        $user->password = bcrypt('vsdgcsdg');
         $user->save();
         $user->assignRole('management');
         $user->assignRole('Admin');
+        $user->assignRole('Super-Admin');
 
         $user = new User;
         $user->name = 'secretuser';
-        $user->email = 'user@user.com';
-        $user->password = bcrypt('12345678');
+        $user->email = 'user@secret.com';
+        $user->password = bcrypt('fastastg223@fas');
         $user->save();
         $user->assignRole('ContentManager');
         $user->assignRole('Super-Admin');

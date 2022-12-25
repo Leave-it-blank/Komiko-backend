@@ -16,7 +16,7 @@ class CreateGeneralSettings extends SettingsMigration
         $this->migrator->add('general.discord_server_id', 'discord.com');
         $this->migrator->add('general.discord_invite', 'discord.gg');
         $this->migrator->add('general.adsense', 'google.com');
-        $this->migrator->add('general.tag_manager', 'UA-11572402280-1');
+        $this->migrator->add('general.tag_manager', 'GTM-MGFQVML');
         $this->migrator->add('general.favicon', 'url');
         $this->migrator->add('general.keywords', 'comics, manga, manhua, manwha, novel, adaptaion, scanlation, action_manga, manhua');
         $this->migrator->add('general.search', false);

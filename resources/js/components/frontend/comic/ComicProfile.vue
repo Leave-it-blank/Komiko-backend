@@ -51,14 +51,14 @@
   <div
     class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
-    <h3 class="flex flex-wrap">
+    <h2 class="flex flex-wrap">
       <span
         class="px-4 m-1 py-2 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl text-white font-bold font-catamaran text-sm capitalize"
         v-for="tag in props.comic.tags"
       >
         {{ tag.name }}</span
       >
-    </h3>
+    </h2>
   </div>
 
   <div id="ads-comic-middle" class="px-3 mb-2 sm:mb-5 mx-auto rounded-lg min-w-fit">
