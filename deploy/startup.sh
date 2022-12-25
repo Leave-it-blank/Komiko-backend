@@ -5,7 +5,7 @@ cd /workspace
 echo "Starting"
 
 echo ls -la
-command sudo cp .env.example .env
+sudo cp .env.example .env
 
 echo "Composer Started"
 sudo composer install 
@@ -37,4 +37,4 @@ echo "Server Ready"
 echo "migrate db from docker" 
 echo "Queue start from docker "
 #php artisan horizon
-command php artisan horizon -d
+#command php artisan horizon -d
