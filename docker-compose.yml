@@ -16,6 +16,8 @@ services:
         PHP_INI_POST_MAX_SIZE: 4096M
         PHP_INI_UPLOAD_MAX_FILESIZE: 2G
         PHP_MAX_EXECUTION_TIME: 3600
+    volumes:
+      - ./storage:/workspace/storage
     networks:
       - lara
     links:
