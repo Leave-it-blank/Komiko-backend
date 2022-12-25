@@ -3,5 +3,5 @@
 @import "tailwind/_utilities.css";
 
 .dark{
-  background: black !important;
+  background: rgb(21, 21, 21) !important;
 }
