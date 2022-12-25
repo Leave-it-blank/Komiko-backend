@@ -1,13 +1,10 @@
 version: "3"
 services:
   app:
-    build: ./deploy
+    build: ./
     env_file: ./.env
     ports:
       - 80:80
-    volumes:
-      - .:/workspace
-      - ./deploy/startup.sh:/etc/container/startup.sh 
     environment:
         APP_ENV: production
         PHP_EXTENSION_XDEBUG: 0
@@ -15,9 +12,9 @@ services:
         PHP_EXTENSION_PDO_PGSQL: 1
         PHP_EXTENSION_GD: 1
         APACHE_DOCUMENT_ROOT: /workspace/public
-        PHP_MEMORY_LIMIT: 4096M
-        PHP_POST_MAX_SIZE: 4096M
-        PHP_UPLOAD_MAX_FILESIZE: 4096M
+        PHP_INI_MEMORY_LIMIT: 4096M
+        PHP_INI_POST_MAX_SIZE: 4096M
+        PHP_INI_UPLOAD_MAX_FILESIZE: 2G
         PHP_MAX_EXECUTION_TIME: 3600
     networks:
       - lara
