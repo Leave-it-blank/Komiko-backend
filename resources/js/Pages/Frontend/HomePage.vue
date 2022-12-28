@@ -41,12 +41,12 @@
             <HotUpdates :comics="props.recommended" />
           </div>
           <div v-html="props.ads_home.below_rec" class="flex flex-col my-2"></div>
-          <div class="py-10 container flex flex-col mx-auto">
-            <h3
-              class="text-xl font-roboto p-1 w-full font-bold text-gray-900 dark:text-gray-100 text-start"
+          <div class="py-10 container flex flex-col mx-auto px-2 sm:px-10">
+            <h1
+              class="text-3xl px-2 pt-10 pb-2 font-roboto font-bold capitalize dark:text-white"
             >
               {{ "Comment Section" }}
-            </h3>
+            </h1>
             <div class="py-3">
               <button
                 id="disq_load"

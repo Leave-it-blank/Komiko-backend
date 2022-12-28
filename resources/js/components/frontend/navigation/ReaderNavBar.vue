@@ -1,10 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <Disclosure
-    as="nav"
-    class="bg-neutral-200 dark:bg-neutral-900"
-    v-slot="{ open }"
-  >
+  <Disclosure as="nav" class="bg-neutral-200 dark:bg-neutral-900" v-slot="{ open }">
     <div class="mx-auto px-2 sm:px-6 lg:px-8 font-roboto">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -21,7 +17,19 @@
           class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start text-purple-800 dark:text-purple-500 font-extrabold capitalize font-roboto dark:hover:text-purple-800 cursor-pointer"
         >
           <div class="flex-shrink-0 flex items-center font-bold text-2xl">
-            {{ $page.props.sitedata.site_name }}
+            <Link :href="route('reader.homepage.view')" class="flex gap-2">
+              <img
+                :class="$page.props.sitedata.site_logo_url === null ? 'hidden' : 'block'"
+                class="h-8 w-16 rounded-md mr-2"
+                :src="$page.props.sitedata.site_logo_url"
+                alt=""
+              />
+              <div
+                :class="$page.props.sitedata.site_logo_url === null ? 'block' : 'hidden'"
+              >
+                {{ $page.props.sitedata.site_name }}
+              </div>
+            </Link>
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
@@ -34,9 +42,24 @@
                     ? 'text-purple-500 dark:text-purple-300 border-b border-purple-900 hover:animate-pulse'
                     : 'hover:animate-pulse text-gray-800  dark:text-gray-300 hover:border-b hover:border-purple-900 hover:text-gray-900 dark:hover:text-white',
                   'px-3 py-2 rounded-md text-sm font-medium',
+                  item.guest ? '' : 'hidden',
                 ]"
                 :aria-current="item.current ? 'page' : undefined"
                 >{{ item.name }}</Link
+              >
+              <a
+                v-for="item in admin_nav"
+                :key="item.name"
+                :href="item.href"
+                :class="[
+                  item.current
+                    ? 'text-purple-500 dark:text-purple-300 border-b border-purple-900 hover:animate-pulse'
+                    : 'hover:animate-pulse text-gray-800  dark:text-gray-300 hover:border-b hover:border-purple-900 hover:text-gray-900 dark:hover:text-white',
+                  'px-3 py-2 rounded-md text-sm font-medium',
+                  item.guest ? '' : 'hidden',
+                ]"
+                :aria-current="item.current ? 'page' : undefined"
+                >{{ item.name }}</a
               >
             </div>
           </div>
@@ -47,7 +70,7 @@
           <button
             v-if="$page.props.sitedata.dark_mode"
             type="button"
-            class="bg-gray-300 dark:bg-gray-800 p-1 rounded-full dark:text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-purple-500"
+            class="p-1 rounded-full dark:text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-purple-500 mt-2"
           >
             <span class="sr-only">View notifications</span>
             <Switch
@@ -65,17 +88,13 @@
           </button>
 
           <!-- Profile dropdown -->
-          <Menu as="div" class="ml-3 relative">
+          <Menu as="div" class="ml-3">
             <div>
               <MenuButton
                 class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
               >
                 <span class="sr-only">Open user menu</span>
-                <img
-                  class="h-8 w-8 rounded-full hover:animate-spin"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
+                <img class="h-8 w-8 rounded-full" :src="profile_pic" alt="" />
               </MenuButton>
             </div>
             <transition
@@ -89,7 +108,7 @@
               <MenuItems
                 class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-black first-line: ring-1 ring-purple-400 ring-opacity-25 focus:outline-none"
               >
-                <MenuItem v-slot="{ active }">
+                <!-- <MenuItem v-slot="{ active }">
                   <Link
                     :href="profile"
                     :class="[
@@ -108,8 +127,8 @@
                     ]"
                     >Settings
                   </Link>
-                </MenuItem>
-                <div v-if="$page.props.auth.user">
+                </MenuItem> -->
+                <!-- <div v-if="$page.props.auth.user">
                   <MenuItem
                     v-slot="{ active }"
                     v-if="
@@ -127,7 +146,7 @@
                       >Dashboard</a
                     >
                   </MenuItem>
-                </div>
+                </div> -->
 
                 <MenuItem v-slot="{ active }" v-if="$page.props.auth.user">
                   <a
@@ -167,10 +186,26 @@
               ? 'bg-purple-600 text-gray-200'
               : 'text-gray-800  dark:text-gray-300 hover:bg-purple-800 font-roboto hover:text-gray-50',
             'block px-3 py-2 rounded-md text-base font-medium',
+            item.guest ? '' : 'hidden',
           ]"
           :aria-current="item.current ? 'page' : undefined"
         >
           <Link :href="item.href"> {{ item.name }} </Link>
+        </DisclosureButton>
+        <DisclosureButton
+          v-for="item in admin_nav"
+          :key="item.name"
+          as="div"
+          :class="[
+            item.current
+              ? 'bg-purple-600 text-gray-200'
+              : 'text-gray-800  dark:text-gray-300 hover:bg-purple-800 font-roboto hover:text-gray-50',
+            'block px-3 py-2 rounded-md text-base font-medium',
+            item.guest ? '' : 'hidden',
+          ]"
+          :aria-current="item.current ? 'page' : undefined"
+        >
+          <a :href="item.href"> {{ item.name }} </a>
         </DisclosureButton>
       </div>
     </DisclosurePanel>
@@ -192,8 +227,8 @@ import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { usePage } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-vue3";
 
 const mainStore = useMainStore();
 const enabled = ref(!mainStore.darkMode);
@@ -201,14 +236,18 @@ const enabled = ref(!mainStore.darkMode);
 const toggleLightDark = (enabled) => {
   mainStore.setDarkMode(enabled);
 };
-const permArray = [
-  "view dashboard",
-  "handle dashboard",
-  "view comic management",
-];
+const permArray = ["view dashboard", "handle dashboard", "view comic management"];
 const logout = () => {
   Inertia.post(route("logout"));
 };
+
+const profile_pic = computed(() => {
+  if (usePage().props.value.user !== null) {
+    return usePage().props.value.user.profile_photo_url;
+  } else {
+    return "https://ui-avatars.com/api/?name=s&color=7F9CF5&background=EBF4FF";
+  }
+});
 const profile = route("profile.show");
 const login = route("login");
 const dashboard = route("dashboard");
@@ -217,16 +256,37 @@ const navigation = [
     name: "Home",
     href: route("reader.homepage.view"),
     current: route().current() === "reader.homepage.view" ? true : false,
+    guest: true,
   },
   {
     name: "Latest",
     href: route("reader.latestpage.view"),
     current: route().current() === "reader.latestpage.view" ? true : false,
+    guest: true,
   },
   {
     name: "Comics",
     href: route("reader.comicspage.view"),
     current: route().current() === "reader.comicspage.view" ? true : false,
+    guest: true,
+  },
+  {
+    name: "Profile",
+    href: route("profile.show"),
+    current: route().current() === "profile.show" ? true : false,
+    guest: usePage().props.value.user !== null ? true : false,
+  },
+];
+const admin_nav = [
+  {
+    name: "Dashboard",
+    href: route("dashboard"),
+    current: route().current() === "dashboard" ? true : false,
+    guest:
+      usePage().props.value.user !== null
+        ? usePage().props.value.auth.user.permissions.filter((x) => permArray.includes(x))
+            .length !== 0
+        : false,
   },
 ];
 </script>

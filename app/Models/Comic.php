@@ -48,6 +48,7 @@ class Comic extends Model implements HasMedia, Viewable
             ->performOnCollections('thumbnail')
             ->width(450)
             ->height(650)
+            ->format('webp')
             ->quality(.7)
             ->Queued();
         $this->addMediaConversion('thumbch')
@@ -55,6 +56,7 @@ class Comic extends Model implements HasMedia, Viewable
             ->width(112)
             ->height(80)
             ->quality(.5)
+            ->format('webp')
             ->Queued();
     }
     public function tags()

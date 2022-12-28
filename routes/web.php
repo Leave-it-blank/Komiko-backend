@@ -37,12 +37,12 @@ use App\Models\Comic;
 });
  */
 
-require __DIR__.'/backend.php';
-require __DIR__.'/frontend.php';
-Route::get('/countdata', function () {
-    $post = Chapter::first() ;
-    views($post)->record();
-    $post = Comic::first() ;
-    views($post)->record();
-    return 'ok';
-});
+require __DIR__ . '/backend.php';
+require __DIR__ . '/frontend.php';
+// Route::get('/countdata', function () {
+//     $post = Chapter::first() ;
+//     views($post)->record();
+//     $post = Comic::first() ;
+//     views($post)->record();
+//     return 'ok';
+// });

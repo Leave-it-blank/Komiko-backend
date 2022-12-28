@@ -21,9 +21,7 @@ class HomapageController extends Controller
 
     public function viewHomepage()
     {
-        Cache::forget('ads_homepage');
-        Cache::forget('ads_comic');
-        Cache::forget('ads_global');
+        Cache::flush();
 
         $ads_home =  cache()->remember('ads_homepage', now()->addMinutes(30), function () {
             $ads_above_rec = \App\Helpers\Advertisement::aboveRecommended();
@@ -59,7 +57,7 @@ class HomapageController extends Controller
                     'thumb' => $chapter->volume->comic->getMedia('thumbnail')->map(function ($media) {
                         return [
                             'id' => $media->id,
-                            'responsive' => $media()->attributes(['class' => 'rounded-xl  object-cover overflow-hidden  sm:h-72 sm:w-48 select-none' , 'alt' => $media->name ])->toHtml(),
+                            'responsive' => $media()->attributes(['class' => 'rounded-xl  object-cover overflow-hidden  sm:h-72 sm:w-48 select-none', 'alt' => $media->name])->toHtml(),
                             'alt' => $media->name,
 
                         ];
@@ -84,7 +82,7 @@ class HomapageController extends Controller
                     'img' => $carousel->getMedia('carousels')->map(function ($media) {
                         return [
                             'id' => $media->id,
-                            'responsive' => $media()->toHtml(),
+                            'responsive' => $media()->attributes(['class' => 'rounded-xl', 'alt' => $media->name])->toHtml(),
                             'alt' => $media->name,
                         ];
                     }),
@@ -246,7 +244,7 @@ class HomapageController extends Controller
                 $chapter->thumb = $chapter->volume->comic->getMedia('thumbnail')->map(function ($media) {
                     return [
                         'id' => $media->id,
-                        'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  ' , 'alt' => $media->name])->toHtml(),
+                        'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  ', 'alt' => $media->name])->toHtml(),
                         'alt' => $media->name,
 
                     ];
@@ -269,7 +267,7 @@ class HomapageController extends Controller
                 $comic->thumb = $comic->getMedia('thumbnail')->map(function ($media) {
                     return [
                         'id' => $media->id,
-                        'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  ' , 'alt' => $media->name])->toHtml(),
+                        'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none  ', 'alt' => $media->name])->toHtml(),
                         'alt' => $media->name,
 
                     ];

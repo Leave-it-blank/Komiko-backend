@@ -40,10 +40,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Carousel"]);
 <template>
   <AppLayout>
     <Head title="Carousels" />
-    <SectionTitleBar
-      :title-stack="titleStack"
-      routeName="admin.management.carousel"
-    />
+    <SectionTitleBar :title-stack="titleStack" routeName="admin.management.carousel" />
 
     <SectionMain>
       <div>
@@ -89,30 +86,18 @@ const titleStack = ref(["Dashboard", "Comics", "Create Carousel"]);
 
               <div class="grid grid-cols-8 gap-3 mb-4 p-3">
                 <div class="col-span-8 sm:col-span-4 xl:col-span-2">
-                  <label class="block text-sm font-medium pb-2"
-                    >Visibility</label
-                  >
+                  <label class="block text-sm font-medium pb-2">Visibility</label>
                   <select
                     v-model.lazy="comicForm.position"
                     name="is_enabled"
                     autocomplete="country-name"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="1">
-                      First
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="2">
-                      Second
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="3">
-                      Third
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="4">
-                      Fourth
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="5">
-                      Fifth
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="1">First</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="2">Second</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="3">Third</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="4">Fourth</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="5">Fifth</option>
                   </select>
                   <div v-if="errors.position" class="p-1 text-sm text-red-300">
                     {{ errors.position }}
@@ -126,12 +111,8 @@ const titleStack = ref(["Dashboard", "Comics", "Create Carousel"]);
                     autocomplete="country-name"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="true">
-                      Enable
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="false">
-                      Disable
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="true">Enable</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="false">Disable</option>
                   </select>
                 </div>
               </div>
@@ -141,12 +122,10 @@ const titleStack = ref(["Dashboard", "Comics", "Create Carousel"]);
                 <div>
                   <div class="grid grid-cols-2">
                     <div class="col-span-2 p-2 m-2 md:p-4 md:col-span-1">
-                      <div class="font-medium capitalize text-md">
-                        Thumbnail
-                      </div>
+                      <div class="font-medium capitalize text-md">Thumbnail</div>
                       <div class="text-xs text-gray-500">
-                        The Carousel Image is used on the homepage and other
-                        areas of the website for advertising comic.
+                        The Carousel Image is used on the homepage and other areas of the
+                        website for advertising comic.
                       </div>
                       <div class="py-2 my-3">
                         <input
@@ -176,11 +155,9 @@ const titleStack = ref(["Dashboard", "Comics", "Create Carousel"]);
                       </div>
                       <div>
                         <ul class="pl-4 text-xs text-gray-500">
-                          <li>Minimum: 450 x 1180 (pixels).</li>
-                          <li>Maximum: 500 x 1180(pixels).</li>
-                          <li>
-                            Must be a <code>.png</code> or <code>.jpg</code>.
-                          </li>
+                          <li>Minimum: 300 x 1180 (pixels).</li>
+                          <li>Maximum: 320 x 1180(pixels).</li>
+                          <li>Must be a <code>.png</code> or <code>.jpg</code>.</li>
                         </ul>
                       </div>
                     </div>

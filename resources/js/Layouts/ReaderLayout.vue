@@ -23,18 +23,15 @@ const ads_global_2 = usePage().props.value.ads_global.above_rec;
 </script>
 
 <template>
-  <div class="relative">
-    <!-- Page Content -->
-    <div class="relative">
+  <!-- Page Content -->
+  <main class="relative">
+    <div class="dark:bg-black w-full h-full min-h-screen">
       <ReaderNavBar />
+      <div v-html="ads_global_1" id="ads_global_nav"></div>
+
+      <slot />
     </div>
-    <div v-html="ads_global_1" id="ads_global_nav"></div>
-    <main>
-      <div class="dark:bg-black w-full h-full min-h-screen">
-        <slot />
-      </div>
-    </main>
     <div v-html="ads_global_2" id="ads_global_nav"></div>
     <ReaderFooter />
-  </div>
+  </main>
 </template>

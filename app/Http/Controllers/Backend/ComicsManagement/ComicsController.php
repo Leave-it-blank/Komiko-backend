@@ -97,7 +97,7 @@ class ComicsController extends Controller
             'isHidden' => 'bool|required',
             'isLocked' => 'bool|required',
             'isMature' => 'bool|required',
-            'thumb' => 'mimes:jpg,png,jpeg,gif|required|dimensions:min_width=230,min_height=350, max_width=450,max_height=650',
+            'thumb' => 'mimes:jpg,png,jpeg,gif,webp|required|dimensions:min_width=230,min_height=350, max_width=450,max_height=650',
             'author' => 'int|required',
             'artist' => 'int|required',
             'publisher' => 'int|required',
@@ -145,7 +145,7 @@ class ComicsController extends Controller
             //storeAs('public/images/', $this->thumbnail->getClientOriginalName());
             $comic["thumb"]->storeAs('/public/temp/cover/', $uid . '.' . $extension);
             $thumbnail_url = '/public/temp/cover/' . $uid . '.' . $extension;
-            $Tcomic->addMediaFromDisk($thumbnail_url)
+            $media = $Tcomic->addMediaFromDisk($thumbnail_url)
                 ->withResponsiveImages()
                 ->toMediaCollection('thumbnail');
             $Tcomic->save();
@@ -217,7 +217,7 @@ class ComicsController extends Controller
             'isHidden' => 'bool|required',
             'isLocked' => 'bool|required',
             'isMature' => 'bool|required',
-            'thumb' => 'mimes:jpg,png,jpeg,gif|dimensions:min_width=230,min_height=350, max_width=450,max_height=650|nullable',
+            'thumb' => 'mimes:jpg,png,jpeg,gif,webp|dimensions:min_width=230,min_height=350, max_width=450,max_height=650|nullable',
             'author' => 'int|required',
             'artist' => 'int|required',
             'publisher' => 'int|required',

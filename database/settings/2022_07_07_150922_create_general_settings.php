@@ -8,12 +8,14 @@ class CreateGeneralSettings extends SettingsMigration
     {
         $this->migrator->add('general.site_name', 'Spatie');
         $this->migrator->add('general.site_url', 'scans.com');
+        $this->migrator->add('general.site_logo_url', 'logo.com');
         $this->migrator->add('general.debug_mode', false);
         $this->migrator->add('general.session_encryption', false);
         $this->migrator->add('general.cache_drive', 'database');
         $this->migrator->add('general.patreon', 'patreon.com');
         $this->migrator->add('general.disqus_shortname', 'testsite-q2cy98osnk');
         $this->migrator->add('general.discord_server_id', 'discord.com');
+        $this->migrator->add('general.paypal', 'paypal.me.com');
         $this->migrator->add('general.discord_invite', 'discord.gg');
         $this->migrator->add('general.adsense', 'google.com');
         $this->migrator->add('general.tag_manager', 'GTM-MGFQVML');
