@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan, mdiAccountEdit } from "@mdi/js";
+import { mdiAttachmentPlus, mdiCircleEditOutline, mdiAccountEdit } from "@mdi/js";
 import CardBoxModal from "@/components/backend/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/backend/TableCheckboxCell.vue";
 import BaseLevel from "@/components/backend/BaseLevel.vue";
@@ -86,10 +86,7 @@ const checked = (isChecked, client) => {
   if (isChecked) {
     checkedRows.value.push(client);
   } else {
-    checkedRows.value = remove(
-      checkedRows.value,
-      (row) => row.id === client.id
-    );
+    checkedRows.value = remove(checkedRows.value, (row) => row.id === client.id);
   }
 };
 </script>
@@ -143,10 +140,7 @@ const checked = (isChecked, client) => {
         :key="client.id"
         :class="[tableTrStyle, index % 2 === 0 ? tableTrOddStyle : '']"
       >
-        <TableCheckboxCell
-          v-if="prop.checkable"
-          @checked="checked($event, client)"
-        />
+        <TableCheckboxCell v-if="prop.checkable" @checked="checked($event, client)" />
 
         <td data-label="Name">
           {{ client.title }}
@@ -161,31 +155,27 @@ const checked = (isChecked, client) => {
           {{ client.isHidden ? "Hidden" : "Visible" }}
         </td>
         <td data-label="Updated">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.updatedAt"
-            >{{ dateshow(client.updatedAt) }}</small
-          >
+          <small class="text-gray-500 dark:text-gray-400" :title="client.updatedAt">{{
+            dateshow(client.updatedAt)
+          }}</small>
         </td>
         <td data-label="Created">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.createdAt"
-            >{{ dateshow(client.createdAt) }}</small
-          >
+          <small class="text-gray-500 dark:text-gray-400" :title="client.createdAt">{{
+            dateshow(client.createdAt)
+          }}</small>
         </td>
         <td class="actions-cell">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <BaseButton
               color="info"
-              :icon="mdiEye"
+              :icon="mdiAttachmentPlus"
               small
               :routeName="client.viewUrl"
               :routeTo="client"
             />
             <BaseButton
               color="warning"
-              :icon="mdiAccountEdit"
+              :icon="mdiCircleEditOutline"
               small
               :routeName="client.editUrl"
               :routeTo="client"
@@ -195,10 +185,7 @@ const checked = (isChecked, client) => {
       </tr>
     </tbody>
   </table>
-  <div
-    :class="lightBorderStyle"
-    class="p-3 lg:px-6 border-t dark:border-gray-800"
-  >
+  <div :class="lightBorderStyle" class="p-3 lg:px-6 border-t dark:border-gray-800">
     <BaseLevel>
       <BaseButtons>
         <BaseButton

@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 module.exports = {
     content: [
       './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -11,7 +12,11 @@ module.exports = {
     darkMode: 'class',
 
     theme: {
+
       extend: {
+        colors: {
+          darkMode: '#0d0d0d',
+        },
         zIndex: {
           '-1': '-1'
         },

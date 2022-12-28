@@ -1,6 +1,6 @@
 <template>
   <h1
-    class="mx-8 my-3 pb-2 text-2xl capitalize font-catamaran font-bold text-right line-clamp-3"
+    class="mx-8 my-3 pb-2 text-2xl capitalize font-catamaran font-bold text-left line-clamp-3 ml-2"
   >
     {{ comic.title }}
   </h1>
@@ -14,15 +14,6 @@
           v-html="props.comic.thumb[0].responsive"
           :alt="props.comic.titleSlug"
         ></div>
-        <div
-          class="absolute bottom-0 left-0 right-0 px-4 py-2 bg-gradient-to-t from-black via-gray-600 to-transparent opacity-80"
-        >
-          <div
-            class="text-lg font-semibold mt-2 font-roboto capitalize text-gray-100 text-center select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-2 flex-0"
-          >
-            {{ comic.type }}
-          </div>
-        </div>
       </div>
     </div>
 
@@ -92,7 +83,7 @@
               "
             >
               <div
-                class="col-span-1 flex flex-row justify-start items-center p-3 rounded-md bg-gray-100 dark:bg-black gap-2"
+                class="col-span-1 flex flex-row justify-start items-center p-3 rounded-md bg-gray-100 dark:bg-black gap-2 hover:bg-purple-500 hover:text-white dark:hover:bg-purple-600 cursor-pointer"
               >
                 <div
                   class="image select-none first-letter:rounded-xl shrink-0"
@@ -101,7 +92,9 @@
                 ></div>
                 <div class="flex flex-wrap justify-evenly items-center">
                   <div>{{ "Chapter " + ch.number + " : " }}</div>
-                  <div class="text-sm text-gray-300 ml-2">{{ ch.name }}</div>
+                  <div class="text-sm dark:text-gray-300 ml-2">
+                    {{ ch.name }}
+                  </div>
                 </div>
               </div>
             </Link>

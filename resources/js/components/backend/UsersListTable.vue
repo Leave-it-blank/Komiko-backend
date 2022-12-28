@@ -1,99 +1,100 @@
 <script setup>
-import { computed, ref  } from 'vue'
-import { useMainStore } from '@/stores/main'
-import { mdiEye, mdiTrashCan , mdiAccountEdit} from '@mdi/js'
-import TableCheckboxCell from '@/components/backend/TableCheckboxCell.vue'
-import BaseLevel from '@/components/backend/BaseLevel.vue'
-import BaseButtons from '@/components/backend/BaseButtons.vue'
-import BaseButton from '@/components/backend/BaseButton.vue'
-import UserAvatar from '@/components/backend/UserAvatar.vue'
-import moment from 'moment'
-import SearchTable from './SearchTable.vue'
+import { computed, ref } from "vue";
+import { useMainStore } from "@/stores/main";
+import { mdiEye, mdiCircleEditOutline, mdiAccountEdit } from "@mdi/js";
+import TableCheckboxCell from "@/components/backend/TableCheckboxCell.vue";
+import BaseLevel from "@/components/backend/BaseLevel.vue";
+import BaseButtons from "@/components/backend/BaseButtons.vue";
+import BaseButton from "@/components/backend/BaseButton.vue";
+import UserAvatar from "@/components/backend/UserAvatar.vue";
+import moment from "moment";
+import SearchTable from "./SearchTable.vue";
 /* import CardBoxModal from '@/components/backend/CardBoxModal.vue' */
 const prop = defineProps({
   checkable: Boolean,
   users: {
     type: Array,
-    default: null
-  }
+    default: null,
+  },
 });
 function dateshow(value) {
-    return moment(value).fromNow() // here u modify data
+  return moment(value).fromNow(); // here u modify data
 }
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
-const lightBorderStyle = computed(() => mainStore.lightBorderStyle)
+const lightBorderStyle = computed(() => mainStore.lightBorderStyle);
 
-const lightBgStyle = computed(() => mainStore.lightBgStyle)
+const lightBgStyle = computed(() => mainStore.lightBgStyle);
 
-const tableTrStyle = computed(() => mainStore.tableTrStyle)
+const tableTrStyle = computed(() => mainStore.tableTrStyle);
 
-const tableTrOddStyle = computed(() => mainStore.tableTrOddStyle)
+const tableTrOddStyle = computed(() => mainStore.tableTrOddStyle);
 
-const darkMode = computed(() => mainStore.darkMode)
+const darkMode = computed(() => mainStore.darkMode);
 
 mainStore.clients = prop.users;
 
-const items = computed(() => mainStore.clients)
+const items = computed(() => mainStore.clients);
 
-const isModalActive = ref(false)
+const isModalActive = ref(false);
 
-const isModalDangerActive = ref(false)
+const isModalDangerActive = ref(false);
 
-const perPage = ref(10)
+const perPage = ref(10);
 
-const currentPage = ref(0)
+const currentPage = ref(0);
 
-const checkedRows = ref([])
+const checkedRows = ref([]);
 
-const itemsPaginated = computed(
-  () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
-)
+const itemsPaginated = computed(() =>
+  items.value.slice(
+    perPage.value * currentPage.value,
+    perPage.value * (currentPage.value + 1)
+  )
+);
 
-const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
 
-const currentPageHuman = computed(() => currentPage.value + 1)
+const currentPageHuman = computed(() => currentPage.value + 1);
 
 const pagesList = computed(() => {
-  const pagesList = []
+  const pagesList = [];
 
   for (let i = 0; i < numPages.value; i++) {
-    pagesList.push(i)
+    pagesList.push(i);
   }
 
-  return pagesList
-})
+  return pagesList;
+});
 
 const remove = (arr, cb) => {
-  const newArr = []
+  const newArr = [];
 
-  arr.forEach(item => {
+  arr.forEach((item) => {
     if (!cb(item)) {
-      newArr.push(item)
+      newArr.push(item);
     }
-  })
+  });
 
-  return newArr
-}
+  return newArr;
+};
 
 const checked = (isChecked, client) => {
   if (isChecked) {
-    checkedRows.value.push(client)
+    checkedRows.value.push(client);
   } else {
-    checkedRows.value = remove(checkedRows.value, row => row.id === client.id)
+    checkedRows.value = remove(checkedRows.value, (row) => row.id === client.id);
   }
-}
-
+};
 </script>
 
 <template>
-
   <div class="mb-3 xl:w-96">
-   <SearchTable :searchArray="prop.users" Search searchIndexName='name'/>
+    <SearchTable :searchArray="prop.users" Search searchIndexName="name" />
   </div>
 
-<!--   <CardBoxModal
+  <!--   <CardBoxModal
     v-model="isModalActive"
     title="Sample modal"
   >
@@ -122,7 +123,7 @@ const checked = (isChecked, client) => {
         <th />
         <th>Name</th>
         <th>email</th>
-        <th >Roles</th>
+        <th>Roles</th>
         <th>Last Updated</th>
         <th>Created</th>
         <th />
@@ -134,15 +135,9 @@ const checked = (isChecked, client) => {
         :key="client.id"
         :class="[tableTrStyle, index % 2 === 0 ? tableTrOddStyle : '']"
       >
-        <TableCheckboxCell
-          v-if="prop.checkable"
-          @checked="checked($event, client)"
-        />
+        <TableCheckboxCell v-if="prop.checkable" @checked="checked($event, client)" />
         <td class="image-cell">
-          <UserAvatar
-            :username="client.name"
-            class="image"
-          />
+          <UserAvatar :username="client.name" class="image" />
         </td>
         <td data-label="Name">
           {{ client.name }}
@@ -152,54 +147,42 @@ const checked = (isChecked, client) => {
         </td>
         <td data-label="currentRoles">
           <div>
-          <span v-for="roles in client.currentRoles"  class="mx-auto">
-             {{ roles }},
-          </span>
+            <span v-for="roles in client.currentRoles" class="mx-auto">
+              {{ roles }},
+            </span>
           </div>
-
-
         </td>
         <td data-label="Updated">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.updatedAt"
-          >{{ dateshow(client.updatedAt)  }}</small>
+          <small class="text-gray-500 dark:text-gray-400" :title="client.updatedAt">{{
+            dateshow(client.updatedAt)
+          }}</small>
         </td>
         <td data-label="Created">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.createdAt"
-          >{{ dateshow(client.createdAt)  }}</small>
+          <small class="text-gray-500 dark:text-gray-400" :title="client.createdAt">{{
+            dateshow(client.createdAt)
+          }}</small>
         </td>
         <td class="actions-cell">
-          <BaseButtons
-            type="justify-start lg:justify-end"
-            no-wrap
-          >
-    <!--         <BaseButton
+          <BaseButtons type="justify-start lg:justify-end" no-wrap>
+            <!--         <BaseButton
               color="info"
               :icon="mdiEye"
               small
               @click="isModalActive = true"
             /> -->
-             <BaseButton
+            <BaseButton
               color="warning"
-              :icon="mdiAccountEdit"
+              :icon="mdiCircleEditOutline"
               small
-             :routeName="client.editUrl"
-             :routeTo = "client.id"
+              :routeName="client.editUrl"
+              :routeTo="client.id"
             />
-
           </BaseButtons>
         </td>
-
       </tr>
     </tbody>
   </table>
-  <div
-    :class="lightBorderStyle"
-    class="p-3 lg:px-6 border-t dark:border-gray-800"
-  >
+  <div :class="lightBorderStyle" class="p-3 lg:px-6 border-t dark:border-gray-800">
     <BaseLevel>
       <BaseButtons>
         <BaseButton
@@ -214,6 +197,5 @@ const checked = (isChecked, client) => {
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
-
   </div>
 </template>

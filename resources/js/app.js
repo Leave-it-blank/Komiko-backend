@@ -30,7 +30,7 @@ InertiaProgress.init({ color: '#4B5563' })
 const mainStore = useMainStore(pinia)
 
 /* App style */
-mainStore.setStyle(localStorage[styleKey] ?? 'basic')
+// mainStore.setStyle(localStorage[styleKey] ?? 'basic')
 
 /* Dark mode */
 if ((!localStorage[darkModeKey] && window.matchMedia('(prefers-color-scheme: dark)').matches) || localStorage[darkModeKey] === '1') {

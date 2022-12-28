@@ -58,10 +58,7 @@
              </h3>
              <p>
                <div class=" flex flex-col justify-center p-3 mx-2 capitalize text-gray-800 dark:text-gray-400">
-                <div class="flex flex-row justify-between ">
-                   <p class="px-2">type:</p>
-                  <p>{{props.comic.type}}</p>
-                  </div>
+
                   <div class=" flex flex-row justify-between">
                     <p class="px-2">Author: </p>
                   <p>{{props.comic.author}}</p>

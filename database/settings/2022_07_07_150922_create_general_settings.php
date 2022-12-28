@@ -6,9 +6,9 @@ class CreateGeneralSettings extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.site_name', 'Spatie');
-        $this->migrator->add('general.site_url', 'scans.com');
-        $this->migrator->add('general.site_logo_url', 'logo.com');
+        $this->migrator->add('general.site_name', 'kiroku');
+        $this->migrator->add('general.site_url', 'kiroku.com');
+        $this->migrator->add('general.site_logo_url', 'https://ui-avatars.com/api/?name=s&color=7F9CF5&background=EBF4FF');
         $this->migrator->add('general.debug_mode', false);
         $this->migrator->add('general.session_encryption', false);
         $this->migrator->add('general.cache_drive', 'database');
