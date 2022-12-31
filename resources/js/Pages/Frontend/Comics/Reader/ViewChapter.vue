@@ -47,7 +47,7 @@
         class="grid grid-cols-3 p-4 mb-10 mt-3 font-catamaran gap-2 bg-neutral-200 dark:bg-neutral-900 dark:text-gray-200 rounded-md text-sm"
       >
         <div
-          class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-start"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-start"
         >
           <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous Chapter
@@ -57,12 +57,12 @@
 
         <Link
           :href="home"
-          class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-center"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-center items-center self-center"
         >
           Home
         </Link>
         <div
-          class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-end"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-end"
         >
           <Link :href="nextChapter" v-if="nextChapter !== null" class=" ">
             Next Chapter
@@ -93,7 +93,7 @@
         class="grid grid-cols-3 p-4 mt-3 font-catamaran gap-2 bg-neutral-200 dark:bg-neutral-900 dark:text-gray-200 rounded-md text-sm"
       >
         <div
-          class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-start"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-start"
         >
           <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous Chapter
@@ -103,12 +103,12 @@
 
         <Link
           :href="home"
-          class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-center"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-center"
         >
           Home
         </Link>
         <div
-          class="px-5 py-4 rounded-md bg-white dark:bg-black text-gray-900 dark:text-gray-200 justify-self-end"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-end"
         >
           <Link :href="nextChapter" v-if="nextChapter !== null" class=" ">
             Next Chapter

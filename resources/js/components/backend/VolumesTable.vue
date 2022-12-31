@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan, mdiAccountEdit } from "@mdi/js";
+import { mdiEye, mdiTrashCan, mdiAttachmentPlus } from "@mdi/js";
 import DeleteItemsModal from "@/components/backend/DeleteItemsModal.vue";
 import TableCheckboxCell from "@/components/backend/TableCheckboxCell.vue";
 import BaseLevel from "@/components/backend/BaseLevel.vue";
@@ -86,10 +86,7 @@ const checked = (isChecked, client) => {
   if (isChecked) {
     checkedRows.value.push(client);
   } else {
-    checkedRows.value = remove(
-      checkedRows.value,
-      (row) => row.id === client.id
-    );
+    checkedRows.value = remove(checkedRows.value, (row) => row.id === client.id);
   }
 };
 </script>
@@ -113,8 +110,8 @@ const checked = (isChecked, client) => {
     itemName="volume"
     :itemId="dataChapter"
   >
-    You are About to delete volume number {{ dataChapter }} permanently.
-    Warning: [Action can't be rolled back]
+    You are About to delete volume number {{ dataChapter }} permanently. Warning: [Action
+    can't be rolled back]
   </DeleteItemsModal>
 
   <div
@@ -149,10 +146,7 @@ const checked = (isChecked, client) => {
         :key="client.id"
         :class="[tableTrStyle, index % 2 === 0 ? tableTrOddStyle : '']"
       >
-        <TableCheckboxCell
-          v-if="prop.checkable"
-          @checked="checked($event, client)"
-        />
+        <TableCheckboxCell v-if="prop.checkable" @checked="checked($event, client)" />
 
         <td data-label="Name">
           {{ client.name }}
@@ -161,24 +155,20 @@ const checked = (isChecked, client) => {
           {{ client.number }}
         </td>
         <td data-label="Updated">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.updatedAt"
-            >{{ dateshow(client.updatedAt) }}</small
-          >
+          <small class="text-gray-500 dark:text-gray-400" :title="client.updatedAt">{{
+            dateshow(client.updatedAt)
+          }}</small>
         </td>
         <td data-label="Created">
-          <small
-            class="text-gray-500 dark:text-gray-400"
-            :title="client.createdAt"
-            >{{ client.createdAt }}</small
-          >
+          <small class="text-gray-500 dark:text-gray-400" :title="client.createdAt">{{
+            client.createdAt
+          }}</small>
         </td>
         <td class="actions-cell">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <BaseButton
               color="info"
-              :icon="mdiEye"
+              :icon="mdiAttachmentPlus"
               small
               :routeName="client.viewUrl"
               :routeTo="client.id"
@@ -188,19 +178,14 @@ const checked = (isChecked, client) => {
               color="danger"
               :icon="mdiTrashCan"
               small
-              v-on:click="
-                (mainStore.itemId = client.id), (isModalActive = true)
-              "
+              v-on:click="(mainStore.itemId = client.id), (isModalActive = true)"
             />
           </BaseButtons>
         </td>
       </tr>
     </tbody>
   </table>
-  <div
-    :class="lightBorderStyle"
-    class="p-3 lg:px-6 border-t dark:border-gray-800"
-  >
+  <div :class="lightBorderStyle" class="p-3 lg:px-6 border-t dark:border-gray-800">
     <BaseLevel>
       <BaseButtons>
         <BaseButton

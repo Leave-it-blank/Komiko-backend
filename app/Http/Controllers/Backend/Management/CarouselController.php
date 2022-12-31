@@ -36,7 +36,7 @@ class CarouselController extends Controller
             'url' => 'required|min:2|max:400|string',
             'is_enabled' => 'bool|required',
             'position' => 'int|required',
-            'thumb' => 'mimes:jpg,png,jpeg,gif|required|dimensions:min_width=1130,min_height=400, max_width=550,max_height=1150',
+            'thumb' => 'mimes:jpg,png,jpeg,gif, webp|required|dimensions:min_width=1130,min_height=280, max_width=1250,max_height=400',
         ]);
         $uid = Str::uuid();
         try {
@@ -99,7 +99,7 @@ class CarouselController extends Controller
             'url' => 'required|min:2|max:400|string',
             'is_enabled' => 'bool|required',
             'position' => 'int|required',
-            'thumb' => 'mimes:jpg,png,jpeg,gif|dimensions:min_width=1130,min_height=400, max_width=550,max_height=1150|nullable',
+            'thumb' => 'mimes:jpg,png,jpeg,gif, webp|dimensions:min_width=1130,min_height=280, max_width=1250,max_height=400|nullable',
         ]);
 
 

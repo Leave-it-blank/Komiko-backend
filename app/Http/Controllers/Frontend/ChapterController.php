@@ -44,7 +44,7 @@ class ChapterController extends Controller
                     "thumb" => $page->getMedia('page')->map(function ($media) {
                         return [
                             'id' => $media->id,
-                            'responsive' => $media()->attributes(['class' => 'w-full' , 'alt' => $media->name])->toHtml(),
+                            'responsive' => $media()->attributes(['class' => 'w-full', 'alt' => $media->name])->toHtml(),
                             'alt' => $media->name,
 
                         ];
@@ -60,7 +60,7 @@ class ChapterController extends Controller
             );
             return $data;
         });
-        Cache::forget('ads_reader');
+        //Cache::forget('ads_reader');
         $ads_reader =  cache()->remember('ads_reader', now()->addMinutes(30), function () {
             $ads_reader_above_content = \App\Helpers\Advertisement::readerAboveContent();
             $ads_reader_below_content = \App\Helpers\Advertisement::readerBelowContent();

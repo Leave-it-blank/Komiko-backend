@@ -76,7 +76,7 @@ export const useMainStore = defineStore('main', {
 
       const style = styles[payload]
 
-      document.body.className = style.body
+      document.body.className = style.body + ' '+ document.body.className
 
       if (localStorage[styleKey] !== payload) {
         localStorage.setItem(styleKey, payload)

@@ -3,5 +3,9 @@
 @import "tailwind/_utilities.css";
 
 .dark{
-  background: rgb(21, 21, 21) !important;
+  background: rgb(16, 16, 16) !important;
 }
+.testdartk {
+  background-color: #0d0d0d;
+}
+

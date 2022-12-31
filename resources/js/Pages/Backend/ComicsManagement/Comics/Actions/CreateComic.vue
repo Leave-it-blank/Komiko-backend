@@ -98,9 +98,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
 
                 <div class="pl-3">
                   <div>
-                    <label class="pb-2 mb-2" for="description"
-                      >Description</label
-                    >
+                    <label class="pb-2 mb-2" for="description">Description</label>
                   </div>
                   <textarea
                     v-model.lazy="comicForm.desc"
@@ -117,21 +115,15 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
 
               <div class="grid grid-cols-8 gap-3 mb-4 p-3">
                 <div class="col-span-8 sm:col-span-4 xl:col-span-2">
-                  <label class="block text-sm font-medium pb-2"
-                    >Visibility</label
-                  >
+                  <label class="block text-sm font-medium pb-2">Visibility</label>
                   <select
                     v-model.lazy="comicForm.isHidden"
                     name="is_enabled"
                     autocomplete="country-name"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="true">
-                      Hidden
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="false">
-                      Visible
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="true">Hidden</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="false">Visible</option>
                   </select>
                   <div v-if="errors.isHidden" class="p-1 text-sm text-red-300">
                     {{ errors.isHidden }}
@@ -145,12 +137,8 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                     autocomplete="country-name"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="true">
-                      Locked
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="false">
-                      Open
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="true">Locked</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="false">Open</option>
                   </select>
                   <div v-if="errors.isLocked" class="p-1 text-sm text-red-300">
                     {{ errors.isLocked }}
@@ -164,12 +152,8 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                     autocomplete="country-name"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="true">
-                      Yes
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="false">
-                      No
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="true">Yes</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="false">No</option>
                   </select>
 
                   <div v-if="errors.isMature" class="p-1 text-sm text-red-300">
@@ -200,9 +184,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                     <option class="p-2 m-2 bg-gray-800" :value="'ongoing'">
                       Ongoing
                     </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'hiatus'">
-                      Hiatus
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'hiatus'">Hiatus</option>
                     <option class="p-2 m-2 bg-gray-800" :value="'dropped'">
                       Dropped
                     </option>
@@ -221,15 +203,9 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                     name="is_enabled"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="'manga'">
-                      Manga
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'manwha'">
-                      Manwha
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'manhua'">
-                      Manhua
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'manga'">Manga</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'manwha'">Manwha</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'manhua'">Manhua</option>
                     <option class="p-2 m-2 bg-gray-800" :value="'ru manga'">
                       Ru Manga
                     </option>
@@ -239,37 +215,22 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                   </div>
                 </div>
                 <div class="col-span-8 sm:col-span-4 xl:col-span-2">
-                  <label class="block text-sm font-medium pb-2"
-                    >Editor Choice</label
-                  >
+                  <label class="block text-sm font-medium pb-2">Editor Choice</label>
                   <select
                     v-model.lazy="comicForm.choice"
                     name="is_enabled"
                     autocomplete="choice"
                     class="rounded-md bg-transparent text-gray-300 w-full"
                   >
-                    <option class="p-2 m-2 bg-gray-800" :value="'hot'">
-                      Hot
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'new'">
-                      New
-                    </option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'hot'">Hot</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'new'">New</option>
                     <option class="p-2 m-2 bg-gray-800" :value="'recommended'">
                       Recommended
                     </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'latest'">
-                      Latest
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'best'">
-                      Best
-                    </option>
-                    <option class="p-2 m-2 bg-gray-800" :value="'top'">
-                      Top
-                    </option>
-                    <option
-                      class="p-2 m-2 bg-gray-800"
-                      :value="'editor\'s choice'"
-                    >
+                    <option class="p-2 m-2 bg-gray-800" :value="'latest'">Latest</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'best'">Best</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'top'">Top</option>
+                    <option class="p-2 m-2 bg-gray-800" :value="'editor\'s choice'">
                       Editor's Choice
                     </option>
                   </select>
@@ -324,9 +285,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                   </div>
                 </div>
                 <div class="col-span-8 sm:col-span-4 xl:col-span-2">
-                  <label class="block text-sm font-medium pb-2"
-                    >Publisher</label
-                  >
+                  <label class="block text-sm font-medium pb-2">Publisher</label>
 
                   <select
                     v-model.number="comicForm.publisher"
@@ -372,9 +331,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
               <DividerHorizontal />
 
               <div class="flex flex-wrap mb-4 p-3">
-                <div
-                  class="w-full px-3 rounded-md p-3 mb-3 border border-gray-400"
-                >
+                <div class="w-full px-3 rounded-md p-3 mb-3 border border-gray-400">
                   <label
                     class="block capitalize tracking-wide text-primary-darker dark:text-white text-md font-bold mb-2"
                     for="grid-password"
@@ -389,6 +346,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                         v-model="comicForm.tags"
                         name="comicForm.tags[]"
                         :value="tag.id"
+                        required
                       />
                       <label class="capitalize p-2">{{ tag.name }} </label>
                     </div>
@@ -400,18 +358,17 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                 <div>
                   <div class="grid grid-cols-2">
                     <div class="col-span-2 p-2 m-2 md:p-4 md:col-span-1">
-                      <div class="font-medium capitalize text-md">
-                        Thumbnail
-                      </div>
+                      <div class="font-medium capitalize text-md">Thumbnail</div>
                       <div class="text-xs text-gray-500">
-                        The thumbnail is used on the homepage and other areas of
-                        the website for advertising. It is also used on embedded
-                        links when sharing.
+                        The thumbnail is used on the homepage and other areas of the
+                        website for advertising. It is also used on embedded links when
+                        sharing.
                       </div>
                       <div class="py-2 my-3">
                         <input
                           type="file"
                           @input="comicForm.thumb = $event.target.files[0]"
+                          class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
                         />
                         <progress
                           v-if="comicForm.progress"
@@ -438,9 +395,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                         <ul class="pl-4 text-xs text-gray-500">
                           <li>Minimum: 230 x 300 (pixels).</li>
                           <li>Maximum: 450 x 650 (pixels).</li>
-                          <li>
-                            Must be a <code>.png</code> or <code>.jpg</code>.
-                          </li>
+                          <li>Must be a <code>.png</code> or <code>.jpg</code>.</li>
                         </ul>
                       </div>
                     </div>

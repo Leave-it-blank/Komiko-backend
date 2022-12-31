@@ -1,5 +1,5 @@
 <template>
-  <div class="relative px-2">
+  <div class="px-2">
     <swiper
       :pagination="{
         dynamicBullets: true,
@@ -57,13 +57,22 @@ export default {
   width: 100%;
   height: 100%;
   max-width: 1180px;
-  max-height: 450px;
+  max-height: 300px;
+}
+.swiper-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 1180px;
+  max-height: 300px;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 58px;
-
+  width: 100%;
+  height: 100%;
+  max-width: 1180px;
+  max-height: 300px;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -84,12 +93,12 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 150px;
-  max-height: 350px;
-  object-fit: fill;
+  max-height: 300px;
+  object-fit: cover;
 }
 @media only screen and (min-width: 768px) {
   .swiper-slide img {
-    object-fit: contain;
+    object-fit: cover;
   }
 }
 

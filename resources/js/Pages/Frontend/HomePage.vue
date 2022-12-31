@@ -41,12 +41,12 @@
             <HotUpdates :comics="props.recommended" />
           </div>
           <div v-html="props.ads_home.below_rec" class="flex flex-col my-2"></div>
-          <div class="py-10 container flex flex-col mx-auto">
-            <h3
-              class="text-xl font-roboto p-1 w-full font-bold text-gray-900 dark:text-gray-100 text-start"
+          <div class="py-10 container flex flex-col mx-auto px-2 sm:px-10">
+            <h1
+              class="text-3xl px-2 pt-10 pb-2 font-roboto font-bold capitalize dark:text-white"
             >
               {{ "Comment Section" }}
-            </h3>
+            </h1>
             <div class="py-3">
               <button
                 id="disq_load"
@@ -119,54 +119,3 @@ function loaddisq() {
   })();
 }
 </script>
-<style>
-.comicChapter {
-  /* width: 320px; */
-  height: 189px;
-}
-
-.divchapter {
-  width: auto;
-  height: 35px;
-  border: solid 2px #686868;
-  border-radius: 10px;
-  align-items: center;
-  margin: 10px;
-  padding: 5px;
-}
-
-.divchapter:hover {
-  border-color: #e5e7eb;
-}
-
-.comicImg {
-  width: 150px;
-  height: 100%;
-}
-
-.ImgContent {
-  /* width: 130px; */
-  height: 189px;
-}
-
-.SZqc3 {
-  margin-top: auto;
-  z-index: 4;
-}
-
-.R82hs {
-  display: grid;
-  grid-template-columns: 18% 82%;
-}
-.__33XQb {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.Q9Bsa {
-  border-radius: 8px 8px 0 0;
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-}
-</style>

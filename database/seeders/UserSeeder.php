@@ -1,11 +1,13 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -39,39 +41,33 @@ class UserSeeder extends Seeder
         $role = Role::create(['name' => 'Super-Admin']);
 
         $role = Role::create(['name' => 'Admin'])
-            ->givePermissionTo(['create comic', 'edit comic','delete comic','view dashboard','view comic management','view management']);
+            ->givePermissionTo(['create comic', 'edit comic', 'delete comic', 'view dashboard', 'view comic management', 'view management']);
 
         $role = Role::create(['name' => 'management'])
-            ->givePermissionTo(['create comic', 'edit comic','delete comic',
-                'view dashboard','view comic management' , 'view management' ,'view authentication',  'view settings',
-                'handle management',  'handle settings management' , 'handle authentication' ,'handle dashboard', 'handle comic management' ]);
+            ->givePermissionTo([
+                'create comic', 'edit comic', 'delete comic',
+                'view dashboard', 'view comic management', 'view management', 'view authentication',  'view settings',
+                'handle management',  'handle settings management', 'handle authentication', 'handle dashboard', 'handle comic management'
+            ]);
 
 
 
         // this can be done as separate statements
         $role = Role::create(['name' => 'ContentManager'])
-            ->givePermissionTo([ 'create comic', 'edit comic','delete comic','view dashboard','view comic management']);
+            ->givePermissionTo(['create comic', 'edit comic', 'delete comic', 'view dashboard', 'view comic management']);
         $role = Role::create(['name' => 'Reader'])
             ->givePermissionTo(['reader']);
 
-            \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
 
         $user = new User;
         $user->name = 'secret';
         $user->email = 'admin@secret.com';
-        $user->password = bcrypt('vsdgcsdg');
+        $user->password = bcrypt('fastastg223@fas');
         $user->save();
         $user->assignRole('management');
         $user->assignRole('Admin');
-        $user->assignRole('Super-Admin');
-
-        $user = new User;
-        $user->name = 'secretuser';
-        $user->email = 'user@secret.com';
-        $user->password = bcrypt('fastastg223@fas');
-        $user->save();
-        $user->assignRole('ContentManager');
         $user->assignRole('Super-Admin');
     }
 }
