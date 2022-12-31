@@ -75,7 +75,7 @@
         class="flex flex-col my-2"
       ></div>
       <div class="min-h-screen">
-        <div v-for="(page, index) in props.pages" v-if="props.crawler_detected">
+        <div v-for="(page, index) in props.pages" v-if="!props.crawler_detected">
           <div
             class="select-none w-full"
             v-html="page.thumb[0].responsive"

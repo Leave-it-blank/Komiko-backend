@@ -351,7 +351,7 @@ const titleStack = ref(["Dashboard", "Comics", "Edit Comic"]);
                         v-model="comicForm.tags"
                         name="comicForm.tags[]"
                         :value="tag.id"
-                        required
+                       
                       />
                       <label class="capitalize">{{ tag.name }} </label>
                     </div>
