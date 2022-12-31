@@ -1,29 +1,12 @@
 <?php
 
-/* use App\Http\Controllers\Backend\Authentication\PermissionController;
-use App\Http\Controllers\Backend\Authentication\RolesController;
-use App\Http\Controllers\Backend\Authentication\UsersController;
-use App\Http\Controllers\Backend\ComicManagement\ArtistController;
-use App\Http\Controllers\Backend\ComicManagement\AuthorController;
-use App\Http\Controllers\Backend\ComicManagement\ChaptersController;
-use App\Http\Controllers\Backend\ComicManagement\ComicsController;
-use App\Http\Controllers\Backend\ComicManagement\CountriesController;
-use App\Http\Controllers\Backend\ComicManagement\PublisherController;
-use App\Http\Controllers\Backend\ComicManagement\TagsController;
-use App\Http\Controllers\Backend\ComicManagement\VolumesController;
-use App\Http\Controllers\Backend\Management\AdvertisementController;
-use App\Http\Controllers\Backend\Management\CarouselController;
-use App\Http\Controllers\Backend\Management\SettingsController; */
+
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
-use App\Actions\Fortify\UpdateUserPassword;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Management\AdvertismentController;
 use App\Http\Controllers\Backend\Management\CarouselController;
 use App\Http\Controllers\Backend\Management\TagsController;
-
-
 
 Route::group(
     ['middleware' => ['permission:handle comic management|view comic management']],

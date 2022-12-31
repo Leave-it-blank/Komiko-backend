@@ -1482,21 +1482,15 @@ select {
 .w-1\/3 {
     width: 33.333333%
 }
+.w-32 {
+    width: 8rem
+}
 .w-fit {
     width: -moz-fit-content;
     width: fit-content
 }
 .w-11 {
     width: 2.75rem
-}
-.w-32 {
-    width: 8rem
-}
-.w-36 {
-    width: 9rem
-}
-.w-40 {
-    width: 10rem
 }
 .min-w-0 {
     min-width: 0px
@@ -2085,11 +2079,6 @@ select {
     --tw-gradient-to: rgb(255 255 255 / 0);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
 }
-.from-black {
-    --tw-gradient-from: #000;
-    --tw-gradient-to: rgb(0 0 0 / 0);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
-}
 .from-transparent {
     --tw-gradient-from: transparent;
     --tw-gradient-to: rgb(0 0 0 / 0);
@@ -2118,10 +2107,6 @@ select {
 .via-gray-100 {
     --tw-gradient-to: rgb(243 244 246 / 0);
     --tw-gradient-stops: var(--tw-gradient-from), #f3f4f6, var(--tw-gradient-to)
-}
-.via-gray-600 {
-    --tw-gradient-to: rgb(75 85 99 / 0);
-    --tw-gradient-stops: var(--tw-gradient-from), #4b5563, var(--tw-gradient-to)
 }
 .via-purple-500 {
     --tw-gradient-to: rgb(168 85 247 / 0);
@@ -2604,9 +2589,6 @@ select {
 }
 .opacity-25 {
     opacity: 0.25
-}
-.opacity-80 {
-    opacity: 0.8
 }
 .opacity-70 {
     opacity: 0.7

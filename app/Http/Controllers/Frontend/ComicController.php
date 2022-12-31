@@ -23,7 +23,7 @@ class ComicController extends Controller
         views($comic)
             ->collection('comics_homepage_view')
             ->record();
-        Cache::forget('ads_comic');
+        //  Cache::forget('ads_comic');
         $ads_comic =  cache()->remember('ads_comic', now()->addMinutes(30), function () {
             $ads_above_comment = \App\Helpers\Advertisement::comicAboveComments();
             $ads_below_desc = \App\Helpers\Advertisement::comicBelowDescription();
@@ -40,7 +40,7 @@ class ComicController extends Controller
 
             ];
         });
-        Cache::forget('comic_' . $comic->titleSlug);
+        // Cache::forget('comic_' . $comic->titleSlug);
 
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;

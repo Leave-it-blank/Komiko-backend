@@ -21,7 +21,7 @@ class HomapageController extends Controller
 
     public function viewHomepage()
     {
-        Cache::flush();
+        // Cache::flush();
 
         $ads_home =  cache()->remember('ads_homepage', now()->addMinutes(30), function () {
             $ads_above_rec = \App\Helpers\Advertisement::aboveRecommended();
