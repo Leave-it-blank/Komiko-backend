@@ -121,7 +121,6 @@ const props = defineProps({
     default: null,
   },
 });
-console.log(props.comics);
 
 function dateshow(value) {
   return moment(value).fromNow(); // here u modify data

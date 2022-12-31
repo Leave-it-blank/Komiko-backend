@@ -75,7 +75,7 @@
           <!--Dashboard-->
           <a :href="admin_nav.href" :class="[admin_nav.guest ? '' : 'hidden']">
             <CogIcon
-              class="block h-10 w-10 animate-spin px-2 hover:cursor-pointer"
+              class="block hover:animate-bounce h-10 w-10 animate-spin px-2 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-purple-500"
               aria-hidden="true"
             />
           </a>
@@ -84,7 +84,7 @@
           <Menu as="div" class="ml-3">
             <div>
               <MenuButton
-                class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-purple-500"
               >
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" :src="profile_pic" alt="" />
