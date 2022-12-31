@@ -27,13 +27,15 @@
       ></div>
       <div class="absolute bottom-0 flex justify-around w-full text-white">
         <button
-          class="py-2 px-4 bg-purple-500 rounded-md m-3"
-          onclick="alert('functionality yet to be added')"
+          class="py-2 px-4 bg-purple-500 rounded-md m-3 w-32"
+          v-on:click="bookmark()"
         >
-          Bookmark
+          {{ bookmark_data.status }}
         </button>
         <Link :href="props.comic.first_ch_url">
-          <button class="py-2 px-4 bg-lime-700 rounded-md m-3">Read First Chapter</button>
+          <button class="py-2 px-4 bg-lime-700 rounded-md m-3 w-44">
+            Read First Chapter
+          </button>
         </Link>
       </div>
     </div>
@@ -107,6 +109,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
+import { computed, reactive } from "vue";
 const props = defineProps({
   comic: {
     type: Object,
@@ -119,7 +122,46 @@ const props = defineProps({
 
   errors: Object,
 });
+const bookmark_data = reactive({ status: Bookmark_details() });
+
+function Bookmark_details() {
+  let bookmarks = new Map(JSON.parse(localStorage.getItem("bookmarks")));
+  if (bookmarks.has(props.comic.id)) {
+    return "Bookmarked";
+  } else {
+    return "Bookmark";
+  }
+}
+
+const create_comic_bookmark = () => {
+  let comic_bookmark = [];
+  comic_bookmark.push(props.comic.title);
+  comic_bookmark.push(props.comic.thumb);
+  comic_bookmark.push(props.comic.viewUrl);
+  comic_bookmark.push(props.comic.updated_at);
+  return comic_bookmark;
+};
+
+const bookmark = () => {
+  let bookmarks = new Map(JSON.parse(localStorage.getItem("bookmarks")));
+  console.log(bookmarks.has(props.comic.id));
+
+  if (bookmarks.has(props.comic.id)) {
+    bookmarks.delete(props.comic.id);
+    console.log("removed bookmark");
+  } else {
+    const comic_detail = create_comic_bookmark();
+    bookmarks.set(props.comic.id, comic_detail);
+    console.log("added bookmark");
+    //console.log(bookmarks);
+  }
+
+  localStorage.setItem("bookmarks", JSON.stringify([...bookmarks]));
+  bookmark_data.status = Bookmark_details();
+  console.log("bookmarking function");
+};
 </script>
+
 <style scoped>
 .active {
   background-color: rgb(64, 53, 0);

@@ -102,13 +102,11 @@ class ComicsController extends Controller
             'artist' => 'int|required',
             'publisher' => 'int|required',
             'country' => 'int|required',
-            'tags' => 'array|nullable',
+            'tags' => 'array|required',
             'choice' => 'string|required',
             'type' => 'string|required',
-            'status' => 'string|nullable'
+            'status' => 'string|required'
         ]);
-        //dd($comic);
-
 
         $uid = Str::uuid();
         try {

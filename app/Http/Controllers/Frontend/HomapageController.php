@@ -263,7 +263,7 @@ class HomapageController extends Controller
     public function viewComics()
     {
         $comics =  cache()->remember('comicsPage', now()->addMinutes(2), function () {
-            return   Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->paginate(15)->through(function ($comic) {
+            return   Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderBy('title')->paginate(15)->through(function ($comic) {
                 $comic->thumb = $comic->getMedia('thumbnail')->map(function ($media) {
                     return [
                         'id' => $media->id,

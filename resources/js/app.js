@@ -37,6 +37,9 @@ if ((!localStorage[darkModeKey] && window.matchMedia('(prefers-color-scheme: dar
   mainStore.setDarkMode(true)
 }
 
+if(!localStorage["bookmarks"]){
+  localStorage.setItem("bookmarks",  JSON.stringify([...new Map()]));
+}
 /* Collapse mobile aside menu on route change */
 Inertia.on('navigate', (event) => {
   mainStore.asideMobileToggle(false)

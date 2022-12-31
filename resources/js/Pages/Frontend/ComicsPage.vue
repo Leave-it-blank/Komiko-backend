@@ -15,7 +15,7 @@
         content="comics: List of all the comics you can enjoy on our website including your most favorite manga, manhua and manwha."
       />
       <!-- <meta property="og:image" content="LINK TO THE IMAGE FILE" /> -->
-      <meta property="og:url" :content="$page.props.sitedata.site_url + '/latest'" />
+      <meta property="og:url" :content="$page.props.sitedata.site_url + '/comics'" />
 
       <meta
         name="twitter:title"
@@ -59,23 +59,15 @@
                               :alt="comic.thumb[0].alt"
                             ></div>
 
-                            <div
-                              class="absolute bottom-0 left-0 right-0 px-4 py-2 bg-gradient-to-t from-black via-gray-600 to-transparent opacity-80"
-                            >
+                            <div v-if="comic.chapters_count !== 0">
                               <div
-                                v-if="
-                                  comic.chapters_count !== 0 && comic.volume_count !== 1
-                                "
-                              >
+                                class="absolute bottom-0 left-0 right-0 px-4 bg-gradient-to-t from-transparent via-purple-500 to-transparent opacity-25 py-5 blur-xl"
+                              ></div>
+                              <div class="absolute bottom-0 left-0 right-0 px-4 py-2">
                                 <div
-                                  class="absolute bottom-0 left-0 right-0 px-4 bg-gradient-to-t from-transparent via-purple-500 to-transparent opacity-25 py-5 blur-xl"
-                                ></div>
-                                <div class="absolute bottom-0 left-0 right-0 px-4 py-2">
-                                  <div
-                                    class="text-lg font-semibold mt-2 font-roboto capitalize text-gray-100 dark:text-white text-center select-none cursor-pointer flex-none flex-0 truncate"
-                                  >
-                                    {{ comic.chapters_count + " Chapters " }}
-                                  </div>
+                                  class="text-lg font-semibold mt-2 font-roboto capitalize text-gray-100 dark:text-white text-center select-none cursor-pointer flex-none flex-0 truncate"
+                                >
+                                  {{ comic.chapters_count + " Chapters " }}
                                 </div>
                               </div>
                             </div>
@@ -129,58 +121,9 @@ const props = defineProps({
     default: null,
   },
 });
+console.log(props.comics);
 
 function dateshow(value) {
   return moment(value).fromNow(); // here u modify data
 }
 </script>
-<style>
-.comicChapter {
-  /* width: 320px; */
-  height: 189px;
-}
-.divchapter {
-  width: auto;
-  height: 35px;
-  border: solid 2px #686868;
-  border-radius: 10px;
-  align-items: center;
-  margin: 10px;
-  padding: 5px;
-}
-
-.divchapter:hover {
-  border-color: #e5e7eb;
-}
-
-.comicImg {
-  width: 150px;
-  height: 100%;
-}
-
-.ImgContent {
-  /* width: 130px; */
-  height: 189px;
-}
-
-.SZqc3 {
-  margin-top: auto;
-  z-index: 4;
-}
-
-.R82hs {
-  display: grid;
-  grid-template-columns: 18% 82%;
-}
-.__33XQb {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.Q9Bsa {
-  border-radius: 8px 8px 0 0;
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-}
-</style>

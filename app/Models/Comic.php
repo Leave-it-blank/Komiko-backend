@@ -39,22 +39,15 @@ class Comic extends Model implements HasMedia, Viewable
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['uid', 'title'])
+            ->generateSlugsFrom(['id', 'title'])
             ->saveSlugsTo('titleSlug');
     }
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumbsm')
-            ->performOnCollections('thumbnail')
-            ->width(450)
-            ->height(650)
-            ->format('webp')
-            ->quality(.7)
-            ->Queued();
         $this->addMediaConversion('thumbch')
             ->performOnCollections('thumbnail')
-            ->width(112)
-            ->height(80)
+            ->width(48)
+            ->height(40)
             ->quality(.5)
             ->format('webp')
             ->Queued();

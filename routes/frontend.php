@@ -14,3 +14,4 @@ Route::get('/comics', [HomapageController::class, 'viewComics'])->name('reader.c
 Route::get('/comics/{comic:titleSlug}', [ComicController::class, 'viewComic'])->name('reader.comic.view');
 Route::get('/comic/{comic:titleSlug}/volume/{volume:number}/chapter/{chapter:number}', [ChapterController::class, 'viewChapterReader'])->name('reader.chapter.view');
 Route::get('/tags/{tag:tagCode}', [TagsController::class, 'tagView'])->name('reader.tag.view');
+Route::get('/bookmarks', [ComicController::class, 'viewBookmarks'])->name('reader.bookmarks.view');

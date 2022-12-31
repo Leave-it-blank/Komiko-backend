@@ -69,7 +69,7 @@ class ComicController extends Controller
             $thumb =  $data_thumb->map(function ($media) {
                 return [
                     'id' => $media->id,
-                    'responsive' => $media()->attributes(['class' => 'rounded-xl h-72 w-48 select-none' , 'alt' => $media->name])->toHtml(),
+                    'responsive' => $media()->attributes(['class' => 'rounded-xl h-72 w-48 select-none', 'alt' => $media->name])->toHtml(),
                     'alt' => $media->name,
 
                 ];
@@ -78,7 +78,7 @@ class ComicController extends Controller
             $chapterthumb =  $data_thumb->map(function ($media) {
                 return [
                     'id' => $media->id,
-                    'responsive' => $media()->attributes(['class' => 'rounded-md h-10 w-12 select-none' , 'alt' => $media->name])->toHtml(),
+                    'responsive' => $media()->attributes(['class' => 'rounded-md h-10 w-12 select-none', 'alt' => $media->name])->toHtml(),
                     'alt' => $media->name,
 
                 ];
@@ -122,8 +122,7 @@ class ComicController extends Controller
             'comic' =>  [
                 'id' => $comic->id,
                 'title' => $comic->title,
-                'viewUrl' => 'reader.comic.view',
-                'titleslug' => $comic->titleSlug,
+                'viewUrl' => route('reader.comic.view', $comic->titleSlug),
                 'description' => $comic->description,
                 'created_at' => $comic->created_at,
                 'updated_at' => $comic->updated_at,
@@ -142,5 +141,10 @@ class ComicController extends Controller
             ],   'ads_comic' => $ads_comic,
 
         ]);
+    }
+
+    public function viewBookmarks()
+    {
+        return Inertia::render('Frontend/Comics/Bookmarks');
     }
 }
