@@ -14,14 +14,21 @@ use App\Models\Chapter;
 use App\Models\Page;
 use Session;
 use App\Models\Tag;
-
+use Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect as Crawler;
+ 
 class ChapterController extends Controller
 {
     public function viewChapterReader(Comic $comic, Volume $volume, Chapter $chapter)
     {
+        $crawler = false;
         views($chapter)
             ->collection('comics_chapter_view')
             ->record();
+        if(Crawler::isCrawler()) {
+                // true if crawler user agent detected
+                $crawler = true;
+              }
+            
         $data =  cache()->remember('comic_' . $comic->titleSlug . $volume->id . $chapter->id, now()->addMinutes(2), function () use ($chapter, $volume, $comic) {
             $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->with('media')->get();
 
@@ -86,6 +93,7 @@ class ChapterController extends Controller
             "previousChapter" => $data["0"]["previousChapter"],
             "home" => route('reader.comic.view', ['comic' => $comic->titleSlug]),
             'ads_reader' => $ads_reader,
+            'crawler_detected' => $crawler,
 
         ]);
     }

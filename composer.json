@@ -7,10 +7,10 @@
     "require": {
         "php": "^8.0.2",
         "ext-gd": "*",
-
         "cyrildewit/eloquent-viewable": "^6.1",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.5.2",
+        "jaybizzle/laravel-crawler-detect": "1.*",
         "laravel/framework": "^9.11",
         "laravel/horizon": "^5.10",
         "laravel/jetstream": "^2.8",

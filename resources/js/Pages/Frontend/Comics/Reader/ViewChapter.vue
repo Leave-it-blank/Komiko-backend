@@ -75,7 +75,7 @@
         class="flex flex-col my-2"
       ></div>
       <div class="min-h-screen">
-        <div v-for="(page, index) in props.pages">
+        <div v-for="(page, index) in props.pages" v-if="props.crawler_detected">
           <div
             class="select-none w-full"
             v-html="page.thumb[0].responsive"
@@ -187,6 +187,10 @@ const props = defineProps({
   },
   ads_reader: {
     type: Object,
+    default: null,
+  },
+  crawler_detected: {
+    type: Boolean,
     default: null,
   },
 

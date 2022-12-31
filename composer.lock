@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12d9596a8df4eecccd2b63eb7f6159fb",
+    "content-hash": "719c96954e657256fbde0792a39b1d61",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -115,83 +115,6 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
-        },
-        {
-            "name": "butschster/meta-tags",
-            "version": "v2.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/butschster/LaravelMetaTags.git",
-                "reference": "43d144b7b703675a68abd434ea22ae9a66113455"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/butschster/LaravelMetaTags/zipball/43d144b7b703675a68abd434ea22ae9a66113455",
-                "reference": "43d144b7b703675a68abd434ea22ae9a66113455",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/config": "^5.6|^6.0|^7.0|^8.0|^9.0",
-                "illuminate/console": "^5.6|^6.0|^7.0|^8.0|^9.0",
-                "illuminate/contracts": "^5.6|^6.0|^7.0|^8.0|^9.0",
-                "illuminate/support": "^5.6|^6.0|^7.0|^8.0|^9.0",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^7.0|^9.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Butschster\\Head\\Providers\\MetaTagsServiceProvider"
-                    ],
-                    "aliases": {
-                        "Meta": "Butschster\\Head\\Facades\\Meta",
-                        "PackageManager": "Butschster\\Head\\Facades\\PackageManager"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Butschster\\Head\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pavel Buchnev",
-                    "email": "butschster@gmail.com"
-                }
-            ],
-            "description": "The most powerful and extendable tools for managing SEO Meta Tags in your Laravel project",
-            "keywords": [
-                "laravel5",
-                "lumen",
-                "metatags",
-                "opengraph",
-                "seo",
-                "webmaster"
-            ],
-            "support": {
-                "issues": "https://github.com/butschster/LaravelMetaTags/issues",
-                "source": "https://github.com/butschster/LaravelMetaTags/tree/v2.2.1"
-            },
-            "funding": [
-                {
-                    "url": "https://opencollective.com/laravelmetatags",
-                    "type": "open_collective"
-                },
-                {
-                    "url": "https://www.patreon.com/butschster",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2022-02-10T10:17:07+00:00"
         },
         {
             "name": "cyrildewit/eloquent-viewable",
@@ -1695,6 +1618,74 @@
                 "source": "https://github.com/JayBizzle/Crawler-Detect/tree/v1.2.112"
             },
             "time": "2022-10-05T21:52:44+00:00"
+        },
+        {
+            "name": "jaybizzle/laravel-crawler-detect",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JayBizzle/Laravel-Crawler-Detect.git",
+                "reference": "a0339574b6dfb6b82167b6c65d068d751a6e8c4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JayBizzle/Laravel-Crawler-Detect/zipball/a0339574b6dfb6b82167b6c65d068d751a6e8c4d",
+                "reference": "a0339574b6dfb6b82167b6c65d068d751a6e8c4d",
+                "shasum": ""
+            },
+            "require": {
+                "jaybizzle/crawler-detect": "1.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.2|^3.4",
+                "phpunit/phpunit": "^4.8|^5.5|^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jaybizzle\\LaravelCrawlerDetect\\LaravelCrawlerDetectServiceProvider"
+                    ],
+                    "aliases": {
+                        "Crawler": "Jaybizzle\\LaravelCrawlerDetect\\Facades\\LaravelCrawlerDetect"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jaybizzle\\LaravelCrawlerDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Beech",
+                    "email": "mbeech@mark-beech.co.uk"
+                }
+            ],
+            "description": "A Laravel package to detect web crawlers via the user agent",
+            "homepage": "http://github.com/JayBizzle/Laravel-Crawler-Detect",
+            "keywords": [
+                "bot",
+                "crawler",
+                "crawler detect",
+                "crawler detector",
+                "crawlerdetect",
+                "detect",
+                "laravel",
+                "php crawler detect",
+                "spider",
+                "user-agent"
+            ],
+            "support": {
+                "issues": "https://github.com/JayBizzle/Laravel-Crawler-Detect/issues",
+                "source": "https://github.com/JayBizzle/Laravel-Crawler-Detect/tree/v1.3.0"
+            },
+            "time": "2022-07-06T10:42:10+00:00"
         },
         {
             "name": "jenssegers/agent",
