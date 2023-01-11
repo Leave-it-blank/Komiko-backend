@@ -47,7 +47,7 @@ const submit = () => {
   <ReaderLayout>
     <Head :title="'Login - ' + $page.props.sitedata.site_name" />
 
-    <SectionFullScreen v-slot="{ cardClass, cardRounded }" bg="login">
+    <SectionFullScreen v-slot="{ cardClass, cardRounded }" >
       <CardBox
         :class="cardClass"
         :rounded="cardRounded"

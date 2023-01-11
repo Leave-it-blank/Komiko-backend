@@ -32,7 +32,7 @@
 
                     <div class="absolute bottom-0 left-0 right-0 px-4 py-2 flex justify-start md:justify-center">
                       <div
-                        class="shrink-1  py-1 opacity-90 text-lg md:text-sm font-semibold mt-2 font-roboto capitalize text-gray-100 dark:text-white text-center select-none cursor-pointer flex-none flex-0 truncate bg-purple-500 rounded-md w-fit px-3"
+                        class="shrink-1  py-1 opacity-80 text-lg md:text-sm font-semibold mt-2 font-roboto capitalize text-purple-500  text-center select-none cursor-pointer flex-none flex-0 truncate border-purple-500  border-2 bg-white rounded-md w-fit px-3"
                     >
                          <p> {{ comic.chapter_count + " Chapters " }}</p>
                       </div>
