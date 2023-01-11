@@ -60,28 +60,28 @@
                         <div class="flex flex-col rounded-md">
                           <div class="relative">
                             <div
-                              class="select-none mx-auto flex flex-1 rounded-xl sm:h-72 sm:w-48"
+                              class="select-none mx-auto flex flex-1 rounded-xl sm:h-72 w-full sm:w-48"
                               v-html="comic[1][1][0].responsive"
                               :alt="comic[1][1][0].alt"
                             ></div>
                           </div>
                           <div class="justify-end flex-none">
                             <div
-                              class="flex flex-col font-roboto py-4 px-4 md:px-1 text-zinc-500"
+                              class="flex flex-col font-roboto py-4 px-4 md:px-1 text-zinc-500 sm:w-48"
                             >
-                              <div class="h-5 w-full">
+
                                 <div
-                                  class="text-md mb-2 text-left select-none cursor-pointer flex-none flex-0 dark:text-white pb-2 truncate w-44 hover:text-purple-400 dark:hover:text-purple-500 font-bold"
+                                  class="min-h-5 w-full text-md text-left select-none cursor-pointer flex-none flex-0 dark:text-white    hover:text-purple-400 dark:hover:text-purple-500 font-bold"
                                 >
                                   {{ comic[1][0] }}
-                                </div>
+
                               </div>
-                              <div class="min-h-3 w-full">
+
                                 <div
-                                  class="text-sm font-medium text-left select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-1 flex-0"
+                                  class="  min-h-3 w-full text-sm font-medium text-left select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-1 flex-0"
                                 >
                                   {{ dateshow(comic[1][3]) }}
-                                </div>
+
                               </div>
                             </div>
                           </div>
@@ -96,6 +96,8 @@
         </div>
       </div>
     </div>
+
+
   </ReaderLayout>
 </template>
 

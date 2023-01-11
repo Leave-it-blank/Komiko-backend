@@ -75,7 +75,7 @@
           <!--Dashboard-->
           <a :href="admin_nav.href" :class="[admin_nav.guest ? '' : 'hidden']">
             <CogIcon
-              class="block hover:animate-bounce h-10 w-10 animate-spin px-2 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-purple-500"
+              class="block  h-10 w-10  hover:animate-spin px-2 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-purple-500"
               aria-hidden="true"
             />
           </a>
@@ -174,6 +174,9 @@
           v-for="item in navigation"
           :key="item.name"
           as="div"
+
+        >
+          <Link :href="item.href"
           :class="[
             item.current
               ? 'bg-purple-600 text-gray-200'
@@ -182,8 +185,8 @@
             item.guest ? '' : 'hidden',
           ]"
           :aria-current="item.current ? 'page' : undefined"
-        >
-          <Link :href="item.href"> {{ item.name }} </Link>
+
+          > {{ item.name }} </Link>
         </DisclosureButton>
       </div>
     </DisclosurePanel>

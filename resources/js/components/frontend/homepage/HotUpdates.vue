@@ -29,33 +29,27 @@
                   </div>
 
                   <div v-if="comic.chapter_count !== 0 && comic.volume_count !== 1">
-                    <div
-                      class="absolute bottom-0 left-0 right-0 px-4 bg-gradient-to-t from-transparent via-purple-500 to-transparent opacity-25 py-5 blur-xl"
-                    ></div>
-                    <div class="absolute bottom-0 left-0 right-0 px-4 py-2">
+
+                    <div class="absolute bottom-0 left-0 right-0 px-4 py-2 flex justify-start md:justify-center">
                       <div
-                        class="text-lg font-semibold mt-2 font-roboto capitalize text-gray-100 dark:text-white text-center select-none cursor-pointer flex-none flex-0 truncate"
-                      >
-                        {{ comic.chapter_count + " Chapters " }}
+                        class="shrink-1  py-1 opacity-90 text-lg md:text-sm font-semibold mt-2 font-roboto capitalize text-gray-100 dark:text-white text-center select-none cursor-pointer flex-none flex-0 truncate bg-purple-500 rounded-md w-fit px-3"
+                    >
+                         <p> {{ comic.chapter_count + " Chapters " }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="justify-end flex-none">
-                  <div class="flex flex-col font-roboto py-4 px-4 md:px-1 text-zinc-600">
-                    <div class="h-5 w-full">
-                      <div
-                        class="text-md mb-2 text-left select-none cursor-pointer text-zinc-900 flex-none flex-0 dark:text-white pb-2 truncate w-44 hover:text-purple-400 dark:hover:text-purple-500 font-bold"
-                      >
+                  <div class="flex flex-col font-roboto py-4 px-4 md:px-1 text-zinc-600 sm:w-48">
+                    <div class="min-h-5 w-full text-xl md:text-md   text-left select-none cursor-pointer text-zinc-900 flex-none flex-0 dark:text-white   hover:text-purple-400 dark:hover:text-purple-500 font-bold">
                         {{ comic.title }}
                       </div>
-                    </div>
-                    <div class="min-h-3 w-full">
+
                       <div
-                        class="text-sm font-medium text-left select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-1 flex-0"
+                        class=" min-h-3 w-full text-sm font-medium text-left select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-1 flex-0"
                       >
                         {{ dateshow(comic.updatedAt) }}
-                      </div>
+
                     </div>
                   </div>
                 </div>

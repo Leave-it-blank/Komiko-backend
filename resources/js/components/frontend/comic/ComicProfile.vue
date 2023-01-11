@@ -74,7 +74,7 @@
         ></div>
         <h4 class="my-1">{{ "Volume " + vol.number }}</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          <div v-for="(ch, ind) in vol.chapters">
+          <div v-for="(ch, ind) in vol.chapters"  >
             <Link
               :href="
                 route(ch.url, {
@@ -83,17 +83,28 @@
                   chapter: ch.number,
                 })
               "
+              :id="ch.id + '_chapter_id'"
+              v-on:click="readChapter(ch.id)"
             >
               <div
                 class="col-span-1 flex flex-row justify-start items-center p-3 rounded-md bg-gray-100 dark:bg-black gap-2 hover:bg-purple-500 hover:text-white dark:hover:bg-purple-600 cursor-pointer"
               >
                 <div
-                  class="image select-none first-letter:rounded-xl shrink-0"
-                  v-html="props.comic.chapterthumb[0].responsive"
-                  :alt="props.comic.titleSlug"
-                ></div>
+                  class=" select-none first-letter:rounded-xl shrink-0"
+
+                >
+                <p :id="ch.id + '_chapter_id_read'" class="hidden" ><EyeIcon
+                   class="  h-10 w-10  cursor-pointer focus:outline-none focus:ring-2 "
+                   aria-hidden="true"
+                /> </p>
+                <p  :id="ch.id + '_chapter_id_not_read'"  class=""> <EyeOffIcon :id="ch.id + '_chapter_id_not_read'"
+                   class="h-10 w-10  cursor-pointer focus:outline-none focus:ring-2 "
+                   aria-hidden="true"
+                /></p>
+
+            </div>
                 <div class="flex flex-wrap justify-evenly items-center">
-                  <div>{{ "Chapter " + ch.number + " : " }}</div>
+                  <div class="text-sm dark:text-gray-100 ">{{ "Chapter " + ch.number + " : " }}</div>
                   <div class="text-sm dark:text-gray-300 ml-2">
                     {{ ch.name }}
                   </div>
@@ -108,8 +119,9 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
-import { computed, reactive } from "vue";
+import { Link, usePage } from "@inertiajs/inertia-vue3";
+import { EyeIcon  , EyeOffIcon } from "@heroicons/vue/outline";
+import { computed, reactive , onMounted } from "vue";
 const props = defineProps({
   comic: {
     type: Object,
@@ -122,6 +134,12 @@ const props = defineProps({
 
   errors: Object,
 });
+
+if(!localStorage[props.comic.id]){
+  localStorage.setItem(props.comic.id,  JSON.stringify([...new Set()]));
+}
+
+
 const bookmark_data = reactive({ status: Bookmark_details() });
 
 function Bookmark_details() {
@@ -133,10 +151,23 @@ function Bookmark_details() {
   }
 }
 
+onMounted(() => {
+  readAlready();
+})
+function readAlready(){
+  let comicChapters = new Set(JSON.parse(localStorage.getItem(props.comic.id)));
+  comicChapters.forEach( function(value) {
+    const rid = value + '_chapter_id_read';
+    const rnid = value + '_chapter_id_not_read';
+    document.getElementById(rid).classList.remove('hidden');
+    document.getElementById(rnid).classList.add('hidden');
+});
+}
+
 const create_comic_bookmark = () => {
   let comic_bookmark = [];
   comic_bookmark.push(props.comic.title);
-  comic_bookmark.push(props.comic.thumb);
+  comic_bookmark.push(props.comic.chapterthumb);
   comic_bookmark.push(props.comic.viewUrl);
   comic_bookmark.push(props.comic.updated_at);
   return comic_bookmark;
@@ -160,7 +191,21 @@ const bookmark = () => {
   bookmark_data.status = Bookmark_details();
   console.log("bookmarking function");
 };
+
+
+const readChapter = (cid) => {
+  let comicChapters = new Set(JSON.parse(localStorage.getItem(props.comic.id)));
+  if ( comicChapters.has(cid)) {
+    console.log("Read chapter Already!" + cid)
+  }
+  else{
+    console.log("Read chapter  !" + cid)
+    comicChapters.add(cid);
+}
+localStorage.setItem(props.comic.id , JSON.stringify([...comicChapters]));
+}
 </script>
+
 
 <style scoped>
 .active {

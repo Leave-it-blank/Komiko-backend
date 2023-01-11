@@ -1275,15 +1275,6 @@ select {
 .mb-4 {
     margin-bottom: 1rem
 }
-.mb-5 {
-    margin-bottom: 1.25rem
-}
-.mb-0 {
-    margin-bottom: 0px
-}
-.ml-auto {
-    margin-left: auto
-}
 .-mt-px {
     margin-top: -1px
 }
@@ -1326,11 +1317,17 @@ select {
 .mr-10 {
     margin-right: 2.5rem
 }
+.mb-5 {
+    margin-bottom: 1.25rem
+}
 .mb-1 {
     margin-bottom: 0.25rem
 }
 .-mb-1 {
     margin-bottom: -0.25rem
+}
+.mb-0 {
+    margin-bottom: 0px
 }
 .mr-4 {
     margin-right: 1rem
@@ -2287,9 +2284,6 @@ select {
 .pb-1 {
     padding-bottom: 0.25rem
 }
-.pt-0 {
-    padding-top: 0px
-}
 .pt-8 {
     padding-top: 2rem
 }
@@ -2599,6 +2593,9 @@ select {
 .opacity-95 {
     opacity: 0.95
 }
+.opacity-80 {
+    opacity: 0.8
+}
 .shadow-sm {
     --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -2829,6 +2826,14 @@ select {
 }
 .hover\:animate-bounce:hover {
     animation: bounce 1s infinite
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+.hover\:animate-spin:hover {
+    animation: spin 1s linear infinite
 }
 .hover\:cursor-pointer:hover {
     cursor: pointer
@@ -3582,6 +3587,9 @@ select {
     }
     .md\:justify-end {
         justify-content: flex-end
+    }
+    .md\:justify-center {
+        justify-content: center
     }
     .md\:justify-between {
         justify-content: space-between
