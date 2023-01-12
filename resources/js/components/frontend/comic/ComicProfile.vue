@@ -44,13 +44,19 @@
   <div
     class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
-    <h2 class="flex flex-wrap">
-      <span
-        class="px-4 m-1 py-2 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl text-white font-bold font-catamaran text-sm capitalize"
-        v-for="tag in props.comic.tags"
+    <h2 class="flex flex-wrap  ">
+    <div class="flex flex-row align-middle justify-items-center justify-center gap-2 px-4 m-1 py-2 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl text-white font-bold font-catamaran text-sm capitalize"   v-for="tag in props.comic.tags">
+      <TagIcon
+                   class="    h-6 w-4 cursor-pointer focus:outline-none focus:ring-2 text-purple-300 rounded-md"
+                   aria-hidden="true"
+                />   <span
+        class="mt-0.5 "
+
       >
         {{ tag.name }}</span
       >
+    </div>
+
     </h2>
   </div>
 
@@ -59,22 +65,22 @@
   </div>
 
   <div
-    class="sm:px-10 px-3 my-2 mx-auto sm:mb-5 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
+    class="sm:px-10 px-3 my-2 mx-auto  mb-4 bg-neutral-200 dark:bg-neutral-900 py-5 rounded-lg min-w-fit"
   >
     <h3 class="text-xl font-roboto p-1 w-full text-justify max-w-md font-bold">
       {{ "Content" }}
     </h3>
 
     <div class="flex flex-col mx-2">
-      <div v-for="(vol, index) in props.comic.volumes">
+      <div v-for="(vol, index) in myList" :key="index">
         <div
           v-if="index === 1"
           v-html="props.ads_comic.ads_inside_content"
           class="flex flex-col my-2"
         ></div>
-        <h4 class="my-1">{{ "Volume " + vol.number }}</h4>
+        <h4 v-if="vol.chapters_exist" class="my-1">{{ "Volume " + vol.number }}</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          <div v-for="(ch, ind) in vol.chapters"  >
+          <div v-for="(ch, ind) in vol.chapters" :key="ind"  >
             <Link
               :href="
                 route(ch.url, {
@@ -94,11 +100,11 @@
 
                 >
                 <p :id="ch.id + '_chapter_id_read'" class="hidden" ><EyeIcon
-                   class="  h-10 w-10  cursor-pointer focus:outline-none focus:ring-2 "
+                   class="  h-8 w-8  cursor-pointer focus:outline-none focus:ring-2 text-purple-300 rounded-md"
                    aria-hidden="true"
                 /> </p>
                 <p  :id="ch.id + '_chapter_id_not_read'"  class=""> <EyeOffIcon :id="ch.id + '_chapter_id_not_read'"
-                   class="h-10 w-10  cursor-pointer focus:outline-none focus:ring-2 "
+                   class="h-8 w-8  cursor-pointer focus:outline-none focus:ring-2 text-red-300 rounded-md"
                    aria-hidden="true"
                 /></p>
 
@@ -120,8 +126,8 @@
 
 <script setup>
 import { Link, usePage } from "@inertiajs/inertia-vue3";
-import { EyeIcon  , EyeOffIcon } from "@heroicons/vue/outline";
-import { computed, reactive , onMounted } from "vue";
+import { EyeIcon  , EyeOffIcon , TagIcon } from "@heroicons/vue/outline";
+import { computed, reactive , onMounted , ref } from "vue";
 const props = defineProps({
   comic: {
     type: Object,
@@ -138,7 +144,7 @@ const props = defineProps({
 if(!localStorage[props.comic.id]){
   localStorage.setItem(props.comic.id,  JSON.stringify([...new Set()]));
 }
-
+const myList = ref(props.comic.volumes)
 
 const bookmark_data = reactive({ status: Bookmark_details() });
 

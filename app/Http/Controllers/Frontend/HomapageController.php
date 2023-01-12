@@ -57,7 +57,7 @@ class HomapageController extends Controller
                     'thumb' => $chapter->volume->comic->getMedia('thumbnail')->map(function ($media) {
                         return [
                             'id' => $media->id,
-                            'responsive' => $media()->attributes(['class' => 'rounded-xl  object-cover overflow-hidden  sm:h-72 sm:w-48 select-none', 'alt' => $media->name])->toHtml(),
+                            'responsive' => $media()->attributes(['class' => 'rounded-xl  object-fit overflow-hidden  sm:h-72 sm:w-48 select-none', 'alt' => $media->name])->toHtml(),
                             'alt' => $media->name,
 
                         ];

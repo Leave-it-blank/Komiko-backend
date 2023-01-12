@@ -8,7 +8,7 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pb-2 gap-2 md:gap-4 mx-auto justify-center sm:justify-start overflow-clip w-full"
       style="min-height: 10rem"
     >
-      <div v-for="comic in comics" class="m-2 grow flex justify-center">
+      <div v-for="(comic, ind) in comics" class="m-2 grow flex justify-center">
         <div class="px-2 py-1 h-content bg-transparent w-content">
           <div class="flex flex-shrink rounded-md">
             <div class="flex flex-col rounded-md">
@@ -68,6 +68,8 @@ const props = defineProps({
     default: null,
   },
 });
+
+//console.log(props.comics)
 
 function dateshow(value) {
   return moment(value).fromNow(); // here u modify data

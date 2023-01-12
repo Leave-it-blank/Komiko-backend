@@ -21,6 +21,7 @@ class ComicController extends Controller
     {
         //Cache::forget('comic_' . $comic->titleSlug);
         views($comic)
+            ->cooldown(now()->addSeconds(2))
             ->collection('comics_homepage_view')
             ->record();
         //  Cache::forget('ads_comic');
@@ -40,7 +41,7 @@ class ComicController extends Controller
 
             ];
         });
-        // Cache::forget('comic_' . $comic->titleSlug);
+       // Cache::forget('comic_' . $comic->titleSlug);
 
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;
@@ -57,13 +58,16 @@ class ComicController extends Controller
                             "id" => $c->id,
                             "url" => 'reader.chapter.view',
                         ];
-                    })->reverse(),
+                    }) ->reverse()
+                    ->values() ,
                     'name' => $volume->name,
                     'number' => $volume->number,
-                    'id' => $volume->id
+                    'id' => $volume->id,
+                    'chapters_exist' => $volume->chapters->count() > 0
 
                 ];
-            });
+            }) ->reverse()
+            ->values();
 
             $data_thumb = $comic->getMedia('thumbnail');
             $thumb =  $data_thumb->map(function ($media) {
