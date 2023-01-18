@@ -16,7 +16,6 @@ class SettingsController extends Controller
     public function viewSettings()
     {
         $this->authorize('view settings',    Auth::user());
-        //return 'hi';
         return Inertia::render('Backend/SiteManagement/ListSettings', [
             'settings' => app(GeneralSettings::class)->toArray(),
         ]);
@@ -41,8 +40,16 @@ class SettingsController extends Controller
             'dark_mode' => 'bool|required',
             'side_bar' => 'bool|required',
             'carousel' => 'bool|required',
+            //added new
+            'favicon' => 'string',
+            'layout' => 'string|required',
+            'keywords' => 'string|required',
+            'carousel_type' => 'string|required',
+            'site_logo_url' => 'string',
+            'reddit_url' => 'string',
+
         ]);
-        //   dd($data);
+
         try {
             $settings = app(GeneralSettings::class);
 
@@ -62,10 +69,18 @@ class SettingsController extends Controller
             $settings->__set('search', $data["search"]);
             $settings->__set('dark_mode', $data["dark_mode"]);
             $settings->__set('carousel', $data["carousel"]);
+
+            $settings->__set('favicon', $data["favicon"]);
+            $settings->__set('layout', $data["layout"]);
+            $settings->__set('keywords', $data["keywords"]);
+            $settings->__set('carousel_type', $data["carousel_type"]);
+            $settings->__set('site_logo_url', $data["site_logo_url"]);
+            $settings->__set('reddit_url', $data["reddit_url"]);
+
             $settings->save();
             $settings->refresh();
             Cache::flush();
-            return redirect()->back()->with('message', 'Updated Successfully.');
+            return redirect()->back()->with('message', 'Settings Updated Successfully.');
         } catch (\Exception $e) {
             throw $e;
         }

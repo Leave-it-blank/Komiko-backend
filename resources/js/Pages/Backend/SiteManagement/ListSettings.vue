@@ -34,6 +34,14 @@ const settingsForm = useForm({
   dark_mode: props.settings.dark_mode,
   side_bar: props.settings.side_bar,
   carousel: props.settings.carousel,
+
+  //add from here
+  favicon: props.settings.favicon,
+  layout: props.settings.layout,
+  keywords: props.settings.keywords,
+  carousel_type: props.settings.carousel_type,
+  site_logo_url: props.settings.site_logo_url,
+  reddit_url: props.settings.reddit_url,
 });
 const siteStore = useSiteStore();
 
