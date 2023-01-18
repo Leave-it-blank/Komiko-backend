@@ -1,7 +1,7 @@
 # Comic Blog WebApp
 
 How it looks:
-  <img src="#"/>
+  <img src="https://github.com/Leave-it-blank/Kirikon/blob/3505731c53964814dfc34df835af9e7ece01c115/production/screencapture-beta-lynxscans-admin-management-settings-2023-01-18-22_53_40.png"/>
 
 Includes Server utilities:
 
