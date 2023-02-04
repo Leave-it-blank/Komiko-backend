@@ -3,12 +3,7 @@ import AppLayout from "@/Layouts/App.vue";
 import { Inertia } from "@inertiajs/inertia";
 import { Head } from "@inertiajs/inertia-vue3";
 import { ref, reactive } from "vue";
-import {
-  mdiAccount,
-  mdiAccountMultiple,
-  mdiAccountCircle,
-  mdiMail,
-} from "@mdi/js";
+import { mdiAccount, mdiAccountMultiple, mdiAccountCircle, mdiMail } from "@mdi/js";
 import SectionMain from "@/components/backend/SectionMain.vue";
 import NotificationBar from "@/components/backend/NotificationBar.vue";
 import CardBox from "@/components/backend/CardBox.vue";
@@ -61,18 +56,9 @@ const titleStack = ref([
         :chapterCount="props.chapters.length"
       />
 
-      <BaseButton
-        label="Create Chapter"
-        @click="isModalActive = true"
-        color="info"
-      />
+      <BaseButton label="Create Chapter" @click="isModalActive = true" color="info" />
       <DividerHorizontal />
-      <CardBox
-        class="mb-6"
-        title="Volumes"
-        :icon="mdiAccountMultiple"
-        has-table
-      >
+      <CardBox class="mb-6 px-5" title="Volumes" :icon="mdiAccountMultiple" has-table>
         <div v-if="props.chapters">
           <ChapterTable checkable :chapters="props.chapters" />
         </div>

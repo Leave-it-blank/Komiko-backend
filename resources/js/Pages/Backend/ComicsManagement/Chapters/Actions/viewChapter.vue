@@ -75,7 +75,7 @@ const titleStack = ref([
       </div>
 
       <DividerHorizontal />
-      <CardBox class="mb-6" title="Pages" :icon="mdiAccountMultiple" has-table>
+      <CardBox class="mb-6 px-5" title="Pages" :icon="mdiAccountMultiple" has-table>
         <div v-if="props.pages">
           <PagesTable checkable :pages="props.pages" />
         </div>
