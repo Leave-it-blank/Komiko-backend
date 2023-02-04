@@ -39,9 +39,6 @@ mainStore.clients = prop.comics;
 
 const items = computed(() => mainStore.clients);
 
-const isModalActive = ref(false);
-
-const isModalDangerActive = ref(false);
 
 const perPage = ref(10);
 
@@ -101,10 +98,6 @@ const checked = (isChecked, client) => {
     />
   </div>
 
-  <CardBoxModal v-model="isModalActive" title="Sample modal">
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
 
   <div
     v-if="checkedRows.length"

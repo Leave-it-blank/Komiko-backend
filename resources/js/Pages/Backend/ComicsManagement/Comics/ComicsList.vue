@@ -38,7 +38,7 @@ const titleStack = ref(["Dashboard", "Comics"]);
         color="info"
       />
       <DividerHorizontal />
-      <CardBox class="mb-6" title="Comics" :icon="mdiAccountMultiple" has-table
+      <CardBox class="mb-6 px-5" title="Comics" :icon="mdiAccountMultiple" has-table
         ><div v-if="props.comics">
           <ComicsTable checkable :comics="props.comics" />
         </div>
