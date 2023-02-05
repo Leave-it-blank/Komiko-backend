@@ -21,7 +21,7 @@
         })(window, document, 'script', 'dataLayer', '{{$globalsettings->tag_manager}}');
     </script>
     
-    {{$globalsettings->adsense}}
+      
     <!-- End Google Tag Manager -->
     <meta data-n-head="ssr" charset="utf-8">
     <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=0.8">
