@@ -165,8 +165,12 @@ function readAlready(){
   comicChapters.forEach( function(value) {
     const rid = value + '_chapter_id_read';
     const rnid = value + '_chapter_id_not_read';
+    if (document.getElementById(rid)) {
     document.getElementById(rid).classList.remove('hidden');
+    }
+    if (document.getElementById(rnid)) {
     document.getElementById(rnid).classList.add('hidden');
+    }
 });
 }
 
