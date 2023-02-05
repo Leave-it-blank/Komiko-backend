@@ -46,7 +46,9 @@ class ComicController extends Controller
         $data =  cache()->remember('comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch_url = null;
             if ($comic->volumes->count() != 0) {
+                if($comic->volumes->first()->chapters->count()){
                 $first_ch_url = route('reader.chapter.view', ['comic' => $comic->titleSlug, 'volume' => $comic->volumes->first()->number, 'chapter' => $comic->volumes->first()->chapters->first()->number]);
+                }
             }
 
             $volume =  $comic->volumes->map(function ($volume) {
