@@ -112,7 +112,7 @@ const submit = () => {
               route-name="password.request"
               color="info"
               outline
-              label="Remind"
+              label="forgot password"
             />
           </BaseButtons>
           <Link :href="route('register')"> Register </Link>
