@@ -85,6 +85,8 @@ uppy.use(XHRUpload, {
   method: "post",
   formData: true,
   Return: value,
+  timeout: 0,
+  limit: 5,
   headers: {
     "X-CSRF-Token": props.crftoken,
   },
