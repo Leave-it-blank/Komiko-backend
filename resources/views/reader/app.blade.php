@@ -20,8 +20,8 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', '{{$globalsettings->tag_manager}}');
     </script>
-    <script asyncsrc=\"https:\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-4705209099510077\"\n     crossorigin=\"anonymous\"><\/script>
-      
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4705209099510077"
+     crossorigin="anonymous"></script>
     <!-- End Google Tag Manager -->
     <meta data-n-head="ssr" charset="utf-8">
     <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=0.8">
