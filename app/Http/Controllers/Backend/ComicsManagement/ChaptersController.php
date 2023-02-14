@@ -42,7 +42,7 @@ class ChaptersController extends Controller
                     'chapter_id' => $chapter->id
                 ]);
                 $page->addMediaFromDisk($thumbnail_url)
-                    ->withResponsiveImages()
+                   // ->withResponsiveImages() //notworth the trouble
                     ->toMediaCollection('page');
                 $page->Update([
                     'fileSize' => $page->getFirstMedia('page')->human_readable_size,
