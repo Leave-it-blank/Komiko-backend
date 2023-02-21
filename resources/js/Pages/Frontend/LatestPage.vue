@@ -45,7 +45,7 @@
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pb-2 gap-2 md:gap-4 mx-auto justify-center sm:justify-start overflow-clip w-full"
               >
                 <div
-                  v-for="chapter in props.chapters.data" :key="props.chapter.id"
+                  v-for="chapter in props.chapters.data" :key="chapter.id"
                   class="m-2 grow flex justify-center"
                    
                 >
