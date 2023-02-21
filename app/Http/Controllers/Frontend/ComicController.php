@@ -60,7 +60,7 @@ class ComicController extends Controller
                             "id" => $c->id,
                             "url" => 'reader.chapter.view',
                         ];
-                    }) ->reverse()
+                    })->sortBy('number') ->reverse()
                     ->values() ,
                     'name' => $volume->name,
                     'number' => $volume->number,
