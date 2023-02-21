@@ -143,7 +143,7 @@ class ManagementSeeder extends Seeder
         $management->svg = '/defaults/action.svg';
         $management->save();
         $management = new Tag();
-        $management->name = 'medival';
+        $management->name = 'medieval';
         $management->tagCode = Str::uuid();
         $management->svg = '/defaults/action.svg';
         $management->save();
