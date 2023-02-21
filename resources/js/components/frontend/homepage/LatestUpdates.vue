@@ -15,7 +15,7 @@
               <Link :href="comic.cviewUrl">
                 <div class="relative backdrop:bg-yellow-400">
                   <div
-                    class="select-none mx-auto flex flex-1 rounded-xl sm:h-72 sm:w-48"
+                    class="select-none mx-auto flex flex-1 justify-center rounded-xl sm:h-72 sm:w-48"
                     v-html="comic.thumb[0].responsive"
                     :alt="comic.thumb[0].alt"
                   ></div>
