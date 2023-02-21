@@ -52,7 +52,7 @@
           <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous  
           </Link>
-          <button v-else>No Previous Chapter</button>
+          <button v-else>No Prev</button>
         </div>
 
         <Link
@@ -67,7 +67,7 @@
           <Link :href="nextChapter" v-if="nextChapter !== null" class=" ">
             Next 
           </Link>
-          <button v-else>No Next Chapter</button>
+          <button v-else>No Next</button>
         </div>
       </div>
       <div
