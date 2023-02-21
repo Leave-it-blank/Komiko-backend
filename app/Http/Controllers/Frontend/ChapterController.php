@@ -33,8 +33,8 @@ class ChapterController extends Controller
         $data =  cache()->remember('comic_' . $comic->titleSlug . $volume->id . $chapter->id, now()->addMinutes(2), function () use ($chapter, $volume, $comic) {
             $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->with('media')->get();
 
-            $nch = Chapter::where('number', '>', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'asc')->first();
-            $pch = Chapter::where('number', '<', $chapter->number)->where('volume_id', $volume->id)->orderBy('id', 'desc')->first();
+            $nch = Chapter::where('number', '>', $chapter->number)->where('volume_id', $volume->id)->orderBy('number', 'asc')->first();
+            $pch = Chapter::where('number', '<', $chapter->number)->where('volume_id', $volume->id)->orderBy('number', 'desc')->first();
 
             $nextChapter = null;
             $previousChapter = null;
