@@ -231,9 +231,8 @@ class HomapageController extends Controller
 
     public function viewLatest()
     {
-
-        $latest = cache()->remember('latests_page', now()->addMinutes(2), function () {
-            return   Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
+        
+        $latest =  Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
                 $c->where('isHidden', false);
             })->orderBy('updated_at', 'desc')->paginate(15)->through(function ($chapter) {
                 $chapter->cid = $chapter->volume->comic->id;
@@ -252,7 +251,7 @@ class HomapageController extends Controller
                 $chapter->viewUrl = route('reader.chapter.view', ['comic' => $chapter->volume->comic->titleSlug, 'volume' => $chapter->volume->number, 'chapter' => $chapter->number]);
                 return $chapter;
             });
-        });
+      
 
 
         return Inertia::render('Frontend/LatestPage', [
@@ -262,8 +261,8 @@ class HomapageController extends Controller
 
     public function viewComics()
     {
-        $comics =  cache()->remember('comicsPage', now()->addMinutes(2), function () {
-            return   Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderBy('title')->paginate(15)->through(function ($comic) {
+       
+        $comics = Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderBy('title')->paginate(15)->through(function ($comic) {
                 $comic->thumb = $comic->getMedia('thumbnail')->map(function ($media) {
                     return [
                         'id' => $media->id,
@@ -275,7 +274,7 @@ class HomapageController extends Controller
                 $comic->viewUrl = route('reader.comic.view', $comic->titleSlug);
                 return $comic;
             });
-        });
+    
 
         return Inertia::render('Frontend/ComicsPage', [
             'comics' => $comics,
