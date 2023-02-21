@@ -207,7 +207,7 @@ if(!localStorage[usePage().props.value.comic_ID]){
 
 
 onMounted(() => {
-  readChapter(usePage().props.value.c_chap_no);
+  readChapter(usePage().props.value.chapter.id);
 })
 const readChapter = (cid) => {
   let comicChapters = new Set(JSON.parse(localStorage.getItem(usePage().props.value.comic_ID)));
