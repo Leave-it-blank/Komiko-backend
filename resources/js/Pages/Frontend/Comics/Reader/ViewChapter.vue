@@ -148,6 +148,7 @@
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import ReaderLayout from "@/Layouts/ReaderLayout.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
+import {   onMounted  } from "vue";
 const props = defineProps({
   chapter: {
     type: Object,
@@ -162,6 +163,10 @@ const props = defineProps({
     default: null,
   },
   c_vol_no: {
+    type: Number,
+    default: null,
+  },
+  comic_ID: {
     type: Number,
     default: null,
   },
@@ -196,6 +201,25 @@ const props = defineProps({
 
   errors: Object,
 });
+if(!localStorage[usePage().props.value.comic_ID]){
+  localStorage.setItem(usePage().props.value.comic_ID,  JSON.stringify([...new Set()]));
+}
+
+
+onMounted(() => {
+  readChapter(usePage().props.value.c_chap_no);
+})
+const readChapter = (cid) => {
+  let comicChapters = new Set(JSON.parse(localStorage.getItem(usePage().props.value.comic_ID)));
+  if ( comicChapters.has(cid)) {
+    console.log("Read chapter Already!" + cid)
+  }
+  else{
+    console.log("Read chapter  !" + cid)
+    comicChapters.add(cid);
+}
+localStorage.setItem(usePage().props.value.comic_ID, JSON.stringify([...comicChapters]));
+}
 
 function loaddisq() {
   document.getElementById("disq_load").style.display = "none";
