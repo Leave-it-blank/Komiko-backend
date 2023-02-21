@@ -393,7 +393,7 @@ const titleStack = ref(["Dashboard", "Comics", "Create Comic"]);
                       </div>
                       <div>
                         <ul class="pl-4 text-xs text-gray-500">
-                          <li>Minimum: 350 x 550 (pixels).</li>
+                          <li>Minimum: 490 x 690 (pixels).</li>
                           <li>Maximum: 550 x 750 (pixels).</li>
                           <li>Must be a <code>.png</code> or <code>.jpg</code>.</li>
                         </ul>
