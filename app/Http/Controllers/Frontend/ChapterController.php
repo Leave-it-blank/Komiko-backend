@@ -87,6 +87,7 @@ class ChapterController extends Controller
             "pages" =>   $data["0"]["pages_data"],
             "chapter" => $chapter,
             "ctitle" => $comic->title,
+            "comic_ID" => $comic->id,
             "cdesc" => $comic->description,
             "c_vol_no" => $volume->number,
             "c_chap_no" => $chapter->number,
