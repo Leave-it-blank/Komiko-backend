@@ -55,7 +55,7 @@
                         <div class="flex flex-col rounded-md">
                           <div class="relative">
                             <div
-                              class="select-none mx-auto flex flex-1 rounded-xl sm:h-72 sm:w-48"
+                              class="select-none mx-auto flex flex-1 justify-center rounded-xl sm:h-72 sm:w-48"
                               v-html="chapter.thumb[0].responsive"
                               :alt="chapter.thumb[0].alt"
                             ></div>
