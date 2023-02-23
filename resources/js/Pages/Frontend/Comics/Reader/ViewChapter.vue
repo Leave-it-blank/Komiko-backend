@@ -52,7 +52,7 @@
           <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous  
           </Link>
-          <button v-else>No Prev</button>
+          <button v-else disabled>No Prev</button>
         </div>
 
         <Link
@@ -67,7 +67,7 @@
           <Link :href="nextChapter" v-if="nextChapter !== null" class=" ">
             Next 
           </Link>
-          <button v-else>No Next</button>
+          <button v-else disabled>No Next</button>
         </div>
       </div>
       <div
@@ -93,12 +93,12 @@
         class="grid grid-cols-3 p-4 mt-3 font-catamaran gap-2 bg-neutral-200 dark:bg-neutral-900 dark:text-gray-200 rounded-md text-sm"
       >
         <div
-          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-start items-center self-center align-middle text-center"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-center items-center self-center align-middle text-center"
         >
           <Link :href="previousChapter" v-if="previousChapter !== null" class=" ">
             Previous  
           </Link>
-          <button v-else>No Previous Chapter</button>
+          <button v-else disabled>No Prev </button>
         </div>
 
         <Link
@@ -108,12 +108,12 @@
           Home
         </Link>
         <div
-          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-end items-center self-center align-middle text-center"
+          class="px-5 py-4 rounded-md bg-purple-500 text-gray-900 dark:text-gray-200 justify-self-center items-center self-center align-middle text-center"
         >
-          <Link :href="nextChapter" v-if="nextChapter !== null" class=" ">
-            Next Chapter
+          <Link :href="nextChapter" v-if="nextChapter !== null" class="  " >
+            Next  
           </Link>
-          <button v-else>No Next  </button>
+          <button v-else disabled>No Next  </button>
         </div>
       </div>
       <div
