@@ -85,7 +85,7 @@
                                 <div
                                   class=" min-h-3 w-full text-sm font-medium text-left select-none cursor-pointer flex-none line-clamp-2 md:line-clamp-1 flex-0"
                                 >
-                                  {{ dateshow(comic.updatedAt) }}
+                                  {{ dateshow(comic.updated_at) }}
 
                               </div>
                             </div>
