@@ -94,7 +94,7 @@ class HomapageController extends Controller
         });
         //recommended HOT UPDATES
         $recommended = cache()->remember('hot_updates', now()->addMinutes(5), function () {
-            return  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->take(8)->get()->map(function ($comic) {
+            return  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->take(10)->get()->map(function ($comic) {
                 return [
                     'id' => $comic->id,
                     'title' => $comic->title,
