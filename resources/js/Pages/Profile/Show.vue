@@ -28,7 +28,7 @@ defineProps({
         </div>
 
         <div v-if="$page.props.jetstream.canUpdatePassword">
-          <UpdatePasswordForm class="mt-10 sm:mt-0" />cd Ly
+          <UpdatePasswordForm class="mt-10 sm:mt-0" /> 
 
           <JetSectionBorder />
         </div>
