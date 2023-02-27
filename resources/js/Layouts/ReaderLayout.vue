@@ -22,7 +22,7 @@ const ads_global_2 = usePage().props.value.ads_global.above_rec;
   <main class="relative">
     <div class="w-full h-full min-h-screen">
       <ReaderNavBar />
-      <s   id="ads_global_nav_1"></div>
+      <div   id="ads_global_nav_1"></div>
 
       <slot />
     </div>
