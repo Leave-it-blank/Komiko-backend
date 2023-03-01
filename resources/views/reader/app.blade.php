@@ -20,8 +20,7 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', '{{$globalsettings->tag_manager}}');
     </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4705209099510077"
-     crossorigin="anonymous"></script>
+ 
     <!-- End Google Tag Manager -->
     <meta data-n-head="ssr" charset="utf-8">
     <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=0.8">
@@ -60,18 +59,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{$globalsettings->tag_manager}}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     @inertia
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4705209099510077"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5q+57-cn+4i"
-     data-ad-client="ca-pub-4705209099510077"
-     data-ad-slot="9673151324"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  
+ 
 </body>
 
 </html>
