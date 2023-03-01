@@ -3,10 +3,20 @@ import ReaderNavBar from "@/components/frontend/navigation/ReaderNavBar.vue";
 import ReaderFooter from "../components/frontend/navigation/ReaderFooter.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 import { useReaderStore } from "@/stores/reader";
+import { onMounted } from 'vue'
 const mainStore = useReaderStore();
 mainStore.setStyle("reader");
 
- 
+onMounted(() => {
+  console.log(`the component is now mounted.`);
+  const ads_global_1 = usePage().props.value.ads_global.below_rec;
+  const ads_global_2 = usePage().props.value.ads_global.above_rec;
+      const b = document.querySelector("#ads_global_nav_1");
+      b.insertAdjacentHTML("afterbegin", ads_global_1);
+      const a = document.querySelector("#ads_global_nav_2");
+      a.insertAdjacentHTML("afterbegin", ads_global_2);
+})
+
 
 </script>
 
@@ -16,31 +26,13 @@ mainStore.setStyle("reader");
     <div class="w-full h-full min-h-screen">
       <ReaderNavBar />
       <div   id="ads_global_nav_1">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4705209099510077"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-4705209099510077"
-     data-ad-slot="3192337605"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
+   
+    </div>
 
       <slot />
     </div>
     <div   id="ads_global_nav_2">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4705209099510077"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-4705209099510077"
-     data-ad-slot="5485929652"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+ 
     </div>
     <ReaderFooter />
   </main>
