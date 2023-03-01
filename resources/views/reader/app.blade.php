@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4705209099510077"
+     crossorigin="anonymous"></script>
 
     <!-- Google Tag Manager -->
     <script data-n-head="ssr">
