@@ -41,6 +41,8 @@
         "moment": "^2.29.3",
         "search-dropdown-vue": "^1.0.2",
         "swiper": "^8.4.5",
-        "uppy": "^2.13.8"
+        "uppy": "^2.13.8",
+        "vue-google-adsense": "^2.0.0",
+        "vue-scriptx": "^0.2.5"
     }
 }

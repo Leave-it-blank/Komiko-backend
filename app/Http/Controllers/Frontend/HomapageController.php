@@ -234,7 +234,8 @@ class HomapageController extends Controller
         
         $latest =  Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
                 $c->where('isHidden', false);
-            })->orderBy('updated_at', 'desc')->paginate(15)->through(function ($chapter) {
+            })->orderBy('updated_at', 'desc')->paginate(25)
+            ->through(function ($chapter) {
                 $chapter->cid = $chapter->volume->comic->id;
                 $chapter->cnumber = $chapter->number;
                 $chapter->vnumber = $chapter->volume->number;
@@ -250,7 +251,7 @@ class HomapageController extends Controller
                 });
                 $chapter->viewUrl = route('reader.chapter.view', ['comic' => $chapter->volume->comic->titleSlug, 'volume' => $chapter->volume->number, 'chapter' => $chapter->number]);
                 return $chapter;
-            });
+            })  ;
       
 
 
