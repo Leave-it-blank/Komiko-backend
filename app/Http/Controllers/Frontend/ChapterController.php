@@ -20,6 +20,9 @@ class ChapterController extends Controller
 {
     public function viewChapterReader(Comic $comic, Volume $volume, Chapter $chapter)
     {
+       
+
+        return redirect()->route('login');
         $crawler = false;
         views($chapter)
             ->cooldown(now()->addSeconds(2))

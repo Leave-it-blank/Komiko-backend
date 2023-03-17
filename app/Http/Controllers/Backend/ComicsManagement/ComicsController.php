@@ -144,7 +144,7 @@ class ComicsController extends Controller
             $comic["thumb"]->storeAs('/public/temp/cover/', $uid . '.' . $extension);
             $thumbnail_url = '/public/temp/cover/' . $uid . '.' . $extension;
             $media = $Tcomic->addMediaFromDisk($thumbnail_url)
-                ->withResponsiveImages()
+                //->withResponsiveImages() //not required tbh
                 ->toMediaCollection('thumbnail');
             $Tcomic->save();
 
@@ -267,7 +267,7 @@ class ComicsController extends Controller
                 $valcomic["thumb"]->storeAs('/public/temp/cover/', $comic->uid . '.' . $extension);
                 $thumbnail_url = '/public/temp/cover/' . $comic->uid . '.' . $extension;
                 $comic->addMediaFromDisk($thumbnail_url)
-                    ->withResponsiveImages()
+                    //->withResponsiveImages()
                     ->toMediaCollection('thumbnail');
                 //$comic->save();
 

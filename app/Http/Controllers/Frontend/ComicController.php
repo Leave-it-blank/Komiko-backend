@@ -20,6 +20,7 @@ class ComicController extends Controller
     public function viewComic(Comic  $comic)
     {
         //Cache::forget('comic_' . $comic->titleSlug);
+        return redirect()->route('login');
         views($comic)
             ->cooldown(now()->addSeconds(2))
             ->collection('comics_homepage_view')
@@ -151,6 +152,7 @@ class ComicController extends Controller
 
     public function viewBookmarks()
     {
+        return redirect()->route('login');
         return Inertia::render('Frontend/Comics/Bookmarks');
     }
 }

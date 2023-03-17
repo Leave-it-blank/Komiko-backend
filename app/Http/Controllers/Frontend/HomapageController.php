@@ -22,6 +22,9 @@ class HomapageController extends Controller
     public function viewHomepage()
     {
         // Cache::flush();
+        return Inertia::render('Frontend/Home' );
+        // return view('/Home');
+         
 
         $ads_home =  cache()->remember('ads_homepage', now()->addMinutes(30), function () {
             $ads_above_rec = \App\Helpers\Advertisement::aboveRecommended();
@@ -231,7 +234,7 @@ class HomapageController extends Controller
 
     public function viewLatest()
     {
-        
+        return redirect()->route('login');
         $latest =  Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
                 $c->where('isHidden', false);
             })->orderBy('updated_at', 'desc')->paginate(25)
@@ -262,6 +265,7 @@ class HomapageController extends Controller
 
     public function viewComics()
     {
+        return redirect()->route('login');
        
         $comics = Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderBy('title')->paginate(15)->through(function ($comic) {
                 $comic->thumb = $comic->getMedia('thumbnail')->map(function ($media) {

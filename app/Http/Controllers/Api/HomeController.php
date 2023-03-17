@@ -68,7 +68,7 @@ class HomeController extends Controller
         return  Carousel::where('is_enabled', true)->orderBy('position', 'asc')->get()->map(function ($carousel) {
             return [
 
-                'img' => $carousel-> getFirstMediaUrl('carousel') ,
+                'img' => $carousel->getFirstMediaUrl('carousels') ,
                 'position' => $carousel->position,
                 'url' => $carousel->url
             ];

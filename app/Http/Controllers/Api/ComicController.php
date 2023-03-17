@@ -213,6 +213,7 @@ class ComicController extends Controller
 
             "vol_no" => $volume->number,
             "vol_ID" => $volume->id,
+            "comic_thumb" =>  $comic->getFirstMediaUrl('thumbnail'),
             
             "nextCh" =>  $data["0"]["nextChapter"],
             "prevCh" => $data["0"]["previousChapter"],
