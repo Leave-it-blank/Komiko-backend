@@ -15,12 +15,12 @@ use Session;
 use App\Models\Tag;
 use COM;
 
- 
- 
- 
+
+
+
 use App\Models\Page;
- 
- 
+
+
 use Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect as Crawler;
 
 class ComicController extends Controller
@@ -49,13 +49,13 @@ class ComicController extends Controller
 
             ];
         });
-       // Cache::forget('comic_' . $comic->titleSlug);
+        // Cache::forget('comic_' . $comic->titleSlug);
 
         $data =  cache()->remember('api_comic_' . $comic->titleSlug, now()->addMinutes(2), function () use ($comic) {
             $first_ch = null;
             if ($comic->volumes->count() != 0) {
-                if($comic->volumes->first()->chapters->count()){
-                $first_ch = ['comicSlug' => $comic->titleSlug, 'volumeNumber' => $comic->volumes->first()->number, 'chapterNumber' => $comic->volumes->first()->chapters->sortBy('number')->first()->number];
+                if ($comic->volumes->first()->chapters->count()) {
+                    $first_ch = ['comicSlug' => $comic->titleSlug, 'volumeNumber' => $comic->volumes->first()->number, 'chapterNumber' => $comic->volumes->first()->chapters->sortBy('number')->first()->number];
                 }
             }
 
@@ -68,20 +68,20 @@ class ComicController extends Controller
                             "id" => $c->id,
                             "url" => 'reader.chapter.view',
                         ];
-                    })->sortBy('number') ->reverse()
-                    ->values() ,
+                    })->sortBy('number')->reverse()
+                        ->values(),
                     'name' => $volume->name,
                     'number' => $volume->number,
                     'id' => $volume->id,
                     'chapters_exist' => $volume->chapters->count() > 0
 
                 ];
-            }) ->reverse()
-            ->values();
+            })->reverse()
+                ->values();
 
-       
+
             $thumb =  $comic->getFirstMediaUrl('thumbnail');
- 
+
 
             $comic_tags = $comic->tags->map(function ($tag) {
 
@@ -132,14 +132,14 @@ class ComicController extends Controller
                 'tags' => $data["0"]["comic_tags"],
                 'first_ch' => $data["0"]["first_ch"],
                 'thumb' =>  $data["0"]["thumb"],
-                 
+
                 'volumes' => $data["0"]["volumes"],
                 "titleSlug" => $data["0"]["slug"],
 
-            ],   
+            ],
             'ads_comic' => $ads_comic,
 
-        ] ;
+        ];
     }
 
     public function viewChapter(Comic $comic, Volume $volume, Chapter $chapter)
@@ -149,10 +149,10 @@ class ComicController extends Controller
             ->cooldown(now()->addSeconds(2))
             ->collection('comics_chapter_view')
             ->record();
-        if(Crawler::isCrawler()) {
-                // true if crawler user agent detected
-                $crawler = true;
-              }
+        if (Crawler::isCrawler()) {
+            // true if crawler user agent detected
+            $crawler = true;
+        }
 
         $data =  cache()->remember('api_comic_' . $comic->titleSlug . $volume->id . $chapter->id, now()->addMinutes(2), function () use ($chapter, $volume, $comic) {
             $pages =  Page::where('chapter_id', $chapter->id)->orderBy('fileName', 'asc')->with('media')->get();
@@ -173,7 +173,7 @@ class ComicController extends Controller
                     "id" => $page->id,
                     "fileName" => $page->fileName,
                     "thumb" => $page->getFirstMediaUrl('page'),
-                     
+
                 ];
             });
             $data = array(
@@ -208,18 +208,19 @@ class ComicController extends Controller
             "ch_no" => $chapter->number,
 
             "comic_titleSlug" => $comic->titleSlug,
+            "comic_description" => $comic->description,
             "comic_title" => $comic->title,
             "comic_ID" => $comic->id,
 
             "vol_no" => $volume->number,
             "vol_ID" => $volume->id,
             "comic_thumb" =>  $comic->getFirstMediaUrl('thumbnail'),
-            
+
             "nextCh" =>  $data["0"]["nextChapter"],
             "prevCh" => $data["0"]["previousChapter"],
             'ads_reader' => $ads_reader,
             'crawler_detected' => $crawler,
 
-        ] ;
+        ];
     }
 }
