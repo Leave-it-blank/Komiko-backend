@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ComicController;
+use App\Http\Controllers\DownloadComicController;
 
 
 
@@ -31,3 +32,5 @@ Route::get('/comics/{comic:titleSlug}/volume/{volume:number}/chapter/{chapter:nu
 
 Route::get('/getallcomics', [HomeController::class, 'getAllComicsSlug'])->name('api.allcomic.view');
 
+Route::get('/download/{comic:titleSlug}', [DownloadComicController::class, 'viewHome'])->name('api.download.view');
+Route::get('/download-all', [DownloadComicController::class, 'downloadALL'])->name('api.download.all');
