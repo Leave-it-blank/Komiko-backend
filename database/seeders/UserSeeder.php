@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
         $role = Role::create(['name' => 'Reader'])
             ->givePermissionTo(['reader']);
 
-       // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(500)->create();
 
 
         $user = new User;
