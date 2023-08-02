@@ -39,8 +39,8 @@ services:
     env_file: ./.env
     image: redis:6-alpine
     ports:
-      - 7936:6379
-    command: >
+      - 6380:6380
+    command: --port 6380
       --requirepass ${REDIS_PASSWORD}
     networks:
       - lara
