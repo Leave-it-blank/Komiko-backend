@@ -95,7 +95,9 @@ following php 'PHP_EXTENSIONS="mysqli pgsql pdo_mysql pdo_pgsql gd gd2 ext-gd sq
 
 ## Routes
 
-  ```GET|HEAD  / ........................................................................... reader.homepage.view › Frontend\HomapageController@viewHomepage
+  ```
+
+  GET|HEAD  / ........................................................................... reader.homepage.view › Frontend\HomapageController@viewHomepage
   GET|HEAD  _debugbar/assets/javascript ..................................................... debugbar.assets.js › Barryvdh\Debugbar › AssetController@js
   GET|HEAD  _debugbar/assets/stylesheets .................................................. debugbar.assets.css › Barryvdh\Debugbar › AssetController@css
   DELETE    _debugbar/cache/{key}/{tags?} ............................................ debugbar.cache.delete › Barryvdh\Debugbar › CacheController@delete
@@ -202,7 +204,9 @@ following php 'PHP_EXTENSIONS="mysqli pgsql pdo_mysql pdo_pgsql gd gd2 ext-gd sq
   GET|HEAD  user/two-factor-qr-code ............................................... two-factor.qr-code › Laravel\Fortify › TwoFactorQrCodeController@show
   GET|HEAD  user/two-factor-recovery-codes ................................... two-factor.recovery-codes › Laravel\Fortify › RecoveryCodeController@index
   POST      user/two-factor-recovery-codes ............................................................... Laravel\Fortify › RecoveryCodeController@store
-  GET|HEAD  user/two-factor-secret-key ...................................... two-factor.secret-key › Laravel\Fortify › TwoFactorSecretKeyController@show```
+  GET|HEAD  user/two-factor-secret-key ...................................... two-factor.secret-key › Laravel\Fortify › TwoFactorSecretKeyController@show
+
+```
 
                                  
 ## Author
