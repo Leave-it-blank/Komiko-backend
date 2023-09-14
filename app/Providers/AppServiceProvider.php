@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \URL::forceScheme('https');
         View::share('globalsettings', app(GeneralSettings::class));
 
         Collection::macro('paginate', function ($perPage, $total = null, $page = null, $pageName = 'page') {
