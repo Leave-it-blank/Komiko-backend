@@ -4,7 +4,7 @@ services:
     build: ./
     env_file: ./.env
     ports:
-      - 80:80
+      - 5002:80
     environment:
         APP_ENV: local
         PHP_EXTENSION_XDEBUG: 0
@@ -33,14 +33,16 @@ services:
         POSTGRES_DB: ${DB_DATABASE}
         POSTGRES_USER: ${DB_USERNAME}
         POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+        - ./database:/var/lib/postgresql
     networks:
       - lara 
   lararedis:
     env_file: ./.env
     image: redis:6-alpine
     ports:
-      - 6379:6379
-    command: >
+      - 6380:6380
+    command: --port 6380
       --requirepass ${REDIS_PASSWORD}
     networks:
       - lara
