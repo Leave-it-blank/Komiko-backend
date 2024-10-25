@@ -42,7 +42,7 @@ class HomeController extends Controller
         $latest = cache()->remember('latest_comics_api', now()->addMinutes(2), function () {
             return  Chapter::with('volume', 'volume.comic', 'volume.comic.media')->whereHas('volume.comic', function ($c) {
                 $c->where('isHidden', false);
-            })->orderBy('updated_at', 'desc')->take(10)->get()->map(function ($chapter) {
+            })->orderBy('updated_at', 'desc')->take(12)->get()->map(function ($chapter) {
                 return [
                     'comic_id' => $chapter->volume->comic->id,
                     'ch_number' => $chapter->number,
@@ -77,7 +77,7 @@ class HomeController extends Controller
         });
         //recommended HOT UPDATES
         $recommended = cache()->remember('hot_updates_api', now()->addMinutes(5), function () {
-            return  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->take(10)->get()->map(function ($comic) {
+            return  Comic::where('isHidden', false)->with('media')->withCount('chapters')->orderByViews('asc')->take(12)->get()->map(function ($comic) {
                 return [
                     'comic_id' => $comic->id,
                     'comic_title' => $comic->title,
@@ -136,7 +136,7 @@ class HomeController extends Controller
 
                 ];
             });
-        $data = $data->paginate(15);
+        $data = $data->paginate(20);
         $data->withPath('');
         return   [
             'chapters' =>  $data,
@@ -150,7 +150,6 @@ class HomeController extends Controller
                 'id' => $comic->id,
                 'title' => $comic->title,
                 'titleSlug' => $comic->titleSlug,
-
                 'created_at' => $comic->created_at,
                 'choice' => $comic->choice,
                 'chapterCount' => $comic->chapters_count,
@@ -161,7 +160,7 @@ class HomeController extends Controller
 
             ];
         });
-        $data = $data->paginate(15);
+        $data = $data->paginate(20);
         $data->withPath('');
         return   [
             'comics' => $data,
@@ -170,20 +169,36 @@ class HomeController extends Controller
 
     public function getAllComicsSlug()
     {
+        $comicSlug = cache()->remember('all_comics', now()->addMinutes(20), function () {
+            return   Comic::where('isHidden', false)->withCount('chapters')->get()->map(function ($comic) {
+                return [
+                    'id' => $comic->id,
+                    'title' => $comic->title,
+                    'titleSlug' => $comic->titleSlug,
+                    'created_at' => $comic->created_at,
+                    'choice' => $comic->choice,
+                    'chapterCount' => $comic->chapters_count,
+                    'type' => $comic->type,
+                    'isMature' => $comic->isMature,
+                    'status' => $comic->status,
+                    'thumb' => $comic->getFirstMediaUrl('thumbnail'),
 
-        $comicSlug = Comic::where('isHidden', false)->get()->map(function ($comic) {
-            return [
-                'id' => $comic->id,
-                'title' => $comic->title,
-                'titleSlug' => $comic->titleSlug,
-                'created_at' => $comic->created_at,
-                'choice' => $comic->choice,
-                'chapterCount' => $comic->chapters_count,
-                'type' => $comic->type,
-                'isMature' => $comic->isMature,
-                'status' => $comic->status,
-            ];
+                    'tags' => $comic->tags->map(function ($tag) {
+
+                        return [
+
+                            'name' => $tag->name,
+                            'svg' => $tag->number,
+                            'tagCode' => $tag->tagCode
+
+                        ];
+                    }),
+                    'artist' => $comic->artist->name,
+                    'author' =>  $comic->author->name,
+                ];
+            });
         });
+
         return [
             'comics' => $comicSlug
         ];
